@@ -147,9 +147,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Deck {
 	sdk := &Deck{
-		SDKVersion: "0.1.2",
+		SDKVersion: "0.1.3",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.1.2 2.657.1 v1 github.com/buildwithdeck/sdk-go",
+			UserAgent:  "speakeasy-sdk/go 0.1.3 2.657.1 v1 github.com/buildwithdeck/sdk-go",
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),
