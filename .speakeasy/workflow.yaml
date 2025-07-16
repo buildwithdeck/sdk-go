@@ -3,7 +3,7 @@ speakeasyVersion: latest
 sources:
     Deck API:
         inputs:
-            - location: ../../../Downloads/deck-openapi.json
+            - location: https://live.deck.co/openapi/v1.json
         overlays:
             - location: .speakeasy/speakeasy-modifications-overlay.yaml
         output: .speakeasy/out.openapi.yaml

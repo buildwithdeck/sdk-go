@@ -418,10 +418,10 @@ func main() {
 
 You can override the default server globally using the `WithServerIndex(serverIndex int)` option when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| #   | Server                                       | Description      |
-| --- | -------------------------------------------- | ---------------- |
-| 0   | `https://sandbox.staging.decktech.co/api/v1` | Deck Sandbox API |
-| 1   | `https://live.staging.decktech.co/api/v1`    | Deck API         |
+| #   | Server                           | Description      |
+| --- | -------------------------------- | ---------------- |
+| 0   | `https://sandbox.deck.co/api/v1` | Deck Sandbox API |
+| 1   | `https://live.deck.co/api/v1`    | Deck API         |
 
 #### Example
 
@@ -485,7 +485,7 @@ func main() {
 	ctx := context.Background()
 
 	s := sdkgo.New(
-		sdkgo.WithServerURL("https://live.staging.decktech.co/api/v1"),
+		sdkgo.WithServerURL("https://live.deck.co/api/v1"),
 		sdkgo.WithSecurity(components.Security{
 			ClientID: sdkgo.String(os.Getenv("DECK_CLIENT_ID")),
 			Secret:   sdkgo.String(os.Getenv("DECK_SECRET")),

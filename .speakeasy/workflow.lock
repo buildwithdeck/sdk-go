@@ -2,8 +2,8 @@ speakeasyVersion: 1.582.0
 sources:
     Deck API:
         sourceNamespace: deck-api
-        sourceRevisionDigest: sha256:c23e17e1298e5aceac4dd524ff060552e3ccedebc808fb13cd6f832f5117ab7c
-        sourceBlobDigest: sha256:ca792f3fe459410062dcf422fb164a4b158af66aa2dd445c36e2012562b38cd3
+        sourceRevisionDigest: sha256:fd578ef7140611ce6160c508372be5021f50373c390f99d9d6944bce25e6cf7e
+        sourceBlobDigest: sha256:12931539ed327ce44c8a00c8cfbb92043e369a020e53d41f038ffc895c02063b
         tags:
             - latest
             - v1
@@ -11,17 +11,17 @@ targets:
     deck:
         source: Deck API
         sourceNamespace: deck-api
-        sourceRevisionDigest: sha256:c23e17e1298e5aceac4dd524ff060552e3ccedebc808fb13cd6f832f5117ab7c
-        sourceBlobDigest: sha256:ca792f3fe459410062dcf422fb164a4b158af66aa2dd445c36e2012562b38cd3
+        sourceRevisionDigest: sha256:fd578ef7140611ce6160c508372be5021f50373c390f99d9d6944bce25e6cf7e
+        sourceBlobDigest: sha256:12931539ed327ce44c8a00c8cfbb92043e369a020e53d41f038ffc895c02063b
         codeSamplesNamespace: deck-api-go-code-samples
-        codeSamplesRevisionDigest: sha256:8a949c627037fd9d059b6b026514b2922dd804873c87d00fef1ea88d5039f53d
+        codeSamplesRevisionDigest: sha256:8931859dd59016b4f5c1f5dc9178303c61a8558ed963b3885fcfa7544711570e
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
         Deck API:
             inputs:
-                - location: ../../../Downloads/deck-openapi.json
+                - location: https://live.deck.co/openapi/v1.json
             overlays:
                 - location: .speakeasy/speakeasy-modifications-overlay.yaml
             output: .speakeasy/out.openapi.yaml

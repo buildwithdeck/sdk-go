@@ -19,9 +19,9 @@ import (
 // ServerList contains the list of servers available to the SDK
 var ServerList = []string{
 	// Deck Sandbox API
-	"https://sandbox.staging.decktech.co/api/v1",
+	"https://sandbox.deck.co/api/v1",
 	// Deck API
-	"https://live.staging.decktech.co/api/v1",
+	"https://live.deck.co/api/v1",
 }
 
 // HTTPClient provides an interface for supplying the SDK with a custom HTTP client
@@ -147,9 +147,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Deck {
 	sdk := &Deck{
-		SDKVersion: "0.1.1",
+		SDKVersion: "0.1.2",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.1.1 2.657.1 v1 github.com/buildwithdeck/sdk-go",
+			UserAgent:  "speakeasy-sdk/go 0.1.2 2.657.1 v1 github.com/buildwithdeck/sdk-go",
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),

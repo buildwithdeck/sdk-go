@@ -7,9 +7,9 @@ info:
     url: "https://deck.co"
   version: "v1"
 servers:
-  - url: "https://sandbox.staging.decktech.co/api/v1"
+  - url: "https://sandbox.deck.co/api/v1"
     description: "Deck Sandbox API"
-  - url: "https://live.staging.decktech.co/api/v1"
+  - url: "https://live.deck.co/api/v1"
     description: "Deck API"
 paths:
   "/jobs/submit":
