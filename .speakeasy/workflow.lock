@@ -6,6 +6,7 @@ sources:
         sourceBlobDigest: sha256:12931539ed327ce44c8a00c8cfbb92043e369a020e53d41f038ffc895c02063b
         tags:
             - latest
+            - speakeasy-sdk-regen-1752694557
             - v1
 targets:
     deck:
@@ -14,7 +15,7 @@ targets:
         sourceRevisionDigest: sha256:fd578ef7140611ce6160c508372be5021f50373c390f99d9d6944bce25e6cf7e
         sourceBlobDigest: sha256:12931539ed327ce44c8a00c8cfbb92043e369a020e53d41f038ffc895c02063b
         codeSamplesNamespace: deck-api-go-code-samples
-        codeSamplesRevisionDigest: sha256:8931859dd59016b4f5c1f5dc9178303c61a8558ed963b3885fcfa7544711570e
+        codeSamplesRevisionDigest: sha256:6e88ea908f4a02e5cf6faba4f03693912e1672d9091141ba284f5aa575487e27
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
