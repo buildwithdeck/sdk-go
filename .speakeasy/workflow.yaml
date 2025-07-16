@@ -1,0 +1,21 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    Deck API:
+        inputs:
+            - location: ../../../Downloads/deck-openapi.json
+        overlays:
+            - location: .speakeasy/speakeasy-modifications-overlay.yaml
+        output: .speakeasy/out.openapi.yaml
+        registry:
+            location: registry.speakeasyapi.dev/deck-software-inc/poc/deck-api
+targets:
+    deck:
+        target: go
+        source: Deck API
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/deck-software-inc/poc/deck-api-go-code-samples
+            labelOverride:
+                fixedValue: Go (SDK)
+            blocking: false

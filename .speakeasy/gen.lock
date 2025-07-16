@@ -1,0 +1,423 @@
+lockVersion: 2.0.0
+id: d348888e-280a-43de-910e-0b32ba656cb4
+management:
+  docChecksum: 602b80424f27b9e6dcd38785f3c5bda1
+  docVersion: v1
+  speakeasyVersion: 1.582.0
+  generationVersion: 2.657.1
+  releaseVersion: 0.1.1
+  configChecksum: 6cd1b25a46e8bce3b8aad9a1a5b5100b
+features:
+  go:
+    acceptHeaders: 2.81.2
+    additionalDependencies: 0.1.0
+    core: 3.8.1
+    defaultEnabledRetries: 0.2.0
+    deprecations: 2.81.3
+    devContainers: 2.90.0
+    downloadStreams: 0.1.2
+    envVarSecurityUsage: 0.3.2
+    flattening: 2.81.1
+    globalSecurity: 2.82.11
+    globalSecurityCallbacks: 0.1.0
+    globalServerURLs: 2.82.3
+    groups: 2.81.2
+    intellisenseMarkdownSupport: 0.1.0
+    nameOverrides: 2.81.2
+    nullables: 0.1.1
+    responseFormat: 0.1.2
+    retries: 2.83.3
+    sdkHooks: 0.2.0
+generatedFiles:
+  - .devcontainer/README.md
+  - .devcontainer/devcontainer.json
+  - .devcontainer/setup.sh
+  - .gitattributes
+  - /models/apierrors/alreadyrunningjobresponseerror.go
+  - /models/apierrors/badrequestjobresponseerror.go
+  - /models/apierrors/errormessageresponse.go
+  - /models/components/accesstokenrequest.go
+  - /models/components/accountselectmodeenum.go
+  - /models/components/autorefreshupdaterequest.go
+  - /models/components/connectioncontextresponse.go
+  - /models/components/connectionpublictokenexchangerequest.go
+  - /models/components/connectionpublictokenexchangeresponse.go
+  - /models/components/connectivitystatusenum.go
+  - /models/components/documentinfo.go
+  - /models/components/documentlistresponse.go
+  - /models/components/entity.go
+  - /models/components/errorcategoryenum.go
+  - /models/components/errorcodeenum.go
+  - /models/components/fieldtypeenum.go
+  - /models/components/getconnectionaccountsrequestaccount.go
+  - /models/components/getconnectionaccountsresponse.go
+  - /models/components/getconnectionaccountsresponseaccount.go
+  - /models/components/httpmetadata.go
+  - /models/components/invalidateaccesstokenresponse.go
+  - /models/components/jobresponse.go
+  - /models/components/languageenum.go
+  - /models/components/linkaccountlistresponse.go
+  - /models/components/linkaccountlistresponseaccountitem.go
+  - /models/components/linkaccountselectrequest.go
+  - /models/components/linkclientinforesponse.go
+  - /models/components/linkconnectionstatusresponse.go
+  - /models/components/linkconnectionstatusresponseenum.go
+  - /models/components/linkconnectrequest.go
+  - /models/components/linkconnectrequestfield.go
+  - /models/components/linkconnectresponse.go
+  - /models/components/linksourcesrequest.go
+  - /models/components/linksourcesresponse.go
+  - /models/components/linksourcesresponsesource.go
+  - /models/components/linksourcesresponsesourcefield.go
+  - /models/components/linktokencreaterequest.go
+  - /models/components/linktokencreaterequestupdatemodeenum.go
+  - /models/components/linktokengetresponse.go
+  - /models/components/linktokenrequestresponse.go
+  - /models/components/mfaanswerrequest.go
+  - /models/components/provider.go
+  - /models/components/rawdocumentrequest.go
+  - /models/components/refreshconnectionrequest.go
+  - /models/components/scrapingstatusenum.go
+  - /models/components/security.go
+  - /models/components/securityquestionanswersaverequest.go
+  - /models/components/securityquestionresponse.go
+  - /models/components/selectconnectionaccountsrequest.go
+  - /models/components/webhookupdaterequest.go
+  - /models/operations/postconnectionaccesstokeninvalidate.go
+  - /models/operations/postconnectionaccounts.go
+  - /models/operations/postconnectionaccountsselect.go
+  - /models/operations/postconnectionautorefreshupdate.go
+  - /models/operations/postconnectioncontext.go
+  - /models/operations/postconnectiondestroy.go
+  - /models/operations/postconnectionpublictokenexchange.go
+  - /models/operations/postconnectionrefresh.go
+  - /models/operations/postconnectionwebhookupdate.go
+  - /models/operations/postjobsdocumentsfile.go
+  - /models/operations/postjobsdocumentslist.go
+  - /models/operations/postjobsmfaanswer.go
+  - /models/operations/postjobssubmit.go
+  - /models/operations/postlinkaccountlist.go
+  - /models/operations/postlinkaccountselect.go
+  - /models/operations/postlinkauthenticationmfaanswer.go
+  - /models/operations/postlinkauthenticationmfaget.go
+  - /models/operations/postlinkconnect.go
+  - /models/operations/postlinkconnectionstatus.go
+  - /models/operations/postlinkinfo.go
+  - /models/operations/postlinksources.go
+  - /models/operations/postlinktokencreate.go
+  - /models/operations/postlinktokenget.go
+  - USAGE.md
+  - authentication.go
+  - connection.go
+  - connections.go
+  - deck.go
+  - docs/models/apierrors/alreadyrunningjobresponseerror.md
+  - docs/models/apierrors/badrequestjobresponseerror.md
+  - docs/models/apierrors/errormessageresponse.md
+  - docs/models/components/accesstokenrequest.md
+  - docs/models/components/accountselectmodeenum.md
+  - docs/models/components/autorefreshupdaterequest.md
+  - docs/models/components/connectioncontextresponse.md
+  - docs/models/components/connectionpublictokenexchangerequest.md
+  - docs/models/components/connectionpublictokenexchangeresponse.md
+  - docs/models/components/connectivitystatusenum.md
+  - docs/models/components/documentinfo.md
+  - docs/models/components/documentlistresponse.md
+  - docs/models/components/entity.md
+  - docs/models/components/errorcategoryenum.md
+  - docs/models/components/errorcodeenum.md
+  - docs/models/components/fieldtypeenum.md
+  - docs/models/components/getconnectionaccountsrequestaccount.md
+  - docs/models/components/getconnectionaccountsresponse.md
+  - docs/models/components/getconnectionaccountsresponseaccount.md
+  - docs/models/components/httpmetadata.md
+  - docs/models/components/invalidateaccesstokenresponse.md
+  - docs/models/components/jobresponse.md
+  - docs/models/components/languageenum.md
+  - docs/models/components/linkaccountlistresponse.md
+  - docs/models/components/linkaccountlistresponseaccountitem.md
+  - docs/models/components/linkaccountselectrequest.md
+  - docs/models/components/linkclientinforesponse.md
+  - docs/models/components/linkconnectionstatusresponse.md
+  - docs/models/components/linkconnectionstatusresponseenum.md
+  - docs/models/components/linkconnectrequest.md
+  - docs/models/components/linkconnectrequestfield.md
+  - docs/models/components/linkconnectresponse.md
+  - docs/models/components/linksourcesrequest.md
+  - docs/models/components/linksourcesresponse.md
+  - docs/models/components/linksourcesresponsesource.md
+  - docs/models/components/linksourcesresponsesourcefield.md
+  - docs/models/components/linktokencreaterequest.md
+  - docs/models/components/linktokencreaterequestbetasourcestatus.md
+  - docs/models/components/linktokencreaterequestlanguage.md
+  - docs/models/components/linktokencreaterequestupdatemodeenum.md
+  - docs/models/components/linktokengetresponse.md
+  - docs/models/components/linktokengetresponsebetasourcestatus.md
+  - docs/models/components/linktokengetresponselanguage.md
+  - docs/models/components/linktokenrequestresponse.md
+  - docs/models/components/mfaanswerrequest.md
+  - docs/models/components/mode.md
+  - docs/models/components/parsingmethod.md
+  - docs/models/components/provider.md
+  - docs/models/components/rawdocumentrequest.md
+  - docs/models/components/refreshconnectionrequest.md
+  - docs/models/components/scrapingstatusenum.md
+  - docs/models/components/security.md
+  - docs/models/components/securityquestionanswersaverequest.md
+  - docs/models/components/securityquestionresponse.md
+  - docs/models/components/selectconnectionaccountsrequest.md
+  - docs/models/components/update.md
+  - docs/models/components/updatemode.md
+  - docs/models/components/webhookupdaterequest.md
+  - docs/models/operations/option.md
+  - docs/models/operations/postconnectionaccesstokeninvalidateresponse.md
+  - docs/models/operations/postconnectionaccountsresponse.md
+  - docs/models/operations/postconnectionaccountsselectresponse.md
+  - docs/models/operations/postconnectionautorefreshupdateresponse.md
+  - docs/models/operations/postconnectioncontextresponse.md
+  - docs/models/operations/postconnectiondestroyresponse.md
+  - docs/models/operations/postconnectionpublictokenexchangeresponse.md
+  - docs/models/operations/postconnectionrefreshresponse.md
+  - docs/models/operations/postconnectionwebhookupdateresponse.md
+  - docs/models/operations/postjobsdocumentsfileresponse.md
+  - docs/models/operations/postjobsdocumentslistrequest.md
+  - docs/models/operations/postjobsdocumentslistresponse.md
+  - docs/models/operations/postjobsmfaanswerresponse.md
+  - docs/models/operations/postjobssubmitrequest.md
+  - docs/models/operations/postjobssubmitresponse.md
+  - docs/models/operations/postlinkaccountlistresponse.md
+  - docs/models/operations/postlinkaccountselectresponse.md
+  - docs/models/operations/postlinkauthenticationmfaanswerresponse.md
+  - docs/models/operations/postlinkauthenticationmfagetresponse.md
+  - docs/models/operations/postlinkconnectionstatusresponse.md
+  - docs/models/operations/postlinkconnectresponse.md
+  - docs/models/operations/postlinkinforesponse.md
+  - docs/models/operations/postlinksourcesresponse.md
+  - docs/models/operations/postlinktokencreateresponse.md
+  - docs/models/operations/postlinktokengetresponse.md
+  - docs/sdks/authentication/README.md
+  - docs/sdks/connection/README.md
+  - docs/sdks/connections/README.md
+  - docs/sdks/deck/README.md
+  - docs/sdks/jobs/README.md
+  - docs/sdks/jobsdocuments/README.md
+  - docs/sdks/link/README.md
+  - docs/sdks/links/README.md
+  - go.mod
+  - internal/config/sdkconfiguration.go
+  - internal/hooks/hooks.go
+  - internal/utils/contenttype.go
+  - internal/utils/env.go
+  - internal/utils/form.go
+  - internal/utils/headers.go
+  - internal/utils/json.go
+  - internal/utils/pathparams.go
+  - internal/utils/queryparams.go
+  - internal/utils/requestbody.go
+  - internal/utils/retries.go
+  - internal/utils/security.go
+  - internal/utils/utils.go
+  - jobs.go
+  - jobsdocuments.go
+  - link.go
+  - links.go
+  - models/apierrors/apierror.go
+  - models/operations/options.go
+  - retry/config.go
+  - types/bigint.go
+  - types/date.go
+  - types/datetime.go
+  - types/decimal.go
+  - types/pointers.go
+examples:
+  post_/jobs/submit:
+    speakeasy-default-post-/jobs/submit:
+      requestBody:
+        application/json: {"job_code": "FetchDocuments", "input": {"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7", "key1": "value1", "someProperty": "someValue"}}
+        text/json: {"job_code": "FetchDocuments", "input": {"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7", "key1": "value1", "someProperty": "someValue"}}
+        application/*+json: {"job_code": "FetchDocuments", "input": {"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7", "key1": "value1", "someProperty": "someValue"}}
+      responses:
+        "200":
+          application/json: {"job_guid": "61ddf36b-3530-4a14-9b21-fac7297f39c0", "job_code": "<value>"}
+          text/json: {"job_guid": "61ddf36b-3530-4a14-9b21-fac7297f39c0", "job_code": "<value>"}
+        "400":
+          application/json: {"error_code": "NO_ACTIVE_CONNECTION", "error_message": "<value>"}
+          text/json: {"error_code": "NO_ACTIVE_CONNECTION", "error_message": "<value>"}
+        "409":
+          application/json: {"job_id": "13822d2a-93aa-44b1-9d5b-595e331634c0", "job_guid": "f850baba-d96c-49cf-af28-cee156178113", "message": "<value>", "error_message": "<value>"}
+          text/json: {"job_id": "13822d2a-93aa-44b1-9d5b-595e331634c0", "job_guid": "f850baba-d96c-49cf-af28-cee156178113", "message": "<value>", "error_message": "<value>"}
+  post_/jobs/mfa/answer:
+    speakeasy-default-post-/jobs/mfa/answer:
+      responses:
+        "400":
+          application/json: {}
+          text/json: {}
+  post_/jobs/documents/list:
+    speakeasy-default-post-/jobs/documents/list:
+      responses:
+        "200":
+          application/json: {"documents": []}
+          text/json: {"documents": []}
+        "400":
+          application/json: {}
+          text/json: {}
+  post_/jobs/documents/file:
+    speakeasy-default-post-/jobs/documents/file:
+      responses:
+        "200":
+          application/json: "x-file: example.file"
+          text/json: "x-file: example.file"
+        "400":
+          application/json: {}
+          text/json: {}
+  post_/link/token/create:
+    speakeasy-default-post-/link/token/create:
+      responses:
+        "200":
+          application/json: {"link_token": "<value>"}
+          text/json: {"link_token": "<value>"}
+        "400":
+          application/json: {}
+          text/json: {}
+  post_/link/info:
+    speakeasy-default-post-/link/info:
+      responses:
+        "200":
+          application/json: {}
+          text/json: {}
+        "400":
+          application/json: {}
+          text/json: {}
+  post_/link/sources:
+    speakeasy-default-post-/link/sources:
+      responses:
+        "200":
+          application/json: {}
+          text/json: {}
+        "400":
+          application/json: {}
+          text/json: {}
+  post_/link/connect:
+    speakeasy-default-post-/link/connect:
+      responses:
+        "200":
+          application/json: {}
+          text/json: {}
+        "400":
+          application/json: {}
+          text/json: {}
+  post_/link/connection/status:
+    speakeasy-default-post-/link/connection/status:
+      responses:
+        "200":
+          application/json: {}
+          text/json: {}
+        "400":
+          application/json: {}
+          text/json: {}
+  post_/link/authentication/mfa/get:
+    speakeasy-default-post-/link/authentication/mfa/get:
+      responses:
+        "200":
+          application/json: {"question": "<value>"}
+          text/json: {"question": "<value>"}
+        "400":
+          application/json: {}
+          text/json: {}
+  post_/link/authentication/mfa/answer:
+    speakeasy-default-post-/link/authentication/mfa/answer:
+      responses:
+        "400":
+          application/json: {}
+          text/json: {}
+  post_/link/account/select:
+    speakeasy-default-post-/link/account/select:
+      responses:
+        "400":
+          application/json: {}
+          text/json: {}
+  post_/link/token/get:
+    speakeasy-default-post-/link/token/get:
+      responses:
+        "200":
+          application/json: {}
+          text/json: {}
+        "400":
+          application/json: {}
+          text/json: {}
+  post_/link/account/list:
+    speakeasy-default-post-/link/account/list:
+      responses:
+        "200":
+          application/json: {}
+          text/json: {}
+        "400":
+          application/json: {}
+          text/json: {}
+  post_/connection/public_token/exchange:
+    speakeasy-default-post-/connection/public-token/exchange:
+      responses:
+        "200":
+          application/json: {"fields": [{"field_name": "<value>", "field_value": "<value>"}]}
+          text/json: {"fields": [{"field_name": "<value>", "field_value": "<value>"}]}
+        "400":
+          application/json: {}
+          text/json: {}
+  post_/connection/context:
+    speakeasy-default-post-/connection/context:
+      responses:
+        "200":
+          application/json: {"provider": {}, "entities": []}
+          text/json: {"provider": {}, "entities": []}
+        "400":
+          application/json: {}
+          text/json: {}
+  post_/connection/accounts:
+    speakeasy-default-post-/connection/accounts:
+      responses:
+        "200":
+          application/json: {}
+          text/json: {}
+        "400":
+          application/json: {}
+          text/json: {}
+  post_/connection/accounts/select:
+    speakeasy-default-post-/connection/accounts/select:
+      responses:
+        "400":
+          application/json: {}
+          text/json: {}
+  post_/connection/access_token/invalidate:
+    speakeasy-default-post-/connection/access-token/invalidate:
+      responses:
+        "200":
+          application/json: {}
+          text/json: {}
+        "400":
+          application/json: {}
+          text/json: {}
+  post_/connection/auto_refresh/update:
+    speakeasy-default-post-/connection/auto-refresh/update:
+      responses:
+        "400":
+          application/json: {}
+          text/json: {}
+  post_/connection/refresh:
+    speakeasy-default-post-/connection/refresh:
+      responses:
+        "400":
+          application/json: {}
+          text/json: {}
+  post_/connection/webhook/update:
+    speakeasy-default-post-/connection/webhook/update:
+      responses:
+        "400":
+          application/json: {}
+          text/json: {}
+  post_/connection/destroy:
+    speakeasy-default-post-/connection/destroy:
+      responses:
+        "400":
+          application/json: {}
+          text/json: {}
+examplesVersion: 1.0.2

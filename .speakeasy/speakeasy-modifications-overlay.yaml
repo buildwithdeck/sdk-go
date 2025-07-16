@@ -1,0 +1,225 @@
+overlay: 1.0.0
+x-speakeasy-jsonpath: rfc9535
+info:
+  title: Speakeasy Modifications
+  version: 0.0.2
+  x-speakeasy-metadata:
+    after: ""
+    before: ""
+    type: speakeasy-modifications
+actions:
+  - target: $["paths"]["/link/connect"]["post"]
+    update:
+      x-speakeasy-group: links
+      x-speakeasy-name-override: connect
+    x-speakeasy-metadata:
+      after: sdk.links.connect()
+      before: sdk.Link.post_/link/connect()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
+  - target: $["paths"]["/connection/public_token/exchange"]["post"]
+    update:
+      x-speakeasy-name-override: exchangePublicToken
+    x-speakeasy-metadata:
+      after: sdk.connection.exchangePublicToken()
+      before: sdk.Connection.post_/connection/public_token/exchange()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
+  - target: $["paths"]["/connection/context"]["post"]
+    update:
+      x-speakeasy-name-override: getContext
+    x-speakeasy-metadata:
+      after: sdk.connection.getContext()
+      before: sdk.Connection.post_/connection/context()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
+  - target: $["paths"]["/link/account/select"]["post"]
+    update:
+      x-speakeasy-name-override: selectAccount
+    x-speakeasy-metadata:
+      after: sdk.link.selectAccount()
+      before: sdk.Link.post_/link/account/select()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
+  - target: $["paths"]["/link/account/list"]["post"]
+    update:
+      x-speakeasy-group: links
+      x-speakeasy-name-override: listAccounts
+    x-speakeasy-metadata:
+      after: sdk.links.listAccounts()
+      before: sdk.Link.post_/link/account/list()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
+  - target: $["paths"]["/link/authentication/mfa/answer"]["post"]
+    update:
+      x-speakeasy-group: links.authentication
+      x-speakeasy-name-override: answerMfa
+    x-speakeasy-metadata:
+      after: sdk.links.authentication.answerMfa()
+      before: sdk.Link.post_/link/authentication/mfa/answer()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
+  - target: $["paths"]["/link/sources"]["post"]
+    update:
+      x-speakeasy-name-override: searchSources
+    x-speakeasy-metadata:
+      after: sdk.link.searchSources()
+      before: sdk.Link.post_/link/sources()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
+  - target: $["paths"]["/link/token/create"]["post"]
+    update:
+      x-speakeasy-name-override: createToken
+    x-speakeasy-metadata:
+      after: sdk.link.createToken()
+      before: sdk.Link.post_/link/token/create()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
+  - target: $["paths"]["/connection/webhook/update"]["post"]
+    update:
+      x-speakeasy-group: connections
+      x-speakeasy-name-override: updateWebhook
+    x-speakeasy-metadata:
+      after: sdk.connections.updateWebhook()
+      before: sdk.Connection.post_/connection/webhook/update()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
+  - target: $["paths"]["/link/info"]["post"]
+    update:
+      x-speakeasy-name-override: getInfo
+    x-speakeasy-metadata:
+      after: sdk.link.getInfo()
+      before: sdk.Link.post_/link/info()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
+  - target: $["paths"]["/connection/refresh"]["post"]
+    update:
+      x-speakeasy-name-override: refresh
+    x-speakeasy-metadata:
+      after: sdk.connection.refresh()
+      before: sdk.Connection.post_/connection/refresh()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
+  - target: $["paths"]["/link/authentication/mfa/get"]["post"]
+    update:
+      x-speakeasy-group: links.authentication
+      x-speakeasy-name-override: getMfaQuestion
+    x-speakeasy-metadata:
+      after: sdk.links.authentication.getMfaQuestion()
+      before: sdk.Link.post_/link/authentication/mfa/get()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
+  - target: $["paths"]["/jobs/submit"]["post"]
+    update:
+      x-speakeasy-name-override: submit
+    x-speakeasy-metadata:
+      after: sdk.jobs.submit()
+      before: sdk.Jobs.post_/jobs/submit()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
+  - target: $["paths"]["/connection/auto_refresh/update"]["post"]
+    update:
+      x-speakeasy-name-override: updateAutoRefresh
+    x-speakeasy-metadata:
+      after: sdk.connection.updateAutoRefresh()
+      before: sdk.Connection.post_/connection/auto_refresh/update()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
+  - target: $["paths"]["/jobs/mfa/answer"]["post"]
+    update:
+      x-speakeasy-name-override: answerMFA
+    x-speakeasy-metadata:
+      after: sdk.jobs.answerMFA()
+      before: sdk.Jobs.post_/jobs/mfa/answer()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
+  - target: $["paths"]["/connection/accounts"]["post"]
+    update:
+      x-speakeasy-name-override: getAccounts
+    x-speakeasy-metadata:
+      after: sdk.connection.getAccounts()
+      before: sdk.Connection.post_/connection/accounts()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
+  - target: $["paths"]["/link/connection/status"]["post"]
+    update:
+      x-speakeasy-group: links
+      x-speakeasy-name-override: getConnectionStatus
+    x-speakeasy-metadata:
+      after: sdk.links.getConnectionStatus()
+      before: sdk.Link.post_/link/connection/status()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
+  - target: $["paths"]["/connection/destroy"]["post"]
+    update:
+      x-speakeasy-name-override: destroy
+    x-speakeasy-metadata:
+      after: sdk.connection.destroy()
+      before: sdk.Connection.post_/connection/destroy()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
+  - target: $["paths"]["/connection/accounts/select"]["post"]
+    update:
+      x-speakeasy-name-override: selectAccounts
+    x-speakeasy-metadata:
+      after: sdk.connection.selectAccounts()
+      before: sdk.Connection.post_/connection/accounts/select()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
+  - target: $["paths"]["/jobs/documents/file"]["post"]
+    update:
+      x-speakeasy-name-override: getDocumentFile
+    x-speakeasy-metadata:
+      after: sdk.jobs.getDocumentFile()
+      before: sdk.Jobs.post_/jobs/documents/file()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
+  - target: $["paths"]["/link/token/get"]["post"]
+    update:
+      x-speakeasy-name-override: getToken
+    x-speakeasy-metadata:
+      after: sdk.link.getToken()
+      before: sdk.Link.post_/link/token/get()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
+  - target: $["paths"]["/jobs/documents/list"]["post"]
+    update:
+      x-speakeasy-group: jobsDocuments
+      x-speakeasy-name-override: list
+    x-speakeasy-metadata:
+      after: sdk.jobsDocuments.list()
+      before: sdk.Jobs.post_/jobs/documents/list()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
+  - target: $["paths"]["/connection/access_token/invalidate"]["post"]
+    update:
+      x-speakeasy-group: connections
+      x-speakeasy-name-override: invalidateAccessToken
+    x-speakeasy-metadata:
+      after: sdk.connections.invalidateAccessToken()
+      before: sdk.Connection.post_/connection/access_token/invalidate()
+      created_at: 1752688381001
+      reviewed_at: 1752688414067
+      type: method-name
