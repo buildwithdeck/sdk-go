@@ -14,6 +14,7 @@ Rotate the access_token associated with a connection. The endpoint returns a new
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/connection/access_token/invalidate" method="post" path="/connection/access_token/invalidate" -->
 ```go
 package main
 
@@ -62,6 +63,7 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | apierrors.ErrorMessageResponse | 400                            | application/json               |
+| apierrors.ErrorMessageResponse | 400                            | application/json+encrypted     |
 | apierrors.ErrorMessageResponse | 400                            | text/json                      |
 | apierrors.APIError             | 4XX, 5XX                       | \*/\*                          |
 
@@ -71,6 +73,7 @@ Decide where the webhook event should be sent to for a specific connection.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/connection/webhook/update" method="post" path="/connection/webhook/update" -->
 ```go
 package main
 
@@ -119,5 +122,6 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | apierrors.ErrorMessageResponse | 400                            | application/json               |
+| apierrors.ErrorMessageResponse | 400                            | application/json+encrypted     |
 | apierrors.ErrorMessageResponse | 400                            | text/json                      |
 | apierrors.APIError             | 4XX, 5XX                       | \*/\*                          |

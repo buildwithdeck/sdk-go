@@ -21,6 +21,7 @@ Exchange a Link public_token for an API access_token. Link hands off the public_
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/connection/public_token/exchange" method="post" path="/connection/public_token/exchange" -->
 ```go
 package main
 
@@ -69,6 +70,7 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | apierrors.ErrorMessageResponse | 400                            | application/json               |
+| apierrors.ErrorMessageResponse | 400                            | application/json+encrypted     |
 | apierrors.ErrorMessageResponse | 400                            | text/json                      |
 | apierrors.APIError             | 4XX, 5XX                       | \*/\*                          |
 
@@ -78,6 +80,7 @@ Get connection status details
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/connection/context" method="post" path="/connection/context" -->
 ```go
 package main
 
@@ -126,6 +129,7 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | apierrors.ErrorMessageResponse | 400                            | application/json               |
+| apierrors.ErrorMessageResponse | 400                            | application/json+encrypted     |
 | apierrors.ErrorMessageResponse | 400                            | text/json                      |
 | apierrors.APIError             | 4XX, 5XX                       | \*/\*                          |
 
@@ -135,6 +139,7 @@ Get the connection list of account numbers
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/connection/accounts" method="post" path="/connection/accounts" -->
 ```go
 package main
 
@@ -183,6 +188,7 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | apierrors.ErrorMessageResponse | 400                            | application/json               |
+| apierrors.ErrorMessageResponse | 400                            | application/json+encrypted     |
 | apierrors.ErrorMessageResponse | 400                            | text/json                      |
 | apierrors.APIError             | 4XX, 5XX                       | \*/\*                          |
 
@@ -192,6 +198,7 @@ Update the list of accounts to be considered
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/connection/accounts/select" method="post" path="/connection/accounts/select" -->
 ```go
 package main
 
@@ -240,6 +247,7 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | apierrors.ErrorMessageResponse | 400                            | application/json               |
+| apierrors.ErrorMessageResponse | 400                            | application/json+encrypted     |
 | apierrors.ErrorMessageResponse | 400                            | text/json                      |
 | apierrors.APIError             | 4XX, 5XX                       | \*/\*                          |
 
@@ -249,6 +257,7 @@ You can control which individual connections need to be regularly refreshed or n
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/connection/auto_refresh/update" method="post" path="/connection/auto_refresh/update" -->
 ```go
 package main
 
@@ -297,6 +306,7 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | apierrors.ErrorMessageResponse | 400                            | application/json               |
+| apierrors.ErrorMessageResponse | 400                            | application/json+encrypted     |
 | apierrors.ErrorMessageResponse | 400                            | text/json                      |
 | apierrors.APIError             | 4XX, 5XX                       | \*/\*                          |
 
@@ -306,6 +316,7 @@ This will initiate a new session for refreshing the data related to a connection
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/connection/refresh" method="post" path="/connection/refresh" -->
 ```go
 package main
 
@@ -354,6 +365,7 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | apierrors.ErrorMessageResponse | 400                            | application/json               |
+| apierrors.ErrorMessageResponse | 400                            | application/json+encrypted     |
 | apierrors.ErrorMessageResponse | 400                            | text/json                      |
 | apierrors.APIError             | 4XX, 5XX                       | \*/\*                          |
 
@@ -363,6 +375,7 @@ Delete all data related to a connection, losing access to it.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/connection/destroy" method="post" path="/connection/destroy" -->
 ```go
 package main
 
@@ -411,5 +424,6 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | apierrors.ErrorMessageResponse | 400                            | application/json               |
+| apierrors.ErrorMessageResponse | 400                            | application/json+encrypted     |
 | apierrors.ErrorMessageResponse | 400                            | text/json                      |
 | apierrors.APIError             | 4XX, 5XX                       | \*/\*                          |

@@ -15,6 +15,9 @@ type PostJobsDocumentsFileResponse struct {
 	// OK
 	// The Close method must be called on this field, even if it is not used, to prevent resource leaks.
 	TwoHundredTextJSONResponseStream io.ReadCloser
+	// OK
+	// The Close method must be called on this field, even if it is not used, to prevent resource leaks.
+	TwoHundredApplicationJSONPlusEncryptedResponseStream io.ReadCloser
 }
 
 func (o *PostJobsDocumentsFileResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -36,4 +39,11 @@ func (o *PostJobsDocumentsFileResponse) GetTwoHundredTextJSONResponseStream() io
 		return nil
 	}
 	return o.TwoHundredTextJSONResponseStream
+}
+
+func (o *PostJobsDocumentsFileResponse) GetTwoHundredApplicationJSONPlusEncryptedResponseStream() io.ReadCloser {
+	if o == nil {
+		return nil
+	}
+	return o.TwoHundredApplicationJSONPlusEncryptedResponseStream
 }

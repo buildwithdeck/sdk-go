@@ -15,6 +15,7 @@ Sends credential information to a utility data source and attempts to create a c
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/link/connect" method="post" path="/link/connect" -->
 ```go
 package main
 
@@ -63,6 +64,7 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | apierrors.ErrorMessageResponse | 400                            | application/json               |
+| apierrors.ErrorMessageResponse | 400                            | application/json+encrypted     |
 | apierrors.ErrorMessageResponse | 400                            | text/json                      |
 | apierrors.APIError             | 4XX, 5XX                       | \*/\*                          |
 
@@ -72,6 +74,7 @@ Returns the connectivity status about a connection
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/link/connection/status" method="post" path="/link/connection/status" -->
 ```go
 package main
 
@@ -120,6 +123,7 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | apierrors.ErrorMessageResponse | 400                            | application/json               |
+| apierrors.ErrorMessageResponse | 400                            | application/json+encrypted     |
 | apierrors.ErrorMessageResponse | 400                            | text/json                      |
 | apierrors.APIError             | 4XX, 5XX                       | \*/\*                          |
 
@@ -129,6 +133,7 @@ Return the list of accounts found while creating connection
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/link/account/list" method="post" path="/link/account/list" -->
 ```go
 package main
 
@@ -177,5 +182,6 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | apierrors.ErrorMessageResponse | 400                            | application/json               |
+| apierrors.ErrorMessageResponse | 400                            | application/json+encrypted     |
 | apierrors.ErrorMessageResponse | 400                            | text/json                      |
 | apierrors.APIError             | 4XX, 5XX                       | \*/\*                          |

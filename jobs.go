@@ -34,7 +34,12 @@ func newJobs(rootSDK *Deck, sdkConfig config.SDKConfiguration, hooks *hooks.Hook
 
 // Submit - Send your job requests
 // Provide a job code along with its input parameters to execute it
-func (s *Jobs) Submit(ctx context.Context, request *operations.PostJobsSubmitRequest, opts ...operations.Option) (*operations.PostJobsSubmitResponse, error) {
+func (s *Jobs) Submit(ctx context.Context, xDeckSandbox *string, requestBody *operations.PostJobsSubmitRequestBody2, opts ...operations.Option) (*operations.PostJobsSubmitResponse, error) {
+	request := operations.PostJobsSubmitRequest{
+		XDeckSandbox: xDeckSandbox,
+		RequestBody:  requestBody,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -68,7 +73,7 @@ func (s *Jobs) Submit(ctx context.Context, request *operations.PostJobsSubmitReq
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -91,13 +96,15 @@ func (s *Jobs) Submit(ctx context.Context, request *operations.PostJobsSubmitReq
 	if o.AcceptHeaderOverride != nil {
 		req.Header.Set("Accept", string(*o.AcceptHeaderOverride))
 	} else {
-		req.Header.Set("Accept", "application/json;q=1, text/json;q=0")
+		req.Header.Set("Accept", "application/json;q=1, application/json+encrypted;q=0.7, text/json;q=0")
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
 	}
+
+	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -220,6 +227,18 @@ func (s *Jobs) Submit(ctx context.Context, request *operations.PostJobsSubmitReq
 			}
 
 			res.JobResponse = &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out components.JobResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.JobResponse = &out
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -242,6 +261,22 @@ func (s *Jobs) Submit(ctx context.Context, request *operations.PostJobsSubmitReq
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.BadRequestJobResponseError
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
@@ -283,6 +318,22 @@ func (s *Jobs) Submit(ctx context.Context, request *operations.PostJobsSubmitReq
 	case httpRes.StatusCode == 409:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.AlreadyRunningJobResponseError
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
@@ -406,7 +457,7 @@ func (s *Jobs) AnswerMFA(ctx context.Context, request *components.MfaAnswerReque
 	if o.AcceptHeaderOverride != nil {
 		req.Header.Set("Accept", string(*o.AcceptHeaderOverride))
 	} else {
-		req.Header.Set("Accept", "application/json;q=1, text/json;q=0")
+		req.Header.Set("Accept", "application/json;q=1, application/json+encrypted;q=0.7, text/json;q=0")
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
@@ -540,6 +591,22 @@ func (s *Jobs) AnswerMFA(ctx context.Context, request *components.MfaAnswerReque
 				Response: httpRes,
 			}
 			return nil, &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.ErrorMessageResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -648,7 +715,7 @@ func (s *Jobs) GetDocumentFile(ctx context.Context, request *components.RawDocum
 	if o.AcceptHeaderOverride != nil {
 		req.Header.Set("Accept", string(*o.AcceptHeaderOverride))
 	} else {
-		req.Header.Set("Accept", "application/json;q=1, text/json;q=0")
+		req.Header.Set("Accept", "application/json;q=1, application/json+encrypted;q=0.7, text/json;q=0")
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
@@ -773,6 +840,10 @@ func (s *Jobs) GetDocumentFile(ctx context.Context, request *components.RawDocum
 			res.TwoHundredTextJSONResponseStream = httpRes.Body
 
 			return res, nil
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
+			res.TwoHundredApplicationJSONPlusEncryptedResponseStream = httpRes.Body
+
+			return res, nil
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -783,6 +854,22 @@ func (s *Jobs) GetDocumentFile(ctx context.Context, request *components.RawDocum
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.ErrorMessageResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err

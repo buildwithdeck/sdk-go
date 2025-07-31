@@ -19,6 +19,7 @@ Returns a Link Token to be used in a Link session, customized with options for c
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/link/token/create" method="post" path="/link/token/create" -->
 ```go
 package main
 
@@ -67,6 +68,7 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | apierrors.ErrorMessageResponse | 400                            | application/json               |
+| apierrors.ErrorMessageResponse | 400                            | application/json+encrypted     |
 | apierrors.ErrorMessageResponse | 400                            | text/json                      |
 | apierrors.APIError             | 4XX, 5XX                       | \*/\*                          |
 
@@ -76,6 +78,7 @@ Returns information about the client currently using Datadeck for connecting dat
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/link/info" method="post" path="/link/info" -->
 ```go
 package main
 
@@ -124,6 +127,7 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | apierrors.ErrorMessageResponse | 400                            | application/json               |
+| apierrors.ErrorMessageResponse | 400                            | application/json+encrypted     |
 | apierrors.ErrorMessageResponse | 400                            | text/json                      |
 | apierrors.APIError             | 4XX, 5XX                       | \*/\*                          |
 
@@ -133,6 +137,7 @@ Returns a list of data sources based on a few search parameters
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/link/sources" method="post" path="/link/sources" -->
 ```go
 package main
 
@@ -181,6 +186,7 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | apierrors.ErrorMessageResponse | 400                            | application/json               |
+| apierrors.ErrorMessageResponse | 400                            | application/json+encrypted     |
 | apierrors.ErrorMessageResponse | 400                            | text/json                      |
 | apierrors.APIError             | 4XX, 5XX                       | \*/\*                          |
 
@@ -190,6 +196,7 @@ Call this endpoint to select which accounts to consider, when receiving AccountS
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/link/account/select" method="post" path="/link/account/select" -->
 ```go
 package main
 
@@ -238,6 +245,7 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | apierrors.ErrorMessageResponse | 400                            | application/json               |
+| apierrors.ErrorMessageResponse | 400                            | application/json+encrypted     |
 | apierrors.ErrorMessageResponse | 400                            | text/json                      |
 | apierrors.APIError             | 4XX, 5XX                       | \*/\*                          |
 
@@ -247,6 +255,7 @@ Returns the associated parameters that were used when creating a link_token
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/link/token/get" method="post" path="/link/token/get" -->
 ```go
 package main
 
@@ -295,5 +304,6 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | apierrors.ErrorMessageResponse | 400                            | application/json               |
+| apierrors.ErrorMessageResponse | 400                            | application/json+encrypted     |
 | apierrors.ErrorMessageResponse | 400                            | text/json                      |
 | apierrors.APIError             | 4XX, 5XX                       | \*/\*                          |

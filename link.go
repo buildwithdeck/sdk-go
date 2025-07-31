@@ -91,7 +91,7 @@ func (s *Link) CreateToken(ctx context.Context, request *components.LinkTokenCre
 	if o.AcceptHeaderOverride != nil {
 		req.Header.Set("Accept", string(*o.AcceptHeaderOverride))
 	} else {
-		req.Header.Set("Accept", "application/json;q=1, text/json;q=0")
+		req.Header.Set("Accept", "application/json;q=1, application/json+encrypted;q=0.7, text/json;q=0")
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
@@ -220,6 +220,18 @@ func (s *Link) CreateToken(ctx context.Context, request *components.LinkTokenCre
 			}
 
 			res.LinkTokenRequestResponse = &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out components.LinkTokenRequestResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.LinkTokenRequestResponse = &out
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -242,6 +254,22 @@ func (s *Link) CreateToken(ctx context.Context, request *components.LinkTokenCre
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.ErrorMessageResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
@@ -365,7 +393,7 @@ func (s *Link) GetInfo(ctx context.Context, request *components.LinkTokenRequest
 	if o.AcceptHeaderOverride != nil {
 		req.Header.Set("Accept", string(*o.AcceptHeaderOverride))
 	} else {
-		req.Header.Set("Accept", "application/json;q=1, text/json;q=0")
+		req.Header.Set("Accept", "application/json;q=1, application/json+encrypted;q=0.7, text/json;q=0")
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
@@ -494,6 +522,18 @@ func (s *Link) GetInfo(ctx context.Context, request *components.LinkTokenRequest
 			}
 
 			res.LinkClientInfoResponse = &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out components.LinkClientInfoResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.LinkClientInfoResponse = &out
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -516,6 +556,22 @@ func (s *Link) GetInfo(ctx context.Context, request *components.LinkTokenRequest
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.ErrorMessageResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
@@ -637,7 +693,7 @@ func (s *Link) SearchSources(ctx context.Context, request *components.LinkSource
 	if o.AcceptHeaderOverride != nil {
 		req.Header.Set("Accept", string(*o.AcceptHeaderOverride))
 	} else {
-		req.Header.Set("Accept", "application/json;q=1, text/json;q=0")
+		req.Header.Set("Accept", "application/json;q=1, application/json+encrypted;q=0.7, text/json;q=0")
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
@@ -766,6 +822,18 @@ func (s *Link) SearchSources(ctx context.Context, request *components.LinkSource
 			}
 
 			res.LinkSourcesResponse = &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out components.LinkSourcesResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.LinkSourcesResponse = &out
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -788,6 +856,22 @@ func (s *Link) SearchSources(ctx context.Context, request *components.LinkSource
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.ErrorMessageResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
@@ -909,7 +993,7 @@ func (s *Link) SelectAccount(ctx context.Context, request *components.LinkAccoun
 	if o.AcceptHeaderOverride != nil {
 		req.Header.Set("Accept", string(*o.AcceptHeaderOverride))
 	} else {
-		req.Header.Set("Accept", "application/json;q=1, text/json;q=0")
+		req.Header.Set("Accept", "application/json;q=1, application/json+encrypted;q=0.7, text/json;q=0")
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
@@ -1043,6 +1127,22 @@ func (s *Link) SelectAccount(ctx context.Context, request *components.LinkAccoun
 				Response: httpRes,
 			}
 			return nil, &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.ErrorMessageResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1149,7 +1249,7 @@ func (s *Link) GetToken(ctx context.Context, request *components.LinkTokenReques
 	if o.AcceptHeaderOverride != nil {
 		req.Header.Set("Accept", string(*o.AcceptHeaderOverride))
 	} else {
-		req.Header.Set("Accept", "application/json;q=1, text/json;q=0")
+		req.Header.Set("Accept", "application/json;q=1, application/json+encrypted;q=0.7, text/json;q=0")
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
@@ -1278,6 +1378,18 @@ func (s *Link) GetToken(ctx context.Context, request *components.LinkTokenReques
 			}
 
 			res.LinkTokenGetResponse = &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out components.LinkTokenGetResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.LinkTokenGetResponse = &out
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1300,6 +1412,22 @@ func (s *Link) GetToken(ctx context.Context, request *components.LinkTokenReques
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.ErrorMessageResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
