@@ -91,7 +91,7 @@ func (s *Connection) ExchangePublicToken(ctx context.Context, request *component
 	if o.AcceptHeaderOverride != nil {
 		req.Header.Set("Accept", string(*o.AcceptHeaderOverride))
 	} else {
-		req.Header.Set("Accept", "application/json;q=1, text/json;q=0")
+		req.Header.Set("Accept", "application/json;q=1, application/json+encrypted;q=0.7, text/json;q=0")
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
@@ -220,6 +220,18 @@ func (s *Connection) ExchangePublicToken(ctx context.Context, request *component
 			}
 
 			res.ConnectionPublicTokenExchangeResponse = &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out components.ConnectionPublicTokenExchangeResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.ConnectionPublicTokenExchangeResponse = &out
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -242,6 +254,22 @@ func (s *Connection) ExchangePublicToken(ctx context.Context, request *component
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.ErrorMessageResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
@@ -364,7 +392,7 @@ func (s *Connection) GetContext(ctx context.Context, request *components.AccessT
 	if o.AcceptHeaderOverride != nil {
 		req.Header.Set("Accept", string(*o.AcceptHeaderOverride))
 	} else {
-		req.Header.Set("Accept", "application/json;q=1, text/json;q=0")
+		req.Header.Set("Accept", "application/json;q=1, application/json+encrypted;q=0.7, text/json;q=0")
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
@@ -493,6 +521,18 @@ func (s *Connection) GetContext(ctx context.Context, request *components.AccessT
 			}
 
 			res.ConnectionContextResponse = &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out components.ConnectionContextResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.ConnectionContextResponse = &out
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -515,6 +555,22 @@ func (s *Connection) GetContext(ctx context.Context, request *components.AccessT
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.ErrorMessageResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
@@ -637,7 +693,7 @@ func (s *Connection) GetAccounts(ctx context.Context, request *components.Access
 	if o.AcceptHeaderOverride != nil {
 		req.Header.Set("Accept", string(*o.AcceptHeaderOverride))
 	} else {
-		req.Header.Set("Accept", "application/json;q=1, text/json;q=0")
+		req.Header.Set("Accept", "application/json;q=1, application/json+encrypted;q=0.7, text/json;q=0")
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
@@ -766,6 +822,18 @@ func (s *Connection) GetAccounts(ctx context.Context, request *components.Access
 			}
 
 			res.GetConnectionAccountsResponse = &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out components.GetConnectionAccountsResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.GetConnectionAccountsResponse = &out
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -788,6 +856,22 @@ func (s *Connection) GetAccounts(ctx context.Context, request *components.Access
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.ErrorMessageResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
@@ -910,7 +994,7 @@ func (s *Connection) SelectAccounts(ctx context.Context, request *components.Sel
 	if o.AcceptHeaderOverride != nil {
 		req.Header.Set("Accept", string(*o.AcceptHeaderOverride))
 	} else {
-		req.Header.Set("Accept", "application/json;q=1, text/json;q=0")
+		req.Header.Set("Accept", "application/json;q=1, application/json+encrypted;q=0.7, text/json;q=0")
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
@@ -1044,6 +1128,22 @@ func (s *Connection) SelectAccounts(ctx context.Context, request *components.Sel
 				Response: httpRes,
 			}
 			return nil, &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.ErrorMessageResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1152,7 +1252,7 @@ func (s *Connection) UpdateAutoRefresh(ctx context.Context, request *components.
 	if o.AcceptHeaderOverride != nil {
 		req.Header.Set("Accept", string(*o.AcceptHeaderOverride))
 	} else {
-		req.Header.Set("Accept", "application/json;q=1, text/json;q=0")
+		req.Header.Set("Accept", "application/json;q=1, application/json+encrypted;q=0.7, text/json;q=0")
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
@@ -1286,6 +1386,22 @@ func (s *Connection) UpdateAutoRefresh(ctx context.Context, request *components.
 				Response: httpRes,
 			}
 			return nil, &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.ErrorMessageResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1394,7 +1510,7 @@ func (s *Connection) Refresh(ctx context.Context, request *components.RefreshCon
 	if o.AcceptHeaderOverride != nil {
 		req.Header.Set("Accept", string(*o.AcceptHeaderOverride))
 	} else {
-		req.Header.Set("Accept", "application/json;q=1, text/json;q=0")
+		req.Header.Set("Accept", "application/json;q=1, application/json+encrypted;q=0.7, text/json;q=0")
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
@@ -1528,6 +1644,22 @@ func (s *Connection) Refresh(ctx context.Context, request *components.RefreshCon
 				Response: httpRes,
 			}
 			return nil, &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.ErrorMessageResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1635,7 +1767,7 @@ func (s *Connection) Destroy(ctx context.Context, request *components.AccessToke
 	if o.AcceptHeaderOverride != nil {
 		req.Header.Set("Accept", string(*o.AcceptHeaderOverride))
 	} else {
-		req.Header.Set("Accept", "application/json;q=1, text/json;q=0")
+		req.Header.Set("Accept", "application/json;q=1, application/json+encrypted;q=0.7, text/json;q=0")
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
@@ -1754,6 +1886,22 @@ func (s *Connection) Destroy(ctx context.Context, request *components.AccessToke
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.ErrorMessageResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err

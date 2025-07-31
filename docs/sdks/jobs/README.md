@@ -17,6 +17,7 @@ Provide a job code along with its input parameters to execute it
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/jobs/submit" method="post" path="/jobs/submit" -->
 ```go
 package main
 
@@ -39,7 +40,7 @@ func main() {
         }),
     )
 
-    res, err := s.Jobs.Submit(ctx, &operations.PostJobsSubmitRequest{
+    res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
         JobCode: "FetchDocuments",
         Input: map[string]string{
             "access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
@@ -58,11 +59,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.PostJobsSubmitRequest](../../models/operations/postjobssubmitrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                           | [context.Context](https://pkg.go.dev/context#Context)                                           | :heavy_check_mark:                                                                              | The context to use for the request.                                                             |
+| `xDeckSandbox`                                                                                  | **string*                                                                                       | :heavy_minus_sign:                                                                              | Can be used against the sandbox API with special values to test error use cases                 |
+| `requestBody`                                                                                   | [*operations.PostJobsSubmitRequestBody2](../../models/operations/postjobssubmitrequestbody2.md) | :heavy_minus_sign:                                                                              | N/A                                                                                             |
+| `opts`                                                                                          | [][operations.Option](../../models/operations/option.md)                                        | :heavy_minus_sign:                                                                              | The options for this request.                                                                   |
 
 ### Response
 
@@ -73,8 +75,10 @@ func main() {
 | Error Type                               | Status Code                              | Content Type                             |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | apierrors.BadRequestJobResponseError     | 400                                      | application/json                         |
+| apierrors.BadRequestJobResponseError     | 400                                      | application/json+encrypted               |
 | apierrors.BadRequestJobResponseError     | 400                                      | text/json                                |
 | apierrors.AlreadyRunningJobResponseError | 409                                      | application/json                         |
+| apierrors.AlreadyRunningJobResponseError | 409                                      | application/json+encrypted               |
 | apierrors.AlreadyRunningJobResponseError | 409                                      | text/json                                |
 | apierrors.APIError                       | 4XX, 5XX                                 | \*/\*                                    |
 
@@ -84,6 +88,7 @@ Call this endpoint to send your MFA code
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/jobs/mfa/answer" method="post" path="/jobs/mfa/answer" -->
 ```go
 package main
 
@@ -132,6 +137,7 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | apierrors.ErrorMessageResponse | 400                            | application/json               |
+| apierrors.ErrorMessageResponse | 400                            | application/json+encrypted     |
 | apierrors.ErrorMessageResponse | 400                            | text/json                      |
 | apierrors.APIError             | 4XX, 5XX                       | \*/\*                          |
 
@@ -141,6 +147,7 @@ Returns the raw file for the document with the provided document ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/jobs/documents/file" method="post" path="/jobs/documents/file" -->
 ```go
 package main
 
@@ -189,5 +196,6 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | apierrors.ErrorMessageResponse | 400                            | application/json               |
+| apierrors.ErrorMessageResponse | 400                            | application/json+encrypted     |
 | apierrors.ErrorMessageResponse | 400                            | text/json                      |
 | apierrors.APIError             | 4XX, 5XX                       | \*/\*                          |

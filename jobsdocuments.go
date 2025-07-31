@@ -95,7 +95,7 @@ func (s *JobsDocuments) List(ctx context.Context, jobGUID *string, accessTokenRe
 	if o.AcceptHeaderOverride != nil {
 		req.Header.Set("Accept", string(*o.AcceptHeaderOverride))
 	} else {
-		req.Header.Set("Accept", "application/json;q=1, text/json;q=0")
+		req.Header.Set("Accept", "application/json;q=1, application/json+encrypted;q=0.7, text/json;q=0")
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
@@ -228,6 +228,18 @@ func (s *JobsDocuments) List(ctx context.Context, jobGUID *string, accessTokenRe
 			}
 
 			res.DocumentListResponse = &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out components.DocumentListResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.DocumentListResponse = &out
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -250,6 +262,22 @@ func (s *JobsDocuments) List(ctx context.Context, jobGUID *string, accessTokenRe
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.ErrorMessageResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err

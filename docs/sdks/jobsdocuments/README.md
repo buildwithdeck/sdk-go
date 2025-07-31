@@ -13,6 +13,7 @@ Returns a list of documents available for the connection associated with the pro
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/jobs/documents/list" method="post" path="/jobs/documents/list" -->
 ```go
 package main
 
@@ -62,5 +63,6 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | apierrors.ErrorMessageResponse | 400                            | application/json               |
+| apierrors.ErrorMessageResponse | 400                            | application/json+encrypted     |
 | apierrors.ErrorMessageResponse | 400                            | text/json                      |
 | apierrors.APIError             | 4XX, 5XX                       | \*/\*                          |

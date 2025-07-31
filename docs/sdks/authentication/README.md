@@ -14,6 +14,7 @@ Call this endpoint when receiving the connection status MfaQuestion, to get the 
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/link/authentication/mfa/get" method="post" path="/link/authentication/mfa/get" -->
 ```go
 package main
 
@@ -62,6 +63,7 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | apierrors.ErrorMessageResponse | 400                            | application/json               |
+| apierrors.ErrorMessageResponse | 400                            | application/json+encrypted     |
 | apierrors.ErrorMessageResponse | 400                            | text/json                      |
 | apierrors.APIError             | 4XX, 5XX                       | \*/\*                          |
 
@@ -71,6 +73,7 @@ Call this endpoint to send your MFA code, when receiving MfaCodeRequired or MfaC
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="post_/link/authentication/mfa/answer" method="post" path="/link/authentication/mfa/answer" -->
 ```go
 package main
 
@@ -119,5 +122,6 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | apierrors.ErrorMessageResponse | 400                            | application/json               |
+| apierrors.ErrorMessageResponse | 400                            | application/json+encrypted     |
 | apierrors.ErrorMessageResponse | 400                            | text/json                      |
 | apierrors.APIError             | 4XX, 5XX                       | \*/\*                          |

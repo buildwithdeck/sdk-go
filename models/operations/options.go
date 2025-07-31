@@ -21,8 +21,9 @@ const (
 type AcceptHeaderEnum string
 
 const (
-	AcceptHeaderEnumApplicationJson AcceptHeaderEnum = "application/json"
-	AcceptHeaderEnumTextJson        AcceptHeaderEnum = "text/json"
+	AcceptHeaderEnumApplicationJson              AcceptHeaderEnum = "application/json"
+	AcceptHeaderEnumApplicationJsonPlusEncrypted AcceptHeaderEnum = "application/json+encrypted"
+	AcceptHeaderEnumTextJson                     AcceptHeaderEnum = "text/json"
 )
 
 func (e AcceptHeaderEnum) ToPointer() *AcceptHeaderEnum {

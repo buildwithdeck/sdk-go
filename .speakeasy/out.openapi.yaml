@@ -18,6 +18,12 @@ paths:
         - "Jobs"
       summary: "Send your job requests"
       description: "Provide a job code along with its input parameters to execute it"
+      parameters:
+        - name: "x-deck-sandbox"
+          in: "header"
+          description: "Can be used against the sandbox API with special values to test error use cases"
+          schema:
+            type: "string"
       requestBody:
         content:
           "application/json":
@@ -88,6 +94,8 @@ paths:
               schema: {"$ref": "#/components/schemas/BadRequestJobResponse"}
             "text/json":
               schema: {"$ref": "#/components/schemas/BadRequestJobResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/BadRequestJobResponse"}
         "200":
           description: "OK"
           content:
@@ -95,12 +103,16 @@ paths:
               schema: {"$ref": "#/components/schemas/JobResponse"}
             "text/json":
               schema: {"$ref": "#/components/schemas/JobResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/JobResponse"}
         "409":
           description: "Conflict"
           content:
             "application/json":
               schema: {"$ref": "#/components/schemas/AlreadyRunningJobResponse"}
             "text/json":
+              schema: {"$ref": "#/components/schemas/AlreadyRunningJobResponse"}
+            "application/json+encrypted":
               schema: {"$ref": "#/components/schemas/AlreadyRunningJobResponse"}
         "401":
           description: "Unauthorized - Invalid API key"
@@ -137,6 +149,8 @@ paths:
             "application/json":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
             "text/json":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
         "200":
           description: "OK"
@@ -182,12 +196,16 @@ paths:
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
             "text/json":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
         "200":
           description: "OK"
           content:
             "application/json":
               schema: {"$ref": "#/components/schemas/DocumentListResponse"}
             "text/json":
+              schema: {"$ref": "#/components/schemas/DocumentListResponse"}
+            "application/json+encrypted":
               schema: {"$ref": "#/components/schemas/DocumentListResponse"}
         "401":
           description: "Unauthorized - Invalid API key"
@@ -226,6 +244,8 @@ paths:
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
             "text/json":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
         "200":
           description: "OK"
           content:
@@ -234,6 +254,10 @@ paths:
                 type: "string"
                 format: "binary"
             "text/json":
+              schema:
+                type: "string"
+                format: "binary"
+            "application/json+encrypted":
               schema:
                 type: "string"
                 format: "binary"
@@ -273,12 +297,16 @@ paths:
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
             "text/json":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
         "200":
           description: "OK"
           content:
             "application/json":
               schema: {"$ref": "#/components/schemas/LinkTokenRequestResponse"}
             "text/json":
+              schema: {"$ref": "#/components/schemas/LinkTokenRequestResponse"}
+            "application/json+encrypted":
               schema: {"$ref": "#/components/schemas/LinkTokenRequestResponse"}
         "401":
           description: "Unauthorized - Invalid API key"
@@ -316,12 +344,16 @@ paths:
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
             "text/json":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
         "200":
           description: "OK"
           content:
             "application/json":
               schema: {"$ref": "#/components/schemas/LinkClientInfoResponse"}
             "text/json":
+              schema: {"$ref": "#/components/schemas/LinkClientInfoResponse"}
+            "application/json+encrypted":
               schema: {"$ref": "#/components/schemas/LinkClientInfoResponse"}
       x-speakeasy-name-override: "getInfo"
   "/link/sources":
@@ -352,12 +384,16 @@ paths:
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
             "text/json":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
         "200":
           description: "OK"
           content:
             "application/json":
               schema: {"$ref": "#/components/schemas/LinkSourcesResponse"}
             "text/json":
+              schema: {"$ref": "#/components/schemas/LinkSourcesResponse"}
+            "application/json+encrypted":
               schema: {"$ref": "#/components/schemas/LinkSourcesResponse"}
       x-speakeasy-name-override: "searchSources"
   "/link/connect":
@@ -388,12 +424,16 @@ paths:
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
             "text/json":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
         "200":
           description: "OK"
           content:
             "application/json":
               schema: {"$ref": "#/components/schemas/LinkConnectResponse"}
             "text/json":
+              schema: {"$ref": "#/components/schemas/LinkConnectResponse"}
+            "application/json+encrypted":
               schema: {"$ref": "#/components/schemas/LinkConnectResponse"}
       x-speakeasy-group: "links"
       x-speakeasy-name-override: "connect"
@@ -425,12 +465,16 @@ paths:
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
             "text/json":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
         "200":
           description: "OK"
           content:
             "application/json":
               schema: {"$ref": "#/components/schemas/LinkConnectionStatusResponse"}
             "text/json":
+              schema: {"$ref": "#/components/schemas/LinkConnectionStatusResponse"}
+            "application/json+encrypted":
               schema: {"$ref": "#/components/schemas/LinkConnectionStatusResponse"}
       x-speakeasy-group: "links"
       x-speakeasy-name-override: "getConnectionStatus"
@@ -462,12 +506,16 @@ paths:
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
             "text/json":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
         "200":
           description: "OK"
           content:
             "application/json":
               schema: {"$ref": "#/components/schemas/SecurityQuestionResponse"}
             "text/json":
+              schema: {"$ref": "#/components/schemas/SecurityQuestionResponse"}
+            "application/json+encrypted":
               schema: {"$ref": "#/components/schemas/SecurityQuestionResponse"}
       x-speakeasy-group: "links.authentication"
       x-speakeasy-name-override: "getMfaQuestion"
@@ -498,6 +546,8 @@ paths:
             "application/json":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
             "text/json":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
         "200":
           description: "OK"
@@ -531,6 +581,8 @@ paths:
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
             "text/json":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
         "200":
           description: "OK"
       x-speakeasy-name-override: "selectAccount"
@@ -562,12 +614,16 @@ paths:
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
             "text/json":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
         "200":
           description: "OK"
           content:
             "application/json":
               schema: {"$ref": "#/components/schemas/LinkTokenGetResponse"}
             "text/json":
+              schema: {"$ref": "#/components/schemas/LinkTokenGetResponse"}
+            "application/json+encrypted":
               schema: {"$ref": "#/components/schemas/LinkTokenGetResponse"}
         "401":
           description: "Unauthorized - Invalid API key"
@@ -604,12 +660,16 @@ paths:
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
             "text/json":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
         "200":
           description: "OK"
           content:
             "application/json":
               schema: {"$ref": "#/components/schemas/LinkAccountListResponse"}
             "text/json":
+              schema: {"$ref": "#/components/schemas/LinkAccountListResponse"}
+            "application/json+encrypted":
               schema: {"$ref": "#/components/schemas/LinkAccountListResponse"}
       x-speakeasy-group: "links"
       x-speakeasy-name-override: "listAccounts"
@@ -641,12 +701,16 @@ paths:
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
             "text/json":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
         "200":
           description: "OK"
           content:
             "application/json":
               schema: {"$ref": "#/components/schemas/ConnectionPublicTokenExchangeResponse"}
             "text/json":
+              schema: {"$ref": "#/components/schemas/ConnectionPublicTokenExchangeResponse"}
+            "application/json+encrypted":
               schema: {"$ref": "#/components/schemas/ConnectionPublicTokenExchangeResponse"}
         "401":
           description: "Unauthorized - Invalid API key"
@@ -683,12 +747,16 @@ paths:
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
             "text/json":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
         "200":
           description: "OK"
           content:
             "application/json":
               schema: {"$ref": "#/components/schemas/ConnectionContextResponse"}
             "text/json":
+              schema: {"$ref": "#/components/schemas/ConnectionContextResponse"}
+            "application/json+encrypted":
               schema: {"$ref": "#/components/schemas/ConnectionContextResponse"}
         "401":
           description: "Unauthorized - Invalid API key"
@@ -725,12 +793,16 @@ paths:
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
             "text/json":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
         "200":
           description: "OK"
           content:
             "application/json":
               schema: {"$ref": "#/components/schemas/GetConnectionAccountsResponse"}
             "text/json":
+              schema: {"$ref": "#/components/schemas/GetConnectionAccountsResponse"}
+            "application/json+encrypted":
               schema: {"$ref": "#/components/schemas/GetConnectionAccountsResponse"}
         "401":
           description: "Unauthorized - Invalid API key"
@@ -766,6 +838,8 @@ paths:
             "application/json":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
             "text/json":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
         "200":
           description: "OK"
@@ -805,12 +879,16 @@ paths:
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
             "text/json":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
         "200":
           description: "OK"
           content:
             "application/json":
               schema: {"$ref": "#/components/schemas/InvalidateAccessTokenResponse"}
             "text/json":
+              schema: {"$ref": "#/components/schemas/InvalidateAccessTokenResponse"}
+            "application/json+encrypted":
               schema: {"$ref": "#/components/schemas/InvalidateAccessTokenResponse"}
         "401":
           description: "Unauthorized - Invalid API key"
@@ -848,6 +926,8 @@ paths:
             "application/json":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
             "text/json":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
         "200":
           description: "OK"
@@ -887,6 +967,8 @@ paths:
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
             "text/json":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
         "200":
           description: "OK"
         "401":
@@ -925,6 +1007,8 @@ paths:
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
             "text/json":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
         "200":
           description: "OK"
         "401":
@@ -962,6 +1046,8 @@ paths:
             "application/json":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
             "text/json":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
               schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
         "200":
           description: "OK"
@@ -1475,6 +1561,11 @@ components:
         "public_token":
           type: "string"
           description: "This token must be exchanged for an access_token. In Update mode for an existing connection, the public_token is not returned: There is no need to go through the process of exchanging a public_token for an access_token and the connection's existing access_token will not change."
+          nullable: true
+        "job_guid":
+          type: "string"
+          description: "Used to identify a connection in webhooks."
+          format: "uuid"
           nullable: true
       additionalProperties: false
     "LinkConnectionStatusResponse":

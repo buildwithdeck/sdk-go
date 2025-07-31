@@ -21,7 +21,7 @@ func main() {
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, &operations.PostJobsSubmitRequest{
+	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
 		JobCode: "FetchDocuments",
 		Input: map[string]string{
 			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",

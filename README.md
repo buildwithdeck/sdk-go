@@ -80,7 +80,7 @@ func main() {
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, &operations.PostJobsSubmitRequest{
+	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
 		JobCode: "FetchDocuments",
 		Input: map[string]string{
 			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
@@ -134,7 +134,7 @@ func main() {
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, &operations.PostJobsSubmitRequest{
+	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
 		JobCode: "FetchDocuments",
 		Input: map[string]string{
 			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
@@ -237,7 +237,7 @@ func main() {
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, &operations.PostJobsSubmitRequest{
+	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
 		JobCode: "FetchDocuments",
 		Input: map[string]string{
 			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
@@ -300,7 +300,7 @@ func main() {
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, &operations.PostJobsSubmitRequest{
+	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
 		JobCode: "FetchDocuments",
 		Input: map[string]string{
 			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
@@ -328,13 +328,15 @@ By Default, an API error will return `apierrors.APIError`. When custom error res
 
 For example, the `Submit` function may return the following errors:
 
-| Error Type                               | Status Code | Content Type     |
-| ---------------------------------------- | ----------- | ---------------- |
-| apierrors.BadRequestJobResponseError     | 400         | application/json |
-| apierrors.BadRequestJobResponseError     | 400         | text/json        |
-| apierrors.AlreadyRunningJobResponseError | 409         | application/json |
-| apierrors.AlreadyRunningJobResponseError | 409         | text/json        |
-| apierrors.APIError                       | 4XX, 5XX    | \*/\*            |
+| Error Type                               | Status Code | Content Type               |
+| ---------------------------------------- | ----------- | -------------------------- |
+| apierrors.BadRequestJobResponseError     | 400         | application/json           |
+| apierrors.BadRequestJobResponseError     | 400         | application/json+encrypted |
+| apierrors.BadRequestJobResponseError     | 400         | text/json                  |
+| apierrors.AlreadyRunningJobResponseError | 409         | application/json           |
+| apierrors.AlreadyRunningJobResponseError | 409         | application/json+encrypted |
+| apierrors.AlreadyRunningJobResponseError | 409         | text/json                  |
+| apierrors.APIError                       | 4XX, 5XX    | \*/\*                      |
 
 ### Example
 
@@ -362,7 +364,7 @@ func main() {
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, &operations.PostJobsSubmitRequest{
+	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
 		JobCode: "FetchDocuments",
 		Input: map[string]string{
 			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
@@ -379,6 +381,18 @@ func main() {
 		}
 
 		var e *apierrors.BadRequestJobResponseError
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
+
+		var e *apierrors.BadRequestJobResponseError
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
+
+		var e *apierrors.AlreadyRunningJobResponseError
 		if errors.As(err, &e) {
 			// handle error
 			log.Fatal(e.Error())
@@ -444,7 +458,7 @@ func main() {
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, &operations.PostJobsSubmitRequest{
+	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
 		JobCode: "FetchDocuments",
 		Input: map[string]string{
 			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
@@ -488,7 +502,7 @@ func main() {
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, &operations.PostJobsSubmitRequest{
+	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
 		JobCode: "FetchDocuments",
 		Input: map[string]string{
 			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
@@ -524,12 +538,13 @@ The built-in `net/http` client satisfies this interface and a default client bas
 import (
 	"net/http"
 	"time"
-	"github.com/myorg/your-go-sdk"
+
+	"github.com/buildwithdeck/sdk-go"
 )
 
 var (
 	httpClient = &http.Client{Timeout: 30 * time.Second}
-	sdkClient  = sdk.New(sdk.WithClient(httpClient))
+	sdkClient  = sdkgo.New(sdkgo.WithClient(httpClient))
 )
 ```
 

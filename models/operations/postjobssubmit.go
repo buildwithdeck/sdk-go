@@ -6,25 +6,45 @@ import (
 	"github.com/buildwithdeck/sdk-go/models/components"
 )
 
-type PostJobsSubmitRequest struct {
+type PostJobsSubmitRequestBody2 struct {
 	// The job type identifier
 	JobCode string `json:"job_code"`
 	// Dynamic input object - structure varies by job type
 	Input map[string]string `json:"input"`
 }
 
-func (o *PostJobsSubmitRequest) GetJobCode() string {
+func (o *PostJobsSubmitRequestBody2) GetJobCode() string {
 	if o == nil {
 		return ""
 	}
 	return o.JobCode
 }
 
-func (o *PostJobsSubmitRequest) GetInput() map[string]string {
+func (o *PostJobsSubmitRequestBody2) GetInput() map[string]string {
 	if o == nil {
 		return map[string]string{}
 	}
 	return o.Input
+}
+
+type PostJobsSubmitRequest struct {
+	// Can be used against the sandbox API with special values to test error use cases
+	XDeckSandbox *string                     `header:"style=simple,explode=false,name=x-deck-sandbox"`
+	RequestBody  *PostJobsSubmitRequestBody2 `request:"mediaType=application/json"`
+}
+
+func (o *PostJobsSubmitRequest) GetXDeckSandbox() *string {
+	if o == nil {
+		return nil
+	}
+	return o.XDeckSandbox
+}
+
+func (o *PostJobsSubmitRequest) GetRequestBody() *PostJobsSubmitRequestBody2 {
+	if o == nil {
+		return nil
+	}
+	return o.RequestBody
 }
 
 type PostJobsSubmitResponse struct {
