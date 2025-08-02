@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: d348888e-280a-43de-910e-0b32ba656cb4
 management:
-  docChecksum: 988297f4ce2826d8f28303e4903c70c4
+  docChecksum: 885e72ff3853995db7ae92a2084afc8e
   docVersion: v1
-  speakeasyVersion: 1.592.2
-  generationVersion: 2.668.4
-  releaseVersion: 0.2.0
-  configChecksum: a2b02c07c34dcd16b3061db7600037b9
+  speakeasyVersion: 1.596.0
+  generationVersion: 2.672.0
+  releaseVersion: 0.3.0
+  configChecksum: d6cca83815ca2dfd8356bc693deb31e4
   repoURL: https://github.com/buildwithdeck/sdk-go.git
   installationURL: https://github.com/buildwithdeck/sdk-go
 features:
   go:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
-    core: 3.9.1
+    core: 3.9.3
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
@@ -28,7 +28,7 @@ features:
     nameOverrides: 2.81.2
     nullables: 0.1.1
     responseFormat: 0.1.2
-    retries: 2.83.3
+    retries: 2.84.0
     sdkHooks: 0.2.0
 generatedFiles:
   - .devcontainer/README.md
@@ -55,8 +55,8 @@ generatedFiles:
   - /models/components/getconnectionaccountsresponse.go
   - /models/components/getconnectionaccountsresponseaccount.go
   - /models/components/httpmetadata.go
+  - /models/components/ijobresponse.go
   - /models/components/invalidateaccesstokenresponse.go
-  - /models/components/jobresponse.go
   - /models/components/languageenum.go
   - /models/components/linkaccountlistresponse.go
   - /models/components/linkaccountlistresponseaccountitem.go
@@ -133,8 +133,8 @@ generatedFiles:
   - docs/models/components/getconnectionaccountsresponse.md
   - docs/models/components/getconnectionaccountsresponseaccount.md
   - docs/models/components/httpmetadata.md
+  - docs/models/components/ijobresponse.md
   - docs/models/components/invalidateaccesstokenresponse.md
-  - docs/models/components/jobresponse.md
   - docs/models/components/languageenum.md
   - docs/models/components/linkaccountlistresponse.md
   - docs/models/components/linkaccountlistresponseaccountitem.md
@@ -252,6 +252,10 @@ examples:
           application/json: {"job_id": "13822d2a-93aa-44b1-9d5b-595e331634c0", "job_guid": "f850baba-d96c-49cf-af28-cee156178113", "message": "<value>", "error_message": "<value>"}
           text/json: {"job_id": "13822d2a-93aa-44b1-9d5b-595e331634c0", "job_guid": "f850baba-d96c-49cf-af28-cee156178113", "message": "<value>", "error_message": "<value>"}
           application/json+encrypted: {"job_id": "13822d2a-93aa-44b1-9d5b-595e331634c0", "job_guid": "f850baba-d96c-49cf-af28-cee156178113", "message": "<value>", "error_message": "<value>"}
+        "202":
+          application/json: {}
+          application/json+encrypted: {}
+          text/json: {}
   post_/jobs/mfa/answer:
     speakeasy-default-post-/jobs/mfa/answer:
       responses:
