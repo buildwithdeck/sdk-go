@@ -91,7 +91,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.IJobResponse != nil {
 		// handle response
 	}
 }
@@ -145,7 +145,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.IJobResponse != nil {
 		// handle response
 	}
 }
@@ -258,7 +258,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.IJobResponse != nil {
 		// handle response
 	}
 }
@@ -311,7 +311,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.IJobResponse != nil {
 		// handle response
 	}
 }
@@ -469,7 +469,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.IJobResponse != nil {
 		// handle response
 	}
 }
@@ -513,7 +513,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.IJobResponse != nil {
 		// handle response
 	}
 }
