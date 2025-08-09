@@ -1,21 +1,21 @@
-speakeasyVersion: 1.592.2
+speakeasyVersion: 1.600.2
 sources:
     Deck API:
         sourceNamespace: deck-api
-        sourceRevisionDigest: sha256:09b21d3494f34eed52d3ed397c2601c7e0f22f2ae322818025bb307ca953464e
-        sourceBlobDigest: sha256:b8a3028166f51e0d5664817e23443f8f31f9746772eb6224c4678b63c858e556
+        sourceRevisionDigest: sha256:ecff0557fb669e7b7d223084f36bc73430ed3208a3e6cb0a41d024206aa7b873
+        sourceBlobDigest: sha256:5e06cbe8705238a91e6d26fcea8d5d33f9b949854cd94b9057651edd01fc965f
         tags:
             - latest
-            - speakeasy-sdk-regen-1753147334
+            - speakeasy-sdk-regen-1754097616
             - v1
 targets:
     deck:
         source: Deck API
         sourceNamespace: deck-api
-        sourceRevisionDigest: sha256:09b21d3494f34eed52d3ed397c2601c7e0f22f2ae322818025bb307ca953464e
-        sourceBlobDigest: sha256:b8a3028166f51e0d5664817e23443f8f31f9746772eb6224c4678b63c858e556
+        sourceRevisionDigest: sha256:ecff0557fb669e7b7d223084f36bc73430ed3208a3e6cb0a41d024206aa7b873
+        sourceBlobDigest: sha256:5e06cbe8705238a91e6d26fcea8d5d33f9b949854cd94b9057651edd01fc965f
         codeSamplesNamespace: deck-api-go-code-samples
-        codeSamplesRevisionDigest: sha256:a59cfad28f06fb05dab7c573273df837834bf8008771d7e7c0aa5108086d3ca5
+        codeSamplesRevisionDigest: sha256:33f44231b1b885f08dd8ece0f20c925030ca946ceeec653e893228ae91a01529
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

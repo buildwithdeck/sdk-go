@@ -96,15 +96,15 @@ paths:
               schema: {"$ref": "#/components/schemas/BadRequestJobResponse"}
             "application/json+encrypted":
               schema: {"$ref": "#/components/schemas/BadRequestJobResponse"}
-        "200":
-          description: "OK"
+        "202":
+          description: "Accepted"
           content:
             "application/json":
-              schema: {"$ref": "#/components/schemas/JobResponse"}
+              schema: {"$ref": "#/components/schemas/IJobResponse"}
             "text/json":
-              schema: {"$ref": "#/components/schemas/JobResponse"}
+              schema: {"$ref": "#/components/schemas/IJobResponse"}
             "application/json+encrypted":
-              schema: {"$ref": "#/components/schemas/JobResponse"}
+              schema: {"$ref": "#/components/schemas/IJobResponse"}
         "409":
           description: "Conflict"
           content:
@@ -1377,26 +1377,21 @@ components:
           description: "Dynamic input object - structure varies by job type"
           example: {"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7", "key1": "value1", "someProperty": "someValue"}
       additionalProperties: false
+    "IJobResponse":
+      type: "object"
+      properties:
+        "job_guid":
+          type: "string"
+          format: "uuid"
+        "job_code":
+          type: "string"
+      additionalProperties: false
     "InvalidateAccessTokenResponse":
       type: "object"
       properties:
         "new_access_token":
           type: "string"
           description: "The access token associated with the connection data being requested"
-      additionalProperties: false
-    "JobResponse":
-      required:
-        - "job_code"
-        - "job_guid"
-      type: "object"
-      properties:
-        "job_guid":
-          type: "string"
-          description: "The unique identifier of the job."
-          format: "uuid"
-        "job_code":
-          type: "string"
-          description: "The code representing the type of job executed."
       additionalProperties: false
     "LanguageEnum":
       enum:
