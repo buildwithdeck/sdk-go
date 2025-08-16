@@ -19,3 +19,13 @@ Based on:
 - [go v0.2.0] .
 ### Releases
 - [Go v0.2.0] https://github.com/buildwithdeck/sdk-go/releases/tag/v0.2.0 - .
+
+## 2025-08-16 01:15:15
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.605.0 (2.684.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v0.3.0] .
+### Releases
+- [Go v0.3.0] https://github.com/buildwithdeck/sdk-go/releases/tag/v0.3.0 - .
