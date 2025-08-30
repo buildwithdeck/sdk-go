@@ -49,8 +49,8 @@ func (o *PostJobsSubmitRequest) GetRequestBody() *PostJobsSubmitRequestBody2 {
 
 type PostJobsSubmitResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// OK
-	JobResponse *components.JobResponse
+	// Accepted
+	IJobResponse *components.IJobResponse
 }
 
 func (o *PostJobsSubmitResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -60,9 +60,9 @@ func (o *PostJobsSubmitResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *PostJobsSubmitResponse) GetJobResponse() *components.JobResponse {
+func (o *PostJobsSubmitResponse) GetIJobResponse() *components.IJobResponse {
 	if o == nil {
 		return nil
 	}
-	return o.JobResponse
+	return o.IJobResponse
 }
