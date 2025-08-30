@@ -29,7 +29,7 @@ func (c ConnectionContextResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (c *ConnectionContextResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"provider", "entities"}); err != nil {
 		return err
 	}
 	return nil

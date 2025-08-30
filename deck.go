@@ -2,7 +2,7 @@
 
 package sdkgo
 
-// Generated from OpenAPI doc version v1 and generator version 2.668.4
+// Generated from OpenAPI doc version v1 and generator version 2.687.13
 
 import (
 	"context"
@@ -72,6 +72,7 @@ type Deck struct {
 	// Manage connections
 	Connection  *Connection
 	Connections *Connections
+	Test        *Test
 
 	sdkConfiguration config.SDKConfiguration
 	hooks            *hooks.Hooks
@@ -147,9 +148,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Deck {
 	sdk := &Deck{
-		SDKVersion: "0.2.0",
+		SDKVersion: "0.3.0",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.2.0 2.668.4 v1 github.com/buildwithdeck/sdk-go",
+			UserAgent:  "speakeasy-sdk/go 0.3.0 2.687.13 v1 github.com/buildwithdeck/sdk-go",
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),
@@ -178,6 +179,7 @@ func New(opts ...SDKOption) *Deck {
 	sdk.Links = newLinks(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Connection = newConnection(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Connections = newConnections(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Test = newTest(sdk, sdk.sdkConfiguration, sdk.hooks)
 
 	return sdk
 }

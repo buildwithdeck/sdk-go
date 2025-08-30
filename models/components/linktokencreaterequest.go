@@ -165,6 +165,8 @@ type LinkTokenCreateRequest struct {
 	Language *LinkTokenCreateRequestLanguage `json:"language,omitempty"`
 	// Specify an array of Datadeck-supported country codes using the ISO-3166-1 alpha-2 country code standard. Sources from all listed countries will be shown.
 	Countries []string `json:"countries,omitempty"`
+	// The name of the customization from Deck dashboard to be applied to this Widget session. If not specified, the default customization will be used. Values provided in this payload override the dashboard customization settings.
+	CustomizationName *string `json:"customization_name,omitempty"`
 	// You can specify exactly the sources to be shown in Link by providing a list of source ids.
 	SourceIds []string `json:"source_ids,omitempty"`
 	// You can limit the sources to be shown in Link by specifying which source types to be shown in Link.
@@ -195,6 +197,13 @@ func (o *LinkTokenCreateRequest) GetCountries() []string {
 		return nil
 	}
 	return o.Countries
+}
+
+func (o *LinkTokenCreateRequest) GetCustomizationName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CustomizationName
 }
 
 func (o *LinkTokenCreateRequest) GetSourceIds() []string {

@@ -91,7 +91,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.IJobResponse != nil {
 		// handle response
 	}
 }
@@ -145,7 +145,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.IJobResponse != nil {
 		// handle response
 	}
 }
@@ -204,6 +204,10 @@ func main() {
 * [GetMfaQuestion](docs/sdks/authentication/README.md#getmfaquestion) - Get the security question
 * [AnswerMfa](docs/sdks/authentication/README.md#answermfa) - Provide MFA code
 
+### [Test](docs/sdks/test/README.md)
+
+* [GetTestAPIKeys](docs/sdks/test/README.md#gettestapikeys) - Test your API keys
+
 </details>
 <!-- End Available Resources and Operations [operations] -->
 
@@ -258,7 +262,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.IJobResponse != nil {
 		// handle response
 	}
 }
@@ -311,7 +315,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.IJobResponse != nil {
 		// handle response
 	}
 }
@@ -469,7 +473,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.IJobResponse != nil {
 		// handle response
 	}
 }
@@ -513,7 +517,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.IJobResponse != nil {
 		// handle response
 	}
 }

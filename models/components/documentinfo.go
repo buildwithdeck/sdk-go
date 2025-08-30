@@ -21,7 +21,7 @@ func (d DocumentInfo) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DocumentInfo) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"document_id", "file_type"}); err != nil {
 		return err
 	}
 	return nil
