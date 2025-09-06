@@ -17,29 +17,23 @@ import (
 	"net/url"
 )
 
-// Jobs - Endpoints related to jobs.
-type Jobs struct {
+// WebhookSubscription - Webhook subscriptions for the team. Use this to subscribe to and unsubscribe from webhook events. See the documentation for more information on how to use this API.
+type WebhookSubscription struct {
 	rootSDK          *Deck
 	sdkConfiguration config.SDKConfiguration
 	hooks            *hooks.Hooks
 }
 
-func newJobs(rootSDK *Deck, sdkConfig config.SDKConfiguration, hooks *hooks.Hooks) *Jobs {
-	return &Jobs{
+func newWebhookSubscription(rootSDK *Deck, sdkConfig config.SDKConfiguration, hooks *hooks.Hooks) *WebhookSubscription {
+	return &WebhookSubscription{
 		rootSDK:          rootSDK,
 		sdkConfiguration: sdkConfig,
 		hooks:            hooks,
 	}
 }
 
-// Submit - Send your job requests
-// Provide a job code along with its input parameters to execute it
-func (s *Jobs) Submit(ctx context.Context, xDeckSandbox *string, requestBody *operations.PostJobsSubmitRequestBody2, opts ...operations.Option) (*operations.PostJobsSubmitResponse, error) {
-	request := operations.PostJobsSubmitRequest{
-		XDeckSandbox: xDeckSandbox,
-		RequestBody:  requestBody,
-	}
-
+// PostWebhookSubscriptionsEventTypes - Get all available webhook event types
+func (s *WebhookSubscription) PostWebhookSubscriptionsEventTypes(ctx context.Context, opts ...operations.Option) (*operations.PostWebhookSubscriptionsEventTypesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -59,7 +53,7 @@ func (s *Jobs) Submit(ctx context.Context, xDeckSandbox *string, requestBody *op
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/jobs/submit")
+	opURL, err := url.JoinPath(baseURL, "/webhook-subscriptions/event-types")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -69,13 +63,9 @@ func (s *Jobs) Submit(ctx context.Context, xDeckSandbox *string, requestBody *op
 		SDKConfiguration: s.sdkConfiguration,
 		BaseURL:          baseURL,
 		Context:          ctx,
-		OperationID:      "post_/jobs/submit",
+		OperationID:      "post_/webhook-subscriptions/event-types",
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
-	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
-	if err != nil {
-		return nil, err
 	}
 
 	timeout := o.Timeout
@@ -89,7 +79,7 @@ func (s *Jobs) Submit(ctx context.Context, xDeckSandbox *string, requestBody *op
 		defer cancel()
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", opURL, bodyReader)
+	req, err := http.NewRequestWithContext(ctx, "POST", opURL, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -100,11 +90,6 @@ func (s *Jobs) Submit(ctx context.Context, xDeckSandbox *string, requestBody *op
 	}
 
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	if reqContentType != "" {
-		req.Header.Set("Content-Type", reqContentType)
-	}
-
-	utils.PopulateHeaders(ctx, req, request, nil)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -190,7 +175,7 @@ func (s *Jobs) Submit(ctx context.Context, xDeckSandbox *string, requestBody *op
 
 			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
-		} else if utils.MatchStatusCodes([]string{"400", "401", "409", "4XX", "5XX"}, httpRes.StatusCode) {
+		} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
 			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err
@@ -205,7 +190,7 @@ func (s *Jobs) Submit(ctx context.Context, xDeckSandbox *string, requestBody *op
 		}
 	}
 
-	res := &operations.PostJobsSubmitResponse{
+	res := &operations.PostWebhookSubscriptionsEventTypesResponse{
 		HTTPMeta: components.HTTPMetadata{
 			Request:  req,
 			Response: httpRes,
@@ -213,7 +198,7 @@ func (s *Jobs) Submit(ctx context.Context, xDeckSandbox *string, requestBody *op
 	}
 
 	switch {
-	case httpRes.StatusCode == 202:
+	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -221,36 +206,36 @@ func (s *Jobs) Submit(ctx context.Context, xDeckSandbox *string, requestBody *op
 				return nil, err
 			}
 
-			var out components.IJobResponse
+			var out components.WebhookEventTypesResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.IJobResponse = &out
+			res.WebhookEventTypesResponse = &out
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out components.IJobResponse
+			var out components.WebhookEventTypesResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.IJobResponse = &out
+			res.WebhookEventTypesResponse = &out
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out components.IJobResponse
+			var out components.WebhookEventTypesResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.IJobResponse = &out
+			res.WebhookEventTypesResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -266,7 +251,7 @@ func (s *Jobs) Submit(ctx context.Context, xDeckSandbox *string, requestBody *op
 				return nil, err
 			}
 
-			var out apierrors.BadRequestJobResponseError
+			var out apierrors.ErrorMessageResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -282,7 +267,7 @@ func (s *Jobs) Submit(ctx context.Context, xDeckSandbox *string, requestBody *op
 				return nil, err
 			}
 
-			var out apierrors.BadRequestJobResponseError
+			var out apierrors.ErrorMessageResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -298,64 +283,7 @@ func (s *Jobs) Submit(ctx context.Context, xDeckSandbox *string, requestBody *op
 				return nil, err
 			}
 
-			var out apierrors.BadRequestJobResponseError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	case httpRes.StatusCode == 409:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.AlreadyRunningJobResponseError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
-			return nil, &out
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.AlreadyRunningJobResponseError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			out.HTTPMeta = components.HTTPMetadata{
-				Request:  req,
-				Response: httpRes,
-			}
-			return nil, &out
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out apierrors.AlreadyRunningJobResponseError
+			var out apierrors.ErrorMessageResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -398,9 +326,8 @@ func (s *Jobs) Submit(ctx context.Context, xDeckSandbox *string, requestBody *op
 
 }
 
-// AnswerMFA - Provide MFA code
-// Call this endpoint to send your MFA code
-func (s *Jobs) AnswerMFA(ctx context.Context, request *components.MfaAnswerRequest, opts ...operations.Option) (*operations.PostJobsMfaAnswerResponse, error) {
+// PostWebhookSubscriptionsSubscriptions - Get webhook subscriptions for a specific team
+func (s *WebhookSubscription) PostWebhookSubscriptionsSubscriptions(ctx context.Context, opts ...operations.Option) (*operations.PostWebhookSubscriptionsSubscriptionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -420,7 +347,7 @@ func (s *Jobs) AnswerMFA(ctx context.Context, request *components.MfaAnswerReque
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/jobs/mfa/answer")
+	opURL, err := url.JoinPath(baseURL, "/webhook-subscriptions/subscriptions")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -430,7 +357,301 @@ func (s *Jobs) AnswerMFA(ctx context.Context, request *components.MfaAnswerReque
 		SDKConfiguration: s.sdkConfiguration,
 		BaseURL:          baseURL,
 		Context:          ctx,
-		OperationID:      "post_/jobs/mfa/answer",
+		OperationID:      "post_/webhook-subscriptions/subscriptions",
+		OAuth2Scopes:     []string{},
+		SecuritySource:   s.sdkConfiguration.Security,
+	}
+
+	timeout := o.Timeout
+	if timeout == nil {
+		timeout = s.sdkConfiguration.Timeout
+	}
+
+	if timeout != nil {
+		var cancel context.CancelFunc
+		ctx, cancel = context.WithTimeout(ctx, *timeout)
+		defer cancel()
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", opURL, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+	if o.AcceptHeaderOverride != nil {
+		req.Header.Set("Accept", string(*o.AcceptHeaderOverride))
+	} else {
+		req.Header.Set("Accept", "application/json;q=1, application/json+encrypted;q=0.7, text/json;q=0")
+	}
+
+	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
+	}
+
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		if globalRetryConfig != nil {
+			retryConfig = globalRetryConfig
+		}
+	}
+
+	var httpRes *http.Response
+	if retryConfig != nil {
+		httpRes, err = utils.Retry(ctx, utils.Retries{
+			Config: retryConfig,
+			StatusCodes: []string{
+				"429",
+				"500",
+				"502",
+				"503",
+				"504",
+			},
+		}, func() (*http.Response, error) {
+			if req.Body != nil && req.Body != http.NoBody && req.GetBody != nil {
+				copyBody, err := req.GetBody()
+
+				if err != nil {
+					return nil, err
+				}
+
+				req.Body = copyBody
+			}
+
+			req, err = s.hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+			if err != nil {
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
+			}
+
+			httpRes, err := s.sdkConfiguration.Client.Do(req)
+			if err != nil || httpRes == nil {
+				if err != nil {
+					err = fmt.Errorf("error sending request: %w", err)
+				} else {
+					err = fmt.Errorf("error sending request: no response")
+				}
+
+				_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			}
+			return httpRes, err
+		})
+
+		if err != nil {
+			return nil, err
+		} else {
+			httpRes, err = s.hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			if err != nil {
+				return nil, err
+			}
+		}
+	} else {
+		req, err = s.hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+		if err != nil {
+			return nil, err
+		}
+
+		httpRes, err = s.sdkConfiguration.Client.Do(req)
+		if err != nil || httpRes == nil {
+			if err != nil {
+				err = fmt.Errorf("error sending request: %w", err)
+			} else {
+				err = fmt.Errorf("error sending request: no response")
+			}
+
+			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			return nil, err
+		} else if utils.MatchStatusCodes([]string{"400", "401", "4XX", "5XX"}, httpRes.StatusCode) {
+			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+			if err != nil {
+				return nil, err
+			} else if _httpRes != nil {
+				httpRes = _httpRes
+			}
+		} else {
+			httpRes, err = s.hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			if err != nil {
+				return nil, err
+			}
+		}
+	}
+
+	res := &operations.PostWebhookSubscriptionsSubscriptionsResponse{
+		HTTPMeta: components.HTTPMetadata{
+			Request:  req,
+			Response: httpRes,
+		},
+	}
+
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out []components.WebhookSubscriptionResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.TwoHundredApplicationJSONWebhookSubscriptionResponses = out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out []components.WebhookSubscriptionResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.TwoHundredTextJSONWebhookSubscriptionResponses = out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out []components.WebhookSubscriptionResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.TwoHundredApplicationJSONPlusEncryptedWebhookSubscriptionResponses = out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 400:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.ErrorMessageResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.ErrorMessageResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out apierrors.ErrorMessageResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = components.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+		return nil, apierrors.NewAPIError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+		return nil, apierrors.NewAPIError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
+	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+		return nil, apierrors.NewAPIError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
+	}
+
+	return res, nil
+
+}
+
+// PostWebhookSubscriptionsSubscribe - Subscribe to webhook events
+func (s *WebhookSubscription) PostWebhookSubscriptionsSubscribe(ctx context.Context, request *components.WebhookSubscriptionRequest, opts ...operations.Option) (*operations.PostWebhookSubscriptionsSubscribeResponse, error) {
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+		operations.SupportedOptionTimeout,
+		operations.SupportedOptionAcceptHeaderOverride,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
+	opURL, err := url.JoinPath(baseURL, "/webhook-subscriptions/subscribe")
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		SDK:              s.rootSDK,
+		SDKConfiguration: s.sdkConfiguration,
+		BaseURL:          baseURL,
+		Context:          ctx,
+		OperationID:      "post_/webhook-subscriptions/subscribe",
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
@@ -564,7 +785,7 @@ func (s *Jobs) AnswerMFA(ctx context.Context, request *components.MfaAnswerReque
 		}
 	}
 
-	res := &operations.PostJobsMfaAnswerResponse{
+	res := &operations.PostWebhookSubscriptionsSubscribeResponse{
 		HTTPMeta: components.HTTPMetadata{
 			Request:  req,
 			Response: httpRes,
@@ -572,7 +793,7 @@ func (s *Jobs) AnswerMFA(ctx context.Context, request *components.MfaAnswerReque
 	}
 
 	switch {
-	case httpRes.StatusCode == 200:
+	case httpRes.StatusCode == 204:
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
@@ -581,7 +802,7 @@ func (s *Jobs) AnswerMFA(ctx context.Context, request *components.MfaAnswerReque
 				return nil, err
 			}
 
-			var out apierrors.ErrorMessageResponse
+			var out apierrors.ProblemDetailsError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -597,7 +818,7 @@ func (s *Jobs) AnswerMFA(ctx context.Context, request *components.MfaAnswerReque
 				return nil, err
 			}
 
-			var out apierrors.ErrorMessageResponse
+			var out apierrors.ProblemDetailsError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -613,7 +834,7 @@ func (s *Jobs) AnswerMFA(ctx context.Context, request *components.MfaAnswerReque
 				return nil, err
 			}
 
-			var out apierrors.ErrorMessageResponse
+			var out apierrors.ProblemDetailsError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -656,9 +877,8 @@ func (s *Jobs) AnswerMFA(ctx context.Context, request *components.MfaAnswerReque
 
 }
 
-// GetDocumentFile - Get raw file
-// Returns the raw file for the document with the provided document ID
-func (s *Jobs) GetDocumentFile(ctx context.Context, request *components.RawDocumentRequest, opts ...operations.Option) (*operations.PostJobsDocumentsFileResponse, error) {
+// PostWebhookSubscriptionsUnsubscribe - Unsubscribe from webhook events
+func (s *WebhookSubscription) PostWebhookSubscriptionsUnsubscribe(ctx context.Context, request *components.WebhookSubscriptionRequest, opts ...operations.Option) (*operations.PostWebhookSubscriptionsUnsubscribeResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -678,7 +898,7 @@ func (s *Jobs) GetDocumentFile(ctx context.Context, request *components.RawDocum
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/jobs/documents/file")
+	opURL, err := url.JoinPath(baseURL, "/webhook-subscriptions/unsubscribe")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -688,7 +908,7 @@ func (s *Jobs) GetDocumentFile(ctx context.Context, request *components.RawDocum
 		SDKConfiguration: s.sdkConfiguration,
 		BaseURL:          baseURL,
 		Context:          ctx,
-		OperationID:      "post_/jobs/documents/file",
+		OperationID:      "post_/webhook-subscriptions/unsubscribe",
 		OAuth2Scopes:     []string{},
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
@@ -822,7 +1042,7 @@ func (s *Jobs) GetDocumentFile(ctx context.Context, request *components.RawDocum
 		}
 	}
 
-	res := &operations.PostJobsDocumentsFileResponse{
+	res := &operations.PostWebhookSubscriptionsUnsubscribeResponse{
 		HTTPMeta: components.HTTPMetadata{
 			Request:  req,
 			Response: httpRes,
@@ -830,27 +1050,7 @@ func (s *Jobs) GetDocumentFile(ctx context.Context, request *components.RawDocum
 	}
 
 	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			res.TwoHundredApplicationJSONResponseStream = httpRes.Body
-
-			return res, nil
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/json`):
-			res.TwoHundredTextJSONResponseStream = httpRes.Body
-
-			return res, nil
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
-			res.TwoHundredApplicationJSONPlusEncryptedResponseStream = httpRes.Body
-
-			return res, nil
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, apierrors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+	case httpRes.StatusCode == 204:
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
@@ -859,7 +1059,7 @@ func (s *Jobs) GetDocumentFile(ctx context.Context, request *components.RawDocum
 				return nil, err
 			}
 
-			var out apierrors.ErrorMessageResponse
+			var out apierrors.ProblemDetailsError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -875,7 +1075,7 @@ func (s *Jobs) GetDocumentFile(ctx context.Context, request *components.RawDocum
 				return nil, err
 			}
 
-			var out apierrors.ErrorMessageResponse
+			var out apierrors.ProblemDetailsError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -891,7 +1091,7 @@ func (s *Jobs) GetDocumentFile(ctx context.Context, request *components.RawDocum
 				return nil, err
 			}
 
-			var out apierrors.ErrorMessageResponse
+			var out apierrors.ProblemDetailsError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
