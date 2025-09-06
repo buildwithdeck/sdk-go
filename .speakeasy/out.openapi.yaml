@@ -42,10 +42,16 @@ paths:
                 "input":
                   type: "object"
                   additionalProperties:
-                    type: "string"
-                    description: "Dynamic inputs based on your job type"
+                    oneOf:
+                      - type: "string"
+                      - type: "number"
+                      - type: "boolean"
+                      - type: "array"
+                        items:
+                          type: "string"
+                      - type: "object"
                   description: "Dynamic input object - structure varies by job type"
-                  example: {"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7", "key1": "value1", "someProperty": "someValue"}
+                  example: {"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7", "key1": "value1", "someNumber": 123.45, "someBoolean": true, "someArray": ["a", "b"], "nestedObject": {"k": "v"}}
           "text/json":
             schema:
               required:
@@ -62,10 +68,16 @@ paths:
                 "input":
                   type: "object"
                   additionalProperties:
-                    type: "string"
-                    description: "Dynamic inputs based on your job type"
+                    oneOf:
+                      - type: "string"
+                      - type: "number"
+                      - type: "boolean"
+                      - type: "array"
+                        items:
+                          type: "string"
+                      - type: "object"
                   description: "Dynamic input object - structure varies by job type"
-                  example: {"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7", "key1": "value1", "someProperty": "someValue"}
+                  example: {"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7", "key1": "value1", "someNumber": 123.45, "someBoolean": true, "someArray": ["a", "b"], "nestedObject": {"k": "v"}}
           "application/*+json":
             schema:
               required:
@@ -82,10 +94,16 @@ paths:
                 "input":
                   type: "object"
                   additionalProperties:
-                    type: "string"
-                    description: "Dynamic inputs based on your job type"
+                    oneOf:
+                      - type: "string"
+                      - type: "number"
+                      - type: "boolean"
+                      - type: "array"
+                        items:
+                          type: "string"
+                      - type: "object"
                   description: "Dynamic input object - structure varies by job type"
-                  example: {"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7", "key1": "value1", "someProperty": "someValue"}
+                  example: {"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7", "key1": "value1", "someNumber": 123.45, "someBoolean": true, "someArray": ["a", "b"], "nestedObject": {"k": "v"}}
       responses:
         "400":
           description: "Bad Request"
@@ -96,15 +114,15 @@ paths:
               schema: {"$ref": "#/components/schemas/BadRequestJobResponse"}
             "application/json+encrypted":
               schema: {"$ref": "#/components/schemas/BadRequestJobResponse"}
-        "200":
-          description: "OK"
+        "202":
+          description: "Accepted"
           content:
             "application/json":
-              schema: {"$ref": "#/components/schemas/JobResponse"}
+              schema: {"$ref": "#/components/schemas/IJobResponse"}
             "text/json":
-              schema: {"$ref": "#/components/schemas/JobResponse"}
+              schema: {"$ref": "#/components/schemas/IJobResponse"}
             "application/json+encrypted":
-              schema: {"$ref": "#/components/schemas/JobResponse"}
+              schema: {"$ref": "#/components/schemas/IJobResponse"}
         "409":
           description: "Conflict"
           content:
@@ -117,10 +135,8 @@ paths:
         "401":
           description: "Unauthorized - Invalid API key"
       security:
-        - client_id:
-            - ""
-          secret:
-            - ""
+        - client_id: []
+          secret: []
       x-speakeasy-name-override: "submit"
   "/jobs/mfa/answer":
     post:
@@ -157,10 +173,8 @@ paths:
         "401":
           description: "Unauthorized - Invalid API key"
       security:
-        - client_id:
-            - ""
-          secret:
-            - ""
+        - client_id: []
+          secret: []
       x-speakeasy-name-override: "answerMFA"
   "/jobs/documents/list":
     post:
@@ -210,10 +224,8 @@ paths:
         "401":
           description: "Unauthorized - Invalid API key"
       security:
-        - client_id:
-            - ""
-          secret:
-            - ""
+        - client_id: []
+          secret: []
       x-speakeasy-group: "jobsDocuments"
       x-speakeasy-name-override: "list"
   "/jobs/documents/file":
@@ -264,10 +276,8 @@ paths:
         "401":
           description: "Unauthorized - Invalid API key"
       security:
-        - client_id:
-            - ""
-          secret:
-            - ""
+        - client_id: []
+          secret: []
       x-speakeasy-name-override: "getDocumentFile"
   "/link/token/create":
     post:
@@ -311,10 +321,8 @@ paths:
         "401":
           description: "Unauthorized - Invalid API key"
       security:
-        - client_id:
-            - ""
-          secret:
-            - ""
+        - client_id: []
+          secret: []
       x-speakeasy-name-override: "createToken"
   "/link/info":
     post:
@@ -628,10 +636,8 @@ paths:
         "401":
           description: "Unauthorized - Invalid API key"
       security:
-        - client_id:
-            - ""
-          secret:
-            - ""
+        - client_id: []
+          secret: []
       x-speakeasy-name-override: "getToken"
   "/link/account/list":
     post:
@@ -715,10 +721,8 @@ paths:
         "401":
           description: "Unauthorized - Invalid API key"
       security:
-        - client_id:
-            - ""
-          secret:
-            - ""
+        - client_id: []
+          secret: []
       x-speakeasy-name-override: "exchangePublicToken"
   "/connection/context":
     post:
@@ -761,10 +765,8 @@ paths:
         "401":
           description: "Unauthorized - Invalid API key"
       security:
-        - client_id:
-            - ""
-          secret:
-            - ""
+        - client_id: []
+          secret: []
       x-speakeasy-name-override: "getContext"
   "/connection/accounts":
     post:
@@ -807,10 +809,8 @@ paths:
         "401":
           description: "Unauthorized - Invalid API key"
       security:
-        - client_id:
-            - ""
-          secret:
-            - ""
+        - client_id: []
+          secret: []
       x-speakeasy-name-override: "getAccounts"
   "/connection/accounts/select":
     post:
@@ -846,10 +846,8 @@ paths:
         "401":
           description: "Unauthorized - Invalid API key"
       security:
-        - client_id:
-            - ""
-          secret:
-            - ""
+        - client_id: []
+          secret: []
       x-speakeasy-name-override: "selectAccounts"
   "/connection/access_token/invalidate":
     post:
@@ -893,10 +891,8 @@ paths:
         "401":
           description: "Unauthorized - Invalid API key"
       security:
-        - client_id:
-            - ""
-          secret:
-            - ""
+        - client_id: []
+          secret: []
       x-speakeasy-group: "connections"
       x-speakeasy-name-override: "invalidateAccessToken"
   "/connection/auto_refresh/update":
@@ -934,10 +930,8 @@ paths:
         "401":
           description: "Unauthorized - Invalid API key"
       security:
-        - client_id:
-            - ""
-          secret:
-            - ""
+        - client_id: []
+          secret: []
       x-speakeasy-name-override: "updateAutoRefresh"
   "/connection/refresh":
     post:
@@ -974,10 +968,8 @@ paths:
         "401":
           description: "Unauthorized - Invalid API key"
       security:
-        - client_id:
-            - ""
-          secret:
-            - ""
+        - client_id: []
+          secret: []
       x-speakeasy-name-override: "refresh"
   "/connection/webhook/update":
     post:
@@ -1014,10 +1006,8 @@ paths:
         "401":
           description: "Unauthorized - Invalid API key"
       security:
-        - client_id:
-            - ""
-          secret:
-            - ""
+        - client_id: []
+          secret: []
       x-speakeasy-group: "connections"
       x-speakeasy-name-override: "updateWebhook"
   "/connection/destroy":
@@ -1054,11 +1044,218 @@ paths:
         "401":
           description: "Unauthorized - Invalid API key"
       security:
-        - client_id:
-            - ""
-          secret:
-            - ""
+        - client_id: []
+          secret: []
       x-speakeasy-name-override: "destroy"
+  "/agents/prepare":
+    post:
+      tags:
+        - "Agents"
+      summary: "Prepares an agent in the background so that it is ready for a subsequent ensure connection job request."
+      requestBody:
+        description: "Specifies the source for which the agent will be prepared."
+        content:
+          "application/json":
+            schema:
+              allOf:
+                - {"$ref": "#/components/schemas/PrepareAgentRequest"}
+          "text/json":
+            schema:
+              allOf:
+                - {"$ref": "#/components/schemas/PrepareAgentRequest"}
+          "application/*+json":
+            schema:
+              allOf:
+                - {"$ref": "#/components/schemas/PrepareAgentRequest"}
+      responses:
+        "400":
+          description: "Bad Request"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/ProblemDetails"}
+            "text/json":
+              schema: {"$ref": "#/components/schemas/ProblemDetails"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ProblemDetails"}
+        "200":
+          description: "OK"
+        "404":
+          description: "Not Found"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/ProblemDetails"}
+            "text/json":
+              schema: {"$ref": "#/components/schemas/ProblemDetails"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ProblemDetails"}
+        "500":
+          description: "Internal Server Error"
+        "401":
+          description: "Unauthorized - Invalid API key"
+      security:
+        - client_id: []
+          secret: []
+  "/test/api_keys":
+    get:
+      tags:
+        - "Test"
+      summary: "Test your API keys"
+      description: "Provide your API keys in the usual x-deck-client-id and x-deck-secret headers and see if they get validated."
+      responses:
+        "400":
+          description: "Bad Request"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "text/json":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+        "200":
+          description: "OK"
+        "401":
+          description: "Unauthorized - Invalid API key"
+      security:
+        - client_id: []
+          secret: []
+  "/webhook-subscriptions/event-types":
+    post:
+      tags:
+        - "WebhookSubscription"
+      summary: "Get all available webhook event types"
+      responses:
+        "400":
+          description: "Bad Request"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "text/json":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+        "200":
+          description: "OK"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/WebhookEventTypesResponse"}
+            "text/json":
+              schema: {"$ref": "#/components/schemas/WebhookEventTypesResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/WebhookEventTypesResponse"}
+        "401":
+          description: "Unauthorized - Invalid API key"
+      security:
+        - client_id: []
+          secret: []
+  "/webhook-subscriptions/subscriptions":
+    post:
+      tags:
+        - "WebhookSubscription"
+      summary: "Get webhook subscriptions for a specific team"
+      responses:
+        "400":
+          description: "Bad Request"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "text/json":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ErrorMessageResponse"}
+        "200":
+          description: "OK"
+          content:
+            "application/json":
+              schema:
+                type: "array"
+                items: {"$ref": "#/components/schemas/WebhookSubscriptionResponse"}
+            "text/json":
+              schema:
+                type: "array"
+                items: {"$ref": "#/components/schemas/WebhookSubscriptionResponse"}
+            "application/json+encrypted":
+              schema:
+                type: "array"
+                items: {"$ref": "#/components/schemas/WebhookSubscriptionResponse"}
+        "401":
+          description: "Unauthorized - Invalid API key"
+      security:
+        - client_id: []
+          secret: []
+  "/webhook-subscriptions/subscribe":
+    post:
+      tags:
+        - "WebhookSubscription"
+      summary: "Subscribe to webhook events"
+      requestBody:
+        description: "List of event type GUIDs to subscribe to"
+        content:
+          "application/json":
+            schema:
+              allOf:
+                - {"$ref": "#/components/schemas/WebhookSubscriptionRequest"}
+          "text/json":
+            schema:
+              allOf:
+                - {"$ref": "#/components/schemas/WebhookSubscriptionRequest"}
+          "application/*+json":
+            schema:
+              allOf:
+                - {"$ref": "#/components/schemas/WebhookSubscriptionRequest"}
+      responses:
+        "400":
+          description: "Bad Request"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/ProblemDetails"}
+            "text/json":
+              schema: {"$ref": "#/components/schemas/ProblemDetails"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ProblemDetails"}
+        "204":
+          description: "No Content"
+        "401":
+          description: "Unauthorized - Invalid API key"
+      security:
+        - client_id: []
+          secret: []
+  "/webhook-subscriptions/unsubscribe":
+    post:
+      tags:
+        - "WebhookSubscription"
+      summary: "Unsubscribe from webhook events"
+      requestBody:
+        description: "List of event type GUIDs to unsubscribe from"
+        content:
+          "application/json":
+            schema:
+              allOf:
+                - {"$ref": "#/components/schemas/WebhookSubscriptionRequest"}
+          "text/json":
+            schema:
+              allOf:
+                - {"$ref": "#/components/schemas/WebhookSubscriptionRequest"}
+          "application/*+json":
+            schema:
+              allOf:
+                - {"$ref": "#/components/schemas/WebhookSubscriptionRequest"}
+      responses:
+        "400":
+          description: "Bad Request"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/ProblemDetails"}
+            "text/json":
+              schema: {"$ref": "#/components/schemas/ProblemDetails"}
+            "application/json+encrypted":
+              schema: {"$ref": "#/components/schemas/ProblemDetails"}
+        "204":
+          description: "No Content"
+        "401":
+          description: "Unauthorized - Invalid API key"
+      security:
+        - client_id: []
+          secret: []
 components:
   schemas:
     "AccessTokenRequest":
@@ -1304,6 +1501,7 @@ components:
         - "NO_ACTIVE_CONNECTION"
         - "INVALID_SOURCE"
         - "ACTIVE_CONNECTION_EXISTS"
+        - "DOMAIN_BLACKLISTED"
       type: "string"
     "ErrorMessageResponse":
       type: "object"
@@ -1372,10 +1570,25 @@ components:
         "input":
           type: "object"
           additionalProperties:
-            type: "string"
-            description: "Dynamic inputs based on your job type"
+            oneOf:
+              - type: "string"
+              - type: "number"
+              - type: "boolean"
+              - type: "array"
+                items:
+                  type: "string"
+              - type: "object"
           description: "Dynamic input object - structure varies by job type"
-          example: {"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7", "key1": "value1", "someProperty": "someValue"}
+          example: {"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7", "key1": "value1", "someNumber": 123.45, "someBoolean": true, "someArray": ["a", "b"], "nestedObject": {"k": "v"}}
+      additionalProperties: false
+    "IJobResponse":
+      type: "object"
+      properties:
+        "job_guid":
+          type: "string"
+          format: "uuid"
+        "job_code":
+          type: "string"
       additionalProperties: false
     "InvalidateAccessTokenResponse":
       type: "object"
@@ -1383,20 +1596,6 @@ components:
         "new_access_token":
           type: "string"
           description: "The access token associated with the connection data being requested"
-      additionalProperties: false
-    "JobResponse":
-      required:
-        - "job_code"
-        - "job_guid"
-      type: "object"
-      properties:
-        "job_guid":
-          type: "string"
-          description: "The unique identifier of the job."
-          format: "uuid"
-        "job_code":
-          type: "string"
-          description: "The code representing the type of job executed."
       additionalProperties: false
     "LanguageEnum":
       enum:
@@ -1688,6 +1887,10 @@ components:
             type: "string"
           description: "Specify an array of Datadeck-supported country codes using the ISO-3166-1 alpha-2 country code standard. Sources from all listed countries will be shown."
           nullable: true
+        "customization_name":
+          type: "string"
+          description: "The name of the customization from Deck dashboard to be applied to this Widget session. If not specified, the default customization will be used. Values provided in this payload override the dashboard customization settings."
+          nullable: true
         "source_ids":
           type: "array"
           items:
@@ -1817,6 +2020,36 @@ components:
         - "FullSustainability"
         - "None"
       type: "string"
+    "PrepareAgentRequest":
+      required:
+        - "source_guid"
+      type: "object"
+      properties:
+        "source_guid":
+          type: "string"
+          description: "The source GUID for the data source to warm up the agent for"
+          format: "uuid"
+      additionalProperties: false
+    "ProblemDetails":
+      type: "object"
+      properties:
+        "type":
+          type: "string"
+          nullable: true
+        "title":
+          type: "string"
+          nullable: true
+        "status":
+          type: "integer"
+          format: "int32"
+          nullable: true
+        "detail":
+          type: "string"
+          nullable: true
+        "instance":
+          type: "string"
+          nullable: true
+      additionalProperties: {}
     "Provider":
       type: "object"
       properties:
@@ -1919,6 +2152,92 @@ components:
           type: "array"
           items: {"$ref": "#/components/schemas/GetConnectionAccountsRequestAccount"}
       additionalProperties: false
+    "WebhookEventTypeResponse":
+      required:
+        - "description"
+        - "display_name"
+        - "event_code"
+        - "event_type"
+        - "id"
+      type: "object"
+      properties:
+        "id":
+          type: "string"
+          format: "uuid"
+        "event_code":
+          type: "string"
+        "event_type":
+          allOf:
+            - {"$ref": "#/components/schemas/WebhookTypeEnum"}
+        "display_name":
+          type: "string"
+        "description":
+          type: "string"
+        "is_active":
+          type: "boolean"
+        "deprecated_on_utc":
+          type: "string"
+          format: "date-time"
+          nullable: true
+      additionalProperties: false
+    "WebhookEventTypesResponse":
+      required:
+        - "event_types"
+      type: "object"
+      properties:
+        "event_types":
+          type: "array"
+          items: {"$ref": "#/components/schemas/WebhookEventTypeResponse"}
+      additionalProperties: false
+    "WebhookSubscriptionRequest":
+      required:
+        - "event_type_guid"
+      type: "object"
+      properties:
+        "event_type_guid":
+          type: "string"
+          format: "uuid"
+      additionalProperties: false
+    "WebhookSubscriptionResponse":
+      required:
+        - "id"
+        - "team_guid"
+        - "team_name"
+        - "webhook_event_type"
+      type: "object"
+      properties:
+        "id":
+          type: "string"
+          format: "uuid"
+        "team_guid":
+          type: "string"
+          format: "uuid"
+        "team_name":
+          type: "string"
+        "webhook_event_type":
+          allOf:
+            - {"$ref": "#/components/schemas/WebhookEventTypeResponse"}
+        "is_subscribed":
+          type: "boolean"
+        "created_on_utc":
+          type: "string"
+          format: "date-time"
+        "modified_on_utc":
+          type: "string"
+          format: "date-time"
+      additionalProperties: false
+    "WebhookTypeEnum":
+      enum:
+        - "Link"
+        - "Connection"
+        - "Accounting"
+        - "Bill"
+        - "CreditRisk"
+        - "Sustainability"
+        - "Switch"
+        - "IntervalData"
+        - "Job"
+      type: "string"
     "WebhookUpdateRequest":
       required:
         - "access_token"
@@ -1956,3 +2275,7 @@ tags:
     description: "These endpoints are used by the Link widget. They can also be used for creating your own UX experience and connecting data from utility data sources."
   - name: "Connection"
     description: "Manage connections"
+  - name: "Agents"
+    description: "Agent management"
+  - name: "WebhookSubscription"
+    description: "Webhook subscriptions for the team. Use this to subscribe to and unsubscribe from webhook events. See the documentation for more information on how to use this API."

@@ -1,0 +1,14 @@
+# WebhookEventTypeResponse
+
+
+## Fields
+
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `ID`                                                                     | *string*                                                                 | :heavy_check_mark:                                                       | N/A                                                                      |
+| `EventCode`                                                              | *string*                                                                 | :heavy_check_mark:                                                       | N/A                                                                      |
+| `EventType`                                                              | [components.WebhookTypeEnum](../../models/components/webhooktypeenum.md) | :heavy_check_mark:                                                       | N/A                                                                      |
+| `DisplayName`                                                            | *string*                                                                 | :heavy_check_mark:                                                       | N/A                                                                      |
+| `Description`                                                            | *string*                                                                 | :heavy_check_mark:                                                       | N/A                                                                      |
+| `IsActive`                                                               | **bool*                                                                  | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `DeprecatedOnUtc`                                                        | [*time.Time](https://pkg.go.dev/time#Time)                               | :heavy_minus_sign:                                                       | N/A                                                                      |
