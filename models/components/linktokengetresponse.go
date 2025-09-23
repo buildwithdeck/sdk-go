@@ -115,37 +115,37 @@ type LinkTokenGetResponse struct {
 	SourceGuids []string `json:"source_guids,omitempty"`
 }
 
-func (o *LinkTokenGetResponse) GetLanguage() *LinkTokenGetResponseLanguage {
-	if o == nil {
+func (l *LinkTokenGetResponse) GetLanguage() *LinkTokenGetResponseLanguage {
+	if l == nil {
 		return nil
 	}
-	return o.Language
+	return l.Language
 }
 
-func (o *LinkTokenGetResponse) GetBetaSourceStatus() *LinkTokenGetResponseBetaSourceStatus {
-	if o == nil {
+func (l *LinkTokenGetResponse) GetBetaSourceStatus() *LinkTokenGetResponseBetaSourceStatus {
+	if l == nil {
 		return nil
 	}
-	return o.BetaSourceStatus
+	return l.BetaSourceStatus
 }
 
-func (o *LinkTokenGetResponse) GetCountries() []string {
-	if o == nil {
+func (l *LinkTokenGetResponse) GetCountries() []string {
+	if l == nil {
 		return nil
 	}
-	return o.Countries
+	return l.Countries
 }
 
-func (o *LinkTokenGetResponse) GetSourceTypes() []string {
-	if o == nil {
+func (l *LinkTokenGetResponse) GetSourceTypes() []string {
+	if l == nil {
 		return nil
 	}
-	return o.SourceTypes
+	return l.SourceTypes
 }
 
-func (o *LinkTokenGetResponse) GetSourceGuids() []string {
-	if o == nil {
+func (l *LinkTokenGetResponse) GetSourceGuids() []string {
+	if l == nil {
 		return nil
 	}
-	return o.SourceGuids
+	return l.SourceGuids
 }

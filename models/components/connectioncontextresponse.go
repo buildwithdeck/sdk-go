@@ -29,57 +29,57 @@ func (c ConnectionContextResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (c *ConnectionContextResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"provider", "entities"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ConnectionContextResponse) GetConnectionID() *string {
-	if o == nil {
+func (c *ConnectionContextResponse) GetConnectionID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ConnectionID
+	return c.ConnectionID
 }
 
-func (o *ConnectionContextResponse) GetProvider() Provider {
-	if o == nil {
+func (c *ConnectionContextResponse) GetProvider() Provider {
+	if c == nil {
 		return Provider{}
 	}
-	return o.Provider
+	return c.Provider
 }
 
-func (o *ConnectionContextResponse) GetConnectionStatus() *ConnectivityStatusEnum {
-	if o == nil {
+func (c *ConnectionContextResponse) GetConnectionStatus() *ConnectivityStatusEnum {
+	if c == nil {
 		return nil
 	}
-	return o.ConnectionStatus
+	return c.ConnectionStatus
 }
 
-func (o *ConnectionContextResponse) GetConnectionStatusTimestamp() *time.Time {
-	if o == nil {
+func (c *ConnectionContextResponse) GetConnectionStatusTimestamp() *time.Time {
+	if c == nil {
 		return nil
 	}
-	return o.ConnectionStatusTimestamp
+	return c.ConnectionStatusTimestamp
 }
 
-func (o *ConnectionContextResponse) GetConnectionStatusReason() *ScrapingStatusEnum {
-	if o == nil {
+func (c *ConnectionContextResponse) GetConnectionStatusReason() *ScrapingStatusEnum {
+	if c == nil {
 		return nil
 	}
-	return o.ConnectionStatusReason
+	return c.ConnectionStatusReason
 }
 
-func (o *ConnectionContextResponse) GetNumOfEntities() *int {
-	if o == nil {
+func (c *ConnectionContextResponse) GetNumOfEntities() *int {
+	if c == nil {
 		return nil
 	}
-	return o.NumOfEntities
+	return c.NumOfEntities
 }
 
-func (o *ConnectionContextResponse) GetEntities() []Entity {
-	if o == nil {
+func (c *ConnectionContextResponse) GetEntities() []Entity {
+	if c == nil {
 		return []Entity{}
 	}
-	return o.Entities
+	return c.Entities
 }

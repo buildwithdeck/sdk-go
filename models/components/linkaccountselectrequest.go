@@ -9,16 +9,16 @@ type LinkAccountSelectRequest struct {
 	Accounts []string `json:"accounts,omitempty"`
 }
 
-func (o *LinkAccountSelectRequest) GetLinkToken() string {
-	if o == nil {
+func (l *LinkAccountSelectRequest) GetLinkToken() string {
+	if l == nil {
 		return ""
 	}
-	return o.LinkToken
+	return l.LinkToken
 }
 
-func (o *LinkAccountSelectRequest) GetAccounts() []string {
-	if o == nil {
+func (l *LinkAccountSelectRequest) GetAccounts() []string {
+	if l == nil {
 		return nil
 	}
-	return o.Accounts
+	return l.Accounts
 }

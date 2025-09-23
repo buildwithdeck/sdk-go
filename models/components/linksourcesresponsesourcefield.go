@@ -10,37 +10,37 @@ type LinkSourcesResponseSourceField struct {
 	FieldType   *FieldTypeEnum `json:"field_type,omitempty"`
 }
 
-func (o *LinkSourcesResponseSourceField) GetFieldNumber() int {
-	if o == nil {
+func (l *LinkSourcesResponseSourceField) GetFieldNumber() int {
+	if l == nil {
 		return 0
 	}
-	return o.FieldNumber
+	return l.FieldNumber
 }
 
-func (o *LinkSourcesResponseSourceField) GetFieldName() string {
-	if o == nil {
+func (l *LinkSourcesResponseSourceField) GetFieldName() string {
+	if l == nil {
 		return ""
 	}
-	return o.FieldName
+	return l.FieldName
 }
 
-func (o *LinkSourcesResponseSourceField) GetFieldLabel() string {
-	if o == nil {
+func (l *LinkSourcesResponseSourceField) GetFieldLabel() string {
+	if l == nil {
 		return ""
 	}
-	return o.FieldLabel
+	return l.FieldLabel
 }
 
-func (o *LinkSourcesResponseSourceField) GetFieldValue() *string {
-	if o == nil {
+func (l *LinkSourcesResponseSourceField) GetFieldValue() *string {
+	if l == nil {
 		return nil
 	}
-	return o.FieldValue
+	return l.FieldValue
 }
 
-func (o *LinkSourcesResponseSourceField) GetFieldType() *FieldTypeEnum {
-	if o == nil {
+func (l *LinkSourcesResponseSourceField) GetFieldType() *FieldTypeEnum {
+	if l == nil {
 		return nil
 	}
-	return o.FieldType
+	return l.FieldType
 }

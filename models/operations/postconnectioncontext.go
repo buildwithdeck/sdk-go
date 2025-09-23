@@ -12,16 +12,16 @@ type PostConnectionContextResponse struct {
 	ConnectionContextResponse *components.ConnectionContextResponse
 }
 
-func (o *PostConnectionContextResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (p *PostConnectionContextResponse) GetHTTPMeta() components.HTTPMetadata {
+	if p == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return p.HTTPMeta
 }
 
-func (o *PostConnectionContextResponse) GetConnectionContextResponse() *components.ConnectionContextResponse {
-	if o == nil {
+func (p *PostConnectionContextResponse) GetConnectionContextResponse() *components.ConnectionContextResponse {
+	if p == nil {
 		return nil
 	}
-	return o.ConnectionContextResponse
+	return p.ConnectionContextResponse
 }

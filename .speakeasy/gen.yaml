@@ -19,13 +19,14 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
+    hoistGlobalSecurity: true
   sdkHooksConfigAccess: true
   tests:
     generateTests: false
     generateNewTests: true
     skipResponseBodyAssertions: false
 go:
-  version: 0.2.0
+  version: 0.3.0
   additionalDependencies: {}
   allowUnknownFieldsInWeakUnions: false
   baseErrorName: DeckError
@@ -45,7 +46,9 @@ go:
   maxMethodParams: 4
   methodArguments: require-security-and-request
   modulePath: ""
+  nullableOptionalWrapper: false
   outputModelSuffix: output
   packageName: github.com/buildwithdeck/sdk-go
+  respectRequiredFields: false
   responseFormat: envelope-http
   sdkPackageName: ""

@@ -12,16 +12,16 @@ type PostLinkInfoResponse struct {
 	LinkClientInfoResponse *components.LinkClientInfoResponse
 }
 
-func (o *PostLinkInfoResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (p *PostLinkInfoResponse) GetHTTPMeta() components.HTTPMetadata {
+	if p == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return p.HTTPMeta
 }
 
-func (o *PostLinkInfoResponse) GetLinkClientInfoResponse() *components.LinkClientInfoResponse {
-	if o == nil {
+func (p *PostLinkInfoResponse) GetLinkClientInfoResponse() *components.LinkClientInfoResponse {
+	if p == nil {
 		return nil
 	}
-	return o.LinkClientInfoResponse
+	return p.LinkClientInfoResponse
 }

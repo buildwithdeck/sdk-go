@@ -10,9 +10,9 @@ type PostConnectionAccountsSelectResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-func (o *PostConnectionAccountsSelectResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (p *PostConnectionAccountsSelectResponse) GetHTTPMeta() components.HTTPMetadata {
+	if p == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return p.HTTPMeta
 }

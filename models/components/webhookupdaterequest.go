@@ -11,23 +11,23 @@ type WebhookUpdateRequest struct {
 	IsActive bool `json:"is_active"`
 }
 
-func (o *WebhookUpdateRequest) GetAccessToken() string {
-	if o == nil {
+func (w *WebhookUpdateRequest) GetAccessToken() string {
+	if w == nil {
 		return ""
 	}
-	return o.AccessToken
+	return w.AccessToken
 }
 
-func (o *WebhookUpdateRequest) GetURL() string {
-	if o == nil {
+func (w *WebhookUpdateRequest) GetURL() string {
+	if w == nil {
 		return ""
 	}
-	return o.URL
+	return w.URL
 }
 
-func (o *WebhookUpdateRequest) GetIsActive() bool {
-	if o == nil {
+func (w *WebhookUpdateRequest) GetIsActive() bool {
+	if w == nil {
 		return false
 	}
-	return o.IsActive
+	return w.IsActive
 }

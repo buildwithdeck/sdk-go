@@ -7,16 +7,16 @@ type MfaAnswerRequest struct {
 	Answer  string  `json:"answer"`
 }
 
-func (o *MfaAnswerRequest) GetJobGUID() *string {
-	if o == nil {
+func (m *MfaAnswerRequest) GetJobGUID() *string {
+	if m == nil {
 		return nil
 	}
-	return o.JobGUID
+	return m.JobGUID
 }
 
-func (o *MfaAnswerRequest) GetAnswer() string {
-	if o == nil {
+func (m *MfaAnswerRequest) GetAnswer() string {
+	if m == nil {
 		return ""
 	}
-	return o.Answer
+	return m.Answer
 }

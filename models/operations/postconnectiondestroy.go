@@ -10,9 +10,9 @@ type PostConnectionDestroyResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-func (o *PostConnectionDestroyResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (p *PostConnectionDestroyResponse) GetHTTPMeta() components.HTTPMetadata {
+	if p == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return p.HTTPMeta
 }

@@ -8,16 +8,16 @@ type RefreshConnectionRequest struct {
 	AccountNumbers []string `json:"account_numbers,omitempty"`
 }
 
-func (o *RefreshConnectionRequest) GetAccessToken() string {
-	if o == nil {
+func (r *RefreshConnectionRequest) GetAccessToken() string {
+	if r == nil {
 		return ""
 	}
-	return o.AccessToken
+	return r.AccessToken
 }
 
-func (o *RefreshConnectionRequest) GetAccountNumbers() []string {
-	if o == nil {
+func (r *RefreshConnectionRequest) GetAccountNumbers() []string {
+	if r == nil {
 		return nil
 	}
-	return o.AccountNumbers
+	return r.AccountNumbers
 }

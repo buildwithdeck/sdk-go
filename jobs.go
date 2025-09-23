@@ -213,7 +213,7 @@ func (s *Jobs) Submit(ctx context.Context, xDeckSandbox *string, requestBody *op
 	}
 
 	switch {
-	case httpRes.StatusCode == 200:
+	case httpRes.StatusCode == 202:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -221,36 +221,36 @@ func (s *Jobs) Submit(ctx context.Context, xDeckSandbox *string, requestBody *op
 				return nil, err
 			}
 
-			var out components.JobResponse
+			var out components.IJobResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.JobResponse = &out
+			res.IJobResponse = &out
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json+encrypted`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out components.JobResponse
+			var out components.IJobResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.JobResponse = &out
+			res.IJobResponse = &out
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `text/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out components.JobResponse
+			var out components.IJobResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.JobResponse = &out
+			res.IJobResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

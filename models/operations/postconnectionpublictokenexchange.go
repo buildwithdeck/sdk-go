@@ -12,16 +12,16 @@ type PostConnectionPublicTokenExchangeResponse struct {
 	ConnectionPublicTokenExchangeResponse *components.ConnectionPublicTokenExchangeResponse
 }
 
-func (o *PostConnectionPublicTokenExchangeResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (p *PostConnectionPublicTokenExchangeResponse) GetHTTPMeta() components.HTTPMetadata {
+	if p == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return p.HTTPMeta
 }
 
-func (o *PostConnectionPublicTokenExchangeResponse) GetConnectionPublicTokenExchangeResponse() *components.ConnectionPublicTokenExchangeResponse {
-	if o == nil {
+func (p *PostConnectionPublicTokenExchangeResponse) GetConnectionPublicTokenExchangeResponse() *components.ConnectionPublicTokenExchangeResponse {
+	if p == nil {
 		return nil
 	}
-	return o.ConnectionPublicTokenExchangeResponse
+	return p.ConnectionPublicTokenExchangeResponse
 }

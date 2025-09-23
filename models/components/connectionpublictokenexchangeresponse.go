@@ -11,23 +11,23 @@ type ConnectionPublicTokenExchangeResponse struct {
 	Fields []LinkConnectRequestField `json:"fields"`
 }
 
-func (o *ConnectionPublicTokenExchangeResponse) GetAccessToken() *string {
-	if o == nil {
+func (c *ConnectionPublicTokenExchangeResponse) GetAccessToken() *string {
+	if c == nil {
 		return nil
 	}
-	return o.AccessToken
+	return c.AccessToken
 }
 
-func (o *ConnectionPublicTokenExchangeResponse) GetConnectionID() *string {
-	if o == nil {
+func (c *ConnectionPublicTokenExchangeResponse) GetConnectionID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ConnectionID
+	return c.ConnectionID
 }
 
-func (o *ConnectionPublicTokenExchangeResponse) GetFields() []LinkConnectRequestField {
-	if o == nil {
+func (c *ConnectionPublicTokenExchangeResponse) GetFields() []LinkConnectRequestField {
+	if c == nil {
 		return []LinkConnectRequestField{}
 	}
-	return o.Fields
+	return c.Fields
 }

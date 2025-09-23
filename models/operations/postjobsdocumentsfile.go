@@ -20,30 +20,30 @@ type PostJobsDocumentsFileResponse struct {
 	TwoHundredApplicationJSONPlusEncryptedResponseStream io.ReadCloser
 }
 
-func (o *PostJobsDocumentsFileResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (p *PostJobsDocumentsFileResponse) GetHTTPMeta() components.HTTPMetadata {
+	if p == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return p.HTTPMeta
 }
 
-func (o *PostJobsDocumentsFileResponse) GetTwoHundredApplicationJSONResponseStream() io.ReadCloser {
-	if o == nil {
+func (p *PostJobsDocumentsFileResponse) GetTwoHundredApplicationJSONResponseStream() io.ReadCloser {
+	if p == nil {
 		return nil
 	}
-	return o.TwoHundredApplicationJSONResponseStream
+	return p.TwoHundredApplicationJSONResponseStream
 }
 
-func (o *PostJobsDocumentsFileResponse) GetTwoHundredTextJSONResponseStream() io.ReadCloser {
-	if o == nil {
+func (p *PostJobsDocumentsFileResponse) GetTwoHundredTextJSONResponseStream() io.ReadCloser {
+	if p == nil {
 		return nil
 	}
-	return o.TwoHundredTextJSONResponseStream
+	return p.TwoHundredTextJSONResponseStream
 }
 
-func (o *PostJobsDocumentsFileResponse) GetTwoHundredApplicationJSONPlusEncryptedResponseStream() io.ReadCloser {
-	if o == nil {
+func (p *PostJobsDocumentsFileResponse) GetTwoHundredApplicationJSONPlusEncryptedResponseStream() io.ReadCloser {
+	if p == nil {
 		return nil
 	}
-	return o.TwoHundredApplicationJSONPlusEncryptedResponseStream
+	return p.TwoHundredApplicationJSONPlusEncryptedResponseStream
 }

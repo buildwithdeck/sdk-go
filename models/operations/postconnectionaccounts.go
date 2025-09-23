@@ -12,16 +12,16 @@ type PostConnectionAccountsResponse struct {
 	GetConnectionAccountsResponse *components.GetConnectionAccountsResponse
 }
 
-func (o *PostConnectionAccountsResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (p *PostConnectionAccountsResponse) GetHTTPMeta() components.HTTPMetadata {
+	if p == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return p.HTTPMeta
 }
 
-func (o *PostConnectionAccountsResponse) GetGetConnectionAccountsResponse() *components.GetConnectionAccountsResponse {
-	if o == nil {
+func (p *PostConnectionAccountsResponse) GetGetConnectionAccountsResponse() *components.GetConnectionAccountsResponse {
+	if p == nil {
 		return nil
 	}
-	return o.GetConnectionAccountsResponse
+	return p.GetConnectionAccountsResponse
 }

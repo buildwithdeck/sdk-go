@@ -21,50 +21,50 @@ func (d DocumentInfo) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DocumentInfo) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"document_id", "file_type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *DocumentInfo) GetDocumentID() string {
-	if o == nil {
+func (d *DocumentInfo) GetDocumentID() string {
+	if d == nil {
 		return ""
 	}
-	return o.DocumentID
+	return d.DocumentID
 }
 
-func (o *DocumentInfo) GetFileType() string {
-	if o == nil {
+func (d *DocumentInfo) GetFileType() string {
+	if d == nil {
 		return ""
 	}
-	return o.FileType
+	return d.FileType
 }
 
-func (o *DocumentInfo) GetMetadata() map[string]string {
-	if o == nil {
+func (d *DocumentInfo) GetMetadata() map[string]string {
+	if d == nil {
 		return nil
 	}
-	return o.Metadata
+	return d.Metadata
 }
 
-func (o *DocumentInfo) GetFileName() *string {
-	if o == nil {
+func (d *DocumentInfo) GetFileName() *string {
+	if d == nil {
 		return nil
 	}
-	return o.FileName
+	return d.FileName
 }
 
-func (o *DocumentInfo) GetFileSize() *int64 {
-	if o == nil {
+func (d *DocumentInfo) GetFileSize() *int64 {
+	if d == nil {
 		return nil
 	}
-	return o.FileSize
+	return d.FileSize
 }
 
-func (o *DocumentInfo) GetFetchDate() *time.Time {
-	if o == nil {
+func (d *DocumentInfo) GetFetchDate() *time.Time {
+	if d == nil {
 		return nil
 	}
-	return o.FetchDate
+	return d.FetchDate
 }

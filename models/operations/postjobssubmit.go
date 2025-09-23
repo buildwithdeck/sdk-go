@@ -3,28 +3,174 @@
 package operations
 
 import (
+	"errors"
+	"fmt"
+	"github.com/buildwithdeck/sdk-go/internal/utils"
 	"github.com/buildwithdeck/sdk-go/models/components"
 )
+
+type Input2 struct {
+}
+
+func (i Input2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *Input2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+type InputUnion2Type string
+
+const (
+	InputUnion2TypeStr        InputUnion2Type = "str"
+	InputUnion2TypeNumber     InputUnion2Type = "number"
+	InputUnion2TypeBoolean    InputUnion2Type = "boolean"
+	InputUnion2TypeArrayOfStr InputUnion2Type = "arrayOfStr"
+	InputUnion2TypeInput2     InputUnion2Type = "input_2"
+)
+
+type InputUnion2 struct {
+	Str        *string  `queryParam:"inline" name:"input"`
+	Number     *float64 `queryParam:"inline" name:"input"`
+	Boolean    *bool    `queryParam:"inline" name:"input"`
+	ArrayOfStr []string `queryParam:"inline" name:"input"`
+	Input2     *Input2  `queryParam:"inline" name:"input"`
+
+	Type InputUnion2Type
+}
+
+func CreateInputUnion2Str(str string) InputUnion2 {
+	typ := InputUnion2TypeStr
+
+	return InputUnion2{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateInputUnion2Number(number float64) InputUnion2 {
+	typ := InputUnion2TypeNumber
+
+	return InputUnion2{
+		Number: &number,
+		Type:   typ,
+	}
+}
+
+func CreateInputUnion2Boolean(boolean bool) InputUnion2 {
+	typ := InputUnion2TypeBoolean
+
+	return InputUnion2{
+		Boolean: &boolean,
+		Type:    typ,
+	}
+}
+
+func CreateInputUnion2ArrayOfStr(arrayOfStr []string) InputUnion2 {
+	typ := InputUnion2TypeArrayOfStr
+
+	return InputUnion2{
+		ArrayOfStr: arrayOfStr,
+		Type:       typ,
+	}
+}
+
+func CreateInputUnion2Input2(input2 Input2) InputUnion2 {
+	typ := InputUnion2TypeInput2
+
+	return InputUnion2{
+		Input2: &input2,
+		Type:   typ,
+	}
+}
+
+func (u *InputUnion2) UnmarshalJSON(data []byte) error {
+
+	var input2 Input2 = Input2{}
+	if err := utils.UnmarshalJSON(data, &input2, "", true, nil); err == nil {
+		u.Input2 = &input2
+		u.Type = InputUnion2TypeInput2
+		return nil
+	}
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+		u.Str = &str
+		u.Type = InputUnion2TypeStr
+		return nil
+	}
+
+	var number float64 = float64(0)
+	if err := utils.UnmarshalJSON(data, &number, "", true, nil); err == nil {
+		u.Number = &number
+		u.Type = InputUnion2TypeNumber
+		return nil
+	}
+
+	var boolean bool = false
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
+		u.Boolean = &boolean
+		u.Type = InputUnion2TypeBoolean
+		return nil
+	}
+
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
+		u.ArrayOfStr = arrayOfStr
+		u.Type = InputUnion2TypeArrayOfStr
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for InputUnion2", string(data))
+}
+
+func (u InputUnion2) MarshalJSON() ([]byte, error) {
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	if u.Number != nil {
+		return utils.MarshalJSON(u.Number, "", true)
+	}
+
+	if u.Boolean != nil {
+		return utils.MarshalJSON(u.Boolean, "", true)
+	}
+
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
+	}
+
+	if u.Input2 != nil {
+		return utils.MarshalJSON(u.Input2, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type InputUnion2: all fields are null")
+}
 
 type PostJobsSubmitRequestBody2 struct {
 	// The job type identifier
 	JobCode string `json:"job_code"`
 	// Dynamic input object - structure varies by job type
-	Input map[string]string `json:"input"`
+	Input map[string]InputUnion2 `json:"input"`
 }
 
-func (o *PostJobsSubmitRequestBody2) GetJobCode() string {
-	if o == nil {
+func (p *PostJobsSubmitRequestBody2) GetJobCode() string {
+	if p == nil {
 		return ""
 	}
-	return o.JobCode
+	return p.JobCode
 }
 
-func (o *PostJobsSubmitRequestBody2) GetInput() map[string]string {
-	if o == nil {
-		return map[string]string{}
+func (p *PostJobsSubmitRequestBody2) GetInput() map[string]InputUnion2 {
+	if p == nil {
+		return map[string]InputUnion2{}
 	}
-	return o.Input
+	return p.Input
 }
 
 type PostJobsSubmitRequest struct {
@@ -33,36 +179,36 @@ type PostJobsSubmitRequest struct {
 	RequestBody  *PostJobsSubmitRequestBody2 `request:"mediaType=application/json"`
 }
 
-func (o *PostJobsSubmitRequest) GetXDeckSandbox() *string {
-	if o == nil {
+func (p *PostJobsSubmitRequest) GetXDeckSandbox() *string {
+	if p == nil {
 		return nil
 	}
-	return o.XDeckSandbox
+	return p.XDeckSandbox
 }
 
-func (o *PostJobsSubmitRequest) GetRequestBody() *PostJobsSubmitRequestBody2 {
-	if o == nil {
+func (p *PostJobsSubmitRequest) GetRequestBody() *PostJobsSubmitRequestBody2 {
+	if p == nil {
 		return nil
 	}
-	return o.RequestBody
+	return p.RequestBody
 }
 
 type PostJobsSubmitResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// OK
-	JobResponse *components.JobResponse
+	// Accepted
+	IJobResponse *components.IJobResponse
 }
 
-func (o *PostJobsSubmitResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (p *PostJobsSubmitResponse) GetHTTPMeta() components.HTTPMetadata {
+	if p == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return p.HTTPMeta
 }
 
-func (o *PostJobsSubmitResponse) GetJobResponse() *components.JobResponse {
-	if o == nil {
+func (p *PostJobsSubmitResponse) GetIJobResponse() *components.IJobResponse {
+	if p == nil {
 		return nil
 	}
-	return o.JobResponse
+	return p.IJobResponse
 }

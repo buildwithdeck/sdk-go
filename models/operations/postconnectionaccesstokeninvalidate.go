@@ -12,16 +12,16 @@ type PostConnectionAccessTokenInvalidateResponse struct {
 	InvalidateAccessTokenResponse *components.InvalidateAccessTokenResponse
 }
 
-func (o *PostConnectionAccessTokenInvalidateResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (p *PostConnectionAccessTokenInvalidateResponse) GetHTTPMeta() components.HTTPMetadata {
+	if p == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return p.HTTPMeta
 }
 
-func (o *PostConnectionAccessTokenInvalidateResponse) GetInvalidateAccessTokenResponse() *components.InvalidateAccessTokenResponse {
-	if o == nil {
+func (p *PostConnectionAccessTokenInvalidateResponse) GetInvalidateAccessTokenResponse() *components.InvalidateAccessTokenResponse {
+	if p == nil {
 		return nil
 	}
-	return o.InvalidateAccessTokenResponse
+	return p.InvalidateAccessTokenResponse
 }

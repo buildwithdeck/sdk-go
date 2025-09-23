@@ -11,18 +11,18 @@ type PostJobsDocumentsListRequest struct {
 	AccessTokenRequest *components.AccessTokenRequest `request:"mediaType=application/json"`
 }
 
-func (o *PostJobsDocumentsListRequest) GetJobGUID() *string {
-	if o == nil {
+func (p *PostJobsDocumentsListRequest) GetJobGUID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.JobGUID
+	return p.JobGUID
 }
 
-func (o *PostJobsDocumentsListRequest) GetAccessTokenRequest() *components.AccessTokenRequest {
-	if o == nil {
+func (p *PostJobsDocumentsListRequest) GetAccessTokenRequest() *components.AccessTokenRequest {
+	if p == nil {
 		return nil
 	}
-	return o.AccessTokenRequest
+	return p.AccessTokenRequest
 }
 
 type PostJobsDocumentsListResponse struct {
@@ -31,16 +31,16 @@ type PostJobsDocumentsListResponse struct {
 	DocumentListResponse *components.DocumentListResponse
 }
 
-func (o *PostJobsDocumentsListResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (p *PostJobsDocumentsListResponse) GetHTTPMeta() components.HTTPMetadata {
+	if p == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return p.HTTPMeta
 }
 
-func (o *PostJobsDocumentsListResponse) GetDocumentListResponse() *components.DocumentListResponse {
-	if o == nil {
+func (p *PostJobsDocumentsListResponse) GetDocumentListResponse() *components.DocumentListResponse {
+	if p == nil {
 		return nil
 	}
-	return o.DocumentListResponse
+	return p.DocumentListResponse
 }

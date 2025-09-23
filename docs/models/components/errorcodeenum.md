@@ -37,3 +37,4 @@
 | `ErrorCodeEnumNoActiveConnection`         | NO_ACTIVE_CONNECTION                      |
 | `ErrorCodeEnumInvalidSource`              | INVALID_SOURCE                            |
 | `ErrorCodeEnumActiveConnectionExists`     | ACTIVE_CONNECTION_EXISTS                  |
+| `ErrorCodeEnumDomainBlacklisted`          | DOMAIN_BLACKLISTED                        |

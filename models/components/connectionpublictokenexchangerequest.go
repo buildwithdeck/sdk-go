@@ -7,9 +7,9 @@ type ConnectionPublicTokenExchangeRequest struct {
 	PublicToken string `json:"public_token"`
 }
 
-func (o *ConnectionPublicTokenExchangeRequest) GetPublicToken() string {
-	if o == nil {
+func (c *ConnectionPublicTokenExchangeRequest) GetPublicToken() string {
+	if c == nil {
 		return ""
 	}
-	return o.PublicToken
+	return c.PublicToken
 }

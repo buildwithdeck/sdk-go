@@ -6,9 +6,9 @@ type Entity struct {
 	AccountNumber string `json:"account_number"`
 }
 
-func (o *Entity) GetAccountNumber() string {
-	if o == nil {
+func (e *Entity) GetAccountNumber() string {
+	if e == nil {
 		return ""
 	}
-	return o.AccountNumber
+	return e.AccountNumber
 }

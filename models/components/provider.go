@@ -9,16 +9,16 @@ type Provider struct {
 	Name *string `json:"name,omitempty"`
 }
 
-func (o *Provider) GetID() *string {
-	if o == nil {
+func (p *Provider) GetID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ID
+	return p.ID
 }
 
-func (o *Provider) GetName() *string {
-	if o == nil {
+func (p *Provider) GetName() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Name
+	return p.Name
 }

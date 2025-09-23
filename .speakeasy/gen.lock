@@ -1,35 +1,37 @@
 lockVersion: 2.0.0
 id: d348888e-280a-43de-910e-0b32ba656cb4
 management:
-  docChecksum: 988297f4ce2826d8f28303e4903c70c4
+  docChecksum: 566d4dbf74c8eeea92a5098dbae8547f
   docVersion: v1
-  speakeasyVersion: 1.592.2
-  generationVersion: 2.668.4
-  releaseVersion: 0.2.0
-  configChecksum: a2b02c07c34dcd16b3061db7600037b9
+  speakeasyVersion: 1.622.1
+  generationVersion: 2.709.0
+  releaseVersion: 0.3.0
+  configChecksum: 2a2e1fdc662c2692fbb2a30af5c9e2ba
   repoURL: https://github.com/buildwithdeck/sdk-go.git
   installationURL: https://github.com/buildwithdeck/sdk-go
 features:
   go:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
-    core: 3.9.1
+    additionalProperties: 0.1.2
+    core: 3.11.0
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
     downloadStreams: 0.1.2
     envVarSecurityUsage: 0.3.2
     flattening: 2.81.1
-    globalSecurity: 2.82.11
+    globalSecurity: 2.82.12
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.3
     groups: 2.81.2
     intellisenseMarkdownSupport: 0.1.0
     nameOverrides: 2.81.2
-    nullables: 0.1.1
+    nullables: 0.2.0
     responseFormat: 0.1.2
-    retries: 2.83.3
+    retries: 2.84.2
     sdkHooks: 0.2.0
+    unions: 2.85.14
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -38,6 +40,7 @@ generatedFiles:
   - /models/apierrors/alreadyrunningjobresponseerror.go
   - /models/apierrors/badrequestjobresponseerror.go
   - /models/apierrors/errormessageresponse.go
+  - /models/apierrors/problemdetailserror.go
   - /models/components/accesstokenrequest.go
   - /models/components/accountselectmodeenum.go
   - /models/components/autorefreshupdaterequest.go
@@ -55,8 +58,8 @@ generatedFiles:
   - /models/components/getconnectionaccountsresponse.go
   - /models/components/getconnectionaccountsresponseaccount.go
   - /models/components/httpmetadata.go
+  - /models/components/ijobresponse.go
   - /models/components/invalidateaccesstokenresponse.go
-  - /models/components/jobresponse.go
   - /models/components/languageenum.go
   - /models/components/linkaccountlistresponse.go
   - /models/components/linkaccountlistresponseaccountitem.go
@@ -76,6 +79,7 @@ generatedFiles:
   - /models/components/linktokengetresponse.go
   - /models/components/linktokenrequestresponse.go
   - /models/components/mfaanswerrequest.go
+  - /models/components/prepareagentrequest.go
   - /models/components/provider.go
   - /models/components/rawdocumentrequest.go
   - /models/components/refreshconnectionrequest.go
@@ -84,7 +88,14 @@ generatedFiles:
   - /models/components/securityquestionanswersaverequest.go
   - /models/components/securityquestionresponse.go
   - /models/components/selectconnectionaccountsrequest.go
+  - /models/components/webhookeventtyperesponse.go
+  - /models/components/webhookeventtypesresponse.go
+  - /models/components/webhooksubscriptionrequest.go
+  - /models/components/webhooksubscriptionresponse.go
+  - /models/components/webhooktypeenum.go
   - /models/components/webhookupdaterequest.go
+  - /models/operations/gettestapikeys.go
+  - /models/operations/postagentsprepare.go
   - /models/operations/postconnectionaccesstokeninvalidate.go
   - /models/operations/postconnectionaccounts.go
   - /models/operations/postconnectionaccountsselect.go
@@ -108,7 +119,12 @@ generatedFiles:
   - /models/operations/postlinksources.go
   - /models/operations/postlinktokencreate.go
   - /models/operations/postlinktokenget.go
+  - /models/operations/postwebhooksubscriptionseventtypes.go
+  - /models/operations/postwebhooksubscriptionssubscribe.go
+  - /models/operations/postwebhooksubscriptionssubscriptions.go
+  - /models/operations/postwebhooksubscriptionsunsubscribe.go
   - USAGE.md
+  - agents.go
   - authentication.go
   - connection.go
   - connections.go
@@ -116,6 +132,7 @@ generatedFiles:
   - docs/models/apierrors/alreadyrunningjobresponseerror.md
   - docs/models/apierrors/badrequestjobresponseerror.md
   - docs/models/apierrors/errormessageresponse.md
+  - docs/models/apierrors/problemdetailserror.md
   - docs/models/components/accesstokenrequest.md
   - docs/models/components/accountselectmodeenum.md
   - docs/models/components/autorefreshupdaterequest.md
@@ -133,8 +150,8 @@ generatedFiles:
   - docs/models/components/getconnectionaccountsresponse.md
   - docs/models/components/getconnectionaccountsresponseaccount.md
   - docs/models/components/httpmetadata.md
+  - docs/models/components/ijobresponse.md
   - docs/models/components/invalidateaccesstokenresponse.md
-  - docs/models/components/jobresponse.md
   - docs/models/components/languageenum.md
   - docs/models/components/linkaccountlistresponse.md
   - docs/models/components/linkaccountlistresponseaccountitem.md
@@ -160,6 +177,7 @@ generatedFiles:
   - docs/models/components/mfaanswerrequest.md
   - docs/models/components/mode.md
   - docs/models/components/parsingmethod.md
+  - docs/models/components/prepareagentrequest.md
   - docs/models/components/provider.md
   - docs/models/components/rawdocumentrequest.md
   - docs/models/components/refreshconnectionrequest.md
@@ -170,8 +188,17 @@ generatedFiles:
   - docs/models/components/selectconnectionaccountsrequest.md
   - docs/models/components/update.md
   - docs/models/components/updatemode.md
+  - docs/models/components/webhookeventtyperesponse.md
+  - docs/models/components/webhookeventtypesresponse.md
+  - docs/models/components/webhooksubscriptionrequest.md
+  - docs/models/components/webhooksubscriptionresponse.md
+  - docs/models/components/webhooktypeenum.md
   - docs/models/components/webhookupdaterequest.md
+  - docs/models/operations/gettestapikeysresponse.md
+  - docs/models/operations/input2.md
+  - docs/models/operations/inputunion2.md
   - docs/models/operations/option.md
+  - docs/models/operations/postagentsprepareresponse.md
   - docs/models/operations/postconnectionaccesstokeninvalidateresponse.md
   - docs/models/operations/postconnectionaccountsresponse.md
   - docs/models/operations/postconnectionaccountsselectresponse.md
@@ -198,6 +225,11 @@ generatedFiles:
   - docs/models/operations/postlinksourcesresponse.md
   - docs/models/operations/postlinktokencreateresponse.md
   - docs/models/operations/postlinktokengetresponse.md
+  - docs/models/operations/postwebhooksubscriptionseventtypesresponse.md
+  - docs/models/operations/postwebhooksubscriptionssubscriberesponse.md
+  - docs/models/operations/postwebhooksubscriptionssubscriptionsresponse.md
+  - docs/models/operations/postwebhooksubscriptionsunsubscriberesponse.md
+  - docs/sdks/agents/README.md
   - docs/sdks/authentication/README.md
   - docs/sdks/connection/README.md
   - docs/sdks/connections/README.md
@@ -206,6 +238,8 @@ generatedFiles:
   - docs/sdks/jobsdocuments/README.md
   - docs/sdks/link/README.md
   - docs/sdks/links/README.md
+  - docs/sdks/test/README.md
+  - docs/sdks/webhooksubscription/README.md
   - go.mod
   - internal/config/sdkconfiguration.go
   - internal/hooks/hooks.go
@@ -226,19 +260,23 @@ generatedFiles:
   - links.go
   - models/apierrors/apierror.go
   - models/operations/options.go
+  - optionalnullable/optionalnullable.go
+  - optionalnullable/optionalnullable_test.go
   - retry/config.go
+  - test.go
   - types/bigint.go
   - types/date.go
   - types/datetime.go
   - types/decimal.go
   - types/pointers.go
+  - webhooksubscription.go
 examples:
   post_/jobs/submit:
     speakeasy-default-post-/jobs/submit:
       requestBody:
-        application/json: {"job_code": "FetchDocuments", "input": {"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7", "key1": "value1", "someProperty": "someValue"}}
-        text/json: {"job_code": "FetchDocuments", "input": {"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7", "key1": "value1", "someProperty": "someValue"}}
-        application/*+json: {"job_code": "FetchDocuments", "input": {"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7", "key1": "value1", "someProperty": "someValue"}}
+        application/json: {"job_code": "FetchDocuments", "input": {"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7", "key1": "value1", "someNumber": 123.45, "someBoolean": true, "someArray": ["a", "b"], "nestedObject": true}}
+        text/json: {"job_code": "FetchDocuments", "input": {"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7", "key1": "value1", "someNumber": 123.45, "someBoolean": true, "someArray": ["a", "b"], "nestedObject": true}}
+        application/*+json: {"job_code": "FetchDocuments", "input": {"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7", "key1": "value1", "someNumber": 123.45, "someBoolean": true, "someArray": ["a", "b"], "nestedObject": true}}
       responses:
         "200":
           application/json: {"job_guid": "61ddf36b-3530-4a14-9b21-fac7297f39c0", "job_code": "<value>"}
@@ -252,6 +290,10 @@ examples:
           application/json: {"job_id": "13822d2a-93aa-44b1-9d5b-595e331634c0", "job_guid": "f850baba-d96c-49cf-af28-cee156178113", "message": "<value>", "error_message": "<value>"}
           text/json: {"job_id": "13822d2a-93aa-44b1-9d5b-595e331634c0", "job_guid": "f850baba-d96c-49cf-af28-cee156178113", "message": "<value>", "error_message": "<value>"}
           application/json+encrypted: {"job_id": "13822d2a-93aa-44b1-9d5b-595e331634c0", "job_guid": "f850baba-d96c-49cf-af28-cee156178113", "message": "<value>", "error_message": "<value>"}
+        "202":
+          application/json: {}
+          application/json+encrypted: {}
+          text/json: {}
   post_/jobs/mfa/answer:
     speakeasy-default-post-/jobs/mfa/answer:
       responses:
@@ -462,4 +504,55 @@ examples:
           application/json: {}
           text/json: {}
           application/json+encrypted: {}
+  post_/agents/prepare:
+    speakeasy-default-post-/agents/prepare:
+      responses:
+        "400":
+          application/json: {}
+          application/json+encrypted: {}
+          text/json: {}
+  get_/test/api_keys:
+    speakeasy-default-get-/test/api-keys:
+      responses:
+        "400":
+          application/json: {}
+          application/json+encrypted: {}
+          text/json: {}
+  post_/webhook-subscriptions/event-types:
+    speakeasy-default-post-/webhook-subscriptions/event-types:
+      responses:
+        "200":
+          application/json: {"event_types": []}
+          application/json+encrypted: {"event_types": []}
+          text/json: {"event_types": []}
+        "400":
+          application/json: {}
+          application/json+encrypted: {}
+          text/json: {}
+  post_/webhook-subscriptions/subscriptions:
+    speakeasy-default-post-/webhook-subscriptions/subscriptions:
+      responses:
+        "200":
+          application/json: [{"id": "790596ea-debe-4b4a-a43c-378209a5a648", "team_guid": "22b7332c-232a-4b36-a5e1-8fcd41613aeb", "team_name": "<value>", "webhook_event_type": {"id": "1c506fbe-7836-496e-8640-4efc2acda948", "event_code": "<value>", "event_type": "Job", "display_name": "Lowell52", "description": "swine atop scarily quaintly the"}}]
+          text/json: [{"id": "0a2d0a6d-62be-4809-bac7-4e44f66ed032", "team_guid": "4a8853b8-e27e-48b6-91f8-f5b84b96d4f4", "team_name": "<value>", "webhook_event_type": {"id": "1c506fbe-7836-496e-8640-4efc2acda948", "event_code": "<value>", "event_type": "Job", "display_name": "Lowell52", "description": "swine atop scarily quaintly the"}}]
+          application/json+encrypted: [{"id": "dfa69445-9962-4913-abc8-b45202d39f66", "team_guid": "84e59f97-731e-4bb0-a0d4-07d0bb361c6e", "team_name": "<value>", "webhook_event_type": {"id": "1c506fbe-7836-496e-8640-4efc2acda948", "event_code": "<value>", "event_type": "Job", "display_name": "Lowell52", "description": "swine atop scarily quaintly the"}}]
+        "400":
+          application/json: {}
+          application/json+encrypted: {}
+          text/json: {}
+  post_/webhook-subscriptions/subscribe:
+    speakeasy-default-post-/webhook-subscriptions/subscribe:
+      responses:
+        "400":
+          application/json: {}
+          application/json+encrypted: {}
+          text/json: {}
+  post_/webhook-subscriptions/unsubscribe:
+    speakeasy-default-post-/webhook-subscriptions/unsubscribe:
+      responses:
+        "400":
+          application/json: {}
+          application/json+encrypted: {}
+          text/json: {}
 examplesVersion: 1.0.2
+releaseNotes: "## Go SDK Changes Detected:\n* `Deck.Jobs.Submit()`: \n  *  `request.RequestBody.Input.{}` **Changed** **Breaking** :warning:\n  *  `response` **Changed** **Breaking** :warning:\n* `Deck.Agents.Post/agents/prepare()`: **Added**\n* `Deck.Test.Get/test/apiKeys()`: **Added**\n* `Deck.WebhookSubscription.Post/webhook-Subscriptions/event-Types()`: **Added**\n* `Deck.WebhookSubscription.Post/webhook-Subscriptions/subscriptions()`: **Added**\n* `Deck.WebhookSubscription.Post/webhook-Subscriptions/subscribe()`: **Added**\n* `Deck.WebhookSubscription.Post/webhook-Subscriptions/unsubscribe()`: **Added**\n* `Deck.Link.CreateToken()`: \n  *  `request.Request.CustomizationName` **Added**\n"

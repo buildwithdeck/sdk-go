@@ -8,16 +8,16 @@ type SelectConnectionAccountsRequest struct {
 	Accounts    []GetConnectionAccountsRequestAccount `json:"accounts,omitempty"`
 }
 
-func (o *SelectConnectionAccountsRequest) GetAccessToken() string {
-	if o == nil {
+func (s *SelectConnectionAccountsRequest) GetAccessToken() string {
+	if s == nil {
 		return ""
 	}
-	return o.AccessToken
+	return s.AccessToken
 }
 
-func (o *SelectConnectionAccountsRequest) GetAccounts() []GetConnectionAccountsRequestAccount {
-	if o == nil {
+func (s *SelectConnectionAccountsRequest) GetAccounts() []GetConnectionAccountsRequestAccount {
+	if s == nil {
 		return nil
 	}
-	return o.Accounts
+	return s.Accounts
 }
