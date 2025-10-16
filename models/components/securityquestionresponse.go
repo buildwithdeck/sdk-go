@@ -6,9 +6,9 @@ type SecurityQuestionResponse struct {
 	Question string `json:"question"`
 }
 
-func (o *SecurityQuestionResponse) GetQuestion() string {
-	if o == nil {
+func (s *SecurityQuestionResponse) GetQuestion() string {
+	if s == nil {
 		return ""
 	}
-	return o.Question
+	return s.Question
 }

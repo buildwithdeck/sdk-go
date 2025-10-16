@@ -7,16 +7,16 @@ type LinkConnectRequestField struct {
 	FieldValue string `json:"field_value"`
 }
 
-func (o *LinkConnectRequestField) GetFieldName() string {
-	if o == nil {
+func (l *LinkConnectRequestField) GetFieldName() string {
+	if l == nil {
 		return ""
 	}
-	return o.FieldName
+	return l.FieldName
 }
 
-func (o *LinkConnectRequestField) GetFieldValue() string {
-	if o == nil {
+func (l *LinkConnectRequestField) GetFieldValue() string {
+	if l == nil {
 		return ""
 	}
-	return o.FieldValue
+	return l.FieldValue
 }

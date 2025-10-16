@@ -12,16 +12,16 @@ type PostLinkAccountListResponse struct {
 	LinkAccountListResponse *components.LinkAccountListResponse
 }
 
-func (o *PostLinkAccountListResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (p *PostLinkAccountListResponse) GetHTTPMeta() components.HTTPMetadata {
+	if p == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return p.HTTPMeta
 }
 
-func (o *PostLinkAccountListResponse) GetLinkAccountListResponse() *components.LinkAccountListResponse {
-	if o == nil {
+func (p *PostLinkAccountListResponse) GetLinkAccountListResponse() *components.LinkAccountListResponse {
+	if p == nil {
 		return nil
 	}
-	return o.LinkAccountListResponse
+	return p.LinkAccountListResponse
 }

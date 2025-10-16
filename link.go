@@ -65,7 +65,7 @@ func (s *Link) CreateToken(ctx context.Context, request *components.LinkTokenCre
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "post_/link/token/create",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -367,7 +367,7 @@ func (s *Link) GetInfo(ctx context.Context, request *components.LinkTokenRequest
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "post_/link/info",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -667,7 +667,7 @@ func (s *Link) SearchSources(ctx context.Context, request *components.LinkSource
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "post_/link/sources",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -967,7 +967,7 @@ func (s *Link) SelectAccount(ctx context.Context, request *components.LinkAccoun
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "post_/link/account/select",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -1223,7 +1223,7 @@ func (s *Link) GetToken(ctx context.Context, request *components.LinkTokenReques
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "post_/link/token/get",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)

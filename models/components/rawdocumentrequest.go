@@ -8,16 +8,16 @@ type RawDocumentRequest struct {
 	DocumentID  string `json:"document_id"`
 }
 
-func (o *RawDocumentRequest) GetAccessToken() string {
-	if o == nil {
+func (r *RawDocumentRequest) GetAccessToken() string {
+	if r == nil {
 		return ""
 	}
-	return o.AccessToken
+	return r.AccessToken
 }
 
-func (o *RawDocumentRequest) GetDocumentID() string {
-	if o == nil {
+func (r *RawDocumentRequest) GetDocumentID() string {
+	if r == nil {
 		return ""
 	}
-	return o.DocumentID
+	return r.DocumentID
 }

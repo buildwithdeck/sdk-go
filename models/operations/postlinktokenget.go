@@ -12,16 +12,16 @@ type PostLinkTokenGetResponse struct {
 	LinkTokenGetResponse *components.LinkTokenGetResponse
 }
 
-func (o *PostLinkTokenGetResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (p *PostLinkTokenGetResponse) GetHTTPMeta() components.HTTPMetadata {
+	if p == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return p.HTTPMeta
 }
 
-func (o *PostLinkTokenGetResponse) GetLinkTokenGetResponse() *components.LinkTokenGetResponse {
-	if o == nil {
+func (p *PostLinkTokenGetResponse) GetLinkTokenGetResponse() *components.LinkTokenGetResponse {
+	if p == nil {
 		return nil
 	}
-	return o.LinkTokenGetResponse
+	return p.LinkTokenGetResponse
 }

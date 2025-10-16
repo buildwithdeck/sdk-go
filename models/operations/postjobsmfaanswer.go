@@ -10,9 +10,9 @@ type PostJobsMfaAnswerResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-func (o *PostJobsMfaAnswerResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (p *PostJobsMfaAnswerResponse) GetHTTPMeta() components.HTTPMetadata {
+	if p == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return p.HTTPMeta
 }

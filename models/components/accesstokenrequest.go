@@ -7,9 +7,9 @@ type AccessTokenRequest struct {
 	AccessToken string `json:"access_token"`
 }
 
-func (o *AccessTokenRequest) GetAccessToken() string {
-	if o == nil {
+func (a *AccessTokenRequest) GetAccessToken() string {
+	if a == nil {
 		return ""
 	}
-	return o.AccessToken
+	return a.AccessToken
 }

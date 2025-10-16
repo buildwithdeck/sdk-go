@@ -10,23 +10,23 @@ type LinkAccountListResponseAccountItem struct {
 	AccountAddress *string `json:"account_address,omitempty"`
 }
 
-func (o *LinkAccountListResponseAccountItem) GetAccountID() *string {
-	if o == nil {
+func (l *LinkAccountListResponseAccountItem) GetAccountID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.AccountID
+	return l.AccountID
 }
 
-func (o *LinkAccountListResponseAccountItem) GetAccountNumber() *string {
-	if o == nil {
+func (l *LinkAccountListResponseAccountItem) GetAccountNumber() *string {
+	if l == nil {
 		return nil
 	}
-	return o.AccountNumber
+	return l.AccountNumber
 }
 
-func (o *LinkAccountListResponseAccountItem) GetAccountAddress() *string {
-	if o == nil {
+func (l *LinkAccountListResponseAccountItem) GetAccountAddress() *string {
+	if l == nil {
 		return nil
 	}
-	return o.AccountAddress
+	return l.AccountAddress
 }

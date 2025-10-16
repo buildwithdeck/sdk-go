@@ -69,7 +69,7 @@ func (s *JobsDocuments) List(ctx context.Context, jobGUID *string, accessTokenRe
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "post_/jobs/documents/list",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "AccessTokenRequest", "json", `request:"mediaType=application/json"`)

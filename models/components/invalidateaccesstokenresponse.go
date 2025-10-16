@@ -7,9 +7,9 @@ type InvalidateAccessTokenResponse struct {
 	NewAccessToken *string `json:"new_access_token,omitempty"`
 }
 
-func (o *InvalidateAccessTokenResponse) GetNewAccessToken() *string {
-	if o == nil {
+func (i *InvalidateAccessTokenResponse) GetNewAccessToken() *string {
+	if i == nil {
 		return nil
 	}
-	return o.NewAccessToken
+	return i.NewAccessToken
 }

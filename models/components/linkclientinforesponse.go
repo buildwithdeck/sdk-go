@@ -13,11 +13,11 @@ type UpdateMode struct {
 	Source LinkSourcesResponseSource `json:"source"`
 }
 
-func (o *UpdateMode) GetSource() LinkSourcesResponseSource {
-	if o == nil {
+func (u *UpdateMode) GetSource() LinkSourcesResponseSource {
+	if u == nil {
 		return LinkSourcesResponseSource{}
 	}
-	return o.Source
+	return u.Source
 }
 
 // Mode - Indicates the mode in which the Link widget should run
@@ -82,93 +82,93 @@ type LinkClientInfoResponse struct {
 	ShowStepAddAccount *bool `json:"show_step_add_account,omitempty"`
 }
 
-func (o *LinkClientInfoResponse) GetName() *string {
-	if o == nil {
+func (l *LinkClientInfoResponse) GetName() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Name
+	return l.Name
 }
 
-func (o *LinkClientInfoResponse) GetImageURL() *string {
-	if o == nil {
+func (l *LinkClientInfoResponse) GetImageURL() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ImageURL
+	return l.ImageURL
 }
 
-func (o *LinkClientInfoResponse) GetLanguage() *LanguageEnum {
-	if o == nil {
+func (l *LinkClientInfoResponse) GetLanguage() *LanguageEnum {
+	if l == nil {
 		return nil
 	}
-	return o.Language
+	return l.Language
 }
 
-func (o *LinkClientInfoResponse) GetUpdateMode() *UpdateMode {
-	if o == nil {
+func (l *LinkClientInfoResponse) GetUpdateMode() *UpdateMode {
+	if l == nil {
 		return nil
 	}
-	return o.UpdateMode
+	return l.UpdateMode
 }
 
-func (o *LinkClientInfoResponse) GetTermsOfUseURL() *string {
-	if o == nil {
+func (l *LinkClientInfoResponse) GetTermsOfUseURL() *string {
+	if l == nil {
 		return nil
 	}
-	return o.TermsOfUseURL
+	return l.TermsOfUseURL
 }
 
-func (o *LinkClientInfoResponse) GetPrivacyPolicyURL() *string {
-	if o == nil {
+func (l *LinkClientInfoResponse) GetPrivacyPolicyURL() *string {
+	if l == nil {
 		return nil
 	}
-	return o.PrivacyPolicyURL
+	return l.PrivacyPolicyURL
 }
 
-func (o *LinkClientInfoResponse) GetMode() *Mode {
-	if o == nil {
+func (l *LinkClientInfoResponse) GetMode() *Mode {
+	if l == nil {
 		return nil
 	}
-	return o.Mode
+	return l.Mode
 }
 
-func (o *LinkClientInfoResponse) GetAccountSelectMode() *AccountSelectModeEnum {
-	if o == nil {
+func (l *LinkClientInfoResponse) GetAccountSelectMode() *AccountSelectModeEnum {
+	if l == nil {
 		return nil
 	}
-	return o.AccountSelectMode
+	return l.AccountSelectMode
 }
 
-func (o *LinkClientInfoResponse) GetAllowDocumentUpload() *bool {
-	if o == nil {
+func (l *LinkClientInfoResponse) GetAllowDocumentUpload() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.AllowDocumentUpload
+	return l.AllowDocumentUpload
 }
 
-func (o *LinkClientInfoResponse) GetShowStepConsent() *bool {
-	if o == nil {
+func (l *LinkClientInfoResponse) GetShowStepConsent() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.ShowStepConsent
+	return l.ShowStepConsent
 }
 
-func (o *LinkClientInfoResponse) GetShowStepAddSource() *bool {
-	if o == nil {
+func (l *LinkClientInfoResponse) GetShowStepAddSource() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.ShowStepAddSource
+	return l.ShowStepAddSource
 }
 
-func (o *LinkClientInfoResponse) GetShowStepSelectAccount() *bool {
-	if o == nil {
+func (l *LinkClientInfoResponse) GetShowStepSelectAccount() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.ShowStepSelectAccount
+	return l.ShowStepSelectAccount
 }
 
-func (o *LinkClientInfoResponse) GetShowStepAddAccount() *bool {
-	if o == nil {
+func (l *LinkClientInfoResponse) GetShowStepAddAccount() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.ShowStepAddAccount
+	return l.ShowStepAddAccount
 }

@@ -75,23 +75,41 @@ func main() {
 
 	s := sdkgo.New(
 		sdkgo.WithSecurity(components.Security{
-			ClientID: sdkgo.String(os.Getenv("DECK_CLIENT_ID")),
-			Secret:   sdkgo.String(os.Getenv("DECK_SECRET")),
+			ClientID: sdkgo.Pointer(os.Getenv("DECK_CLIENT_ID")),
+			Secret:   sdkgo.Pointer(os.Getenv("DECK_SECRET")),
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
+	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody{
 		JobCode: "FetchDocuments",
-		Input: map[string]string{
-			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
-			"key1":         "value1",
-			"someProperty": "someValue",
+		Input: map[string]operations.InputUnion{
+			"access_token": operations.CreateInputUnionStr(
+				"access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
+			),
+			"key1": operations.CreateInputUnionStr(
+				"value1",
+			),
+			"someNumber": operations.CreateInputUnionNumber(
+				123.45,
+			),
+			"someBoolean": operations.CreateInputUnionBoolean(
+				true,
+			),
+			"someArray": operations.CreateInputUnionArrayOfStr(
+				[]string{
+					"a",
+					"b",
+				},
+			),
+			"nestedObject": operations.CreateInputUnionBoolean(
+				true,
+			),
 		},
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.IJobResponse != nil {
 		// handle response
 	}
 }
@@ -129,23 +147,41 @@ func main() {
 
 	s := sdkgo.New(
 		sdkgo.WithSecurity(components.Security{
-			ClientID: sdkgo.String(os.Getenv("DECK_CLIENT_ID")),
-			Secret:   sdkgo.String(os.Getenv("DECK_SECRET")),
+			ClientID: sdkgo.Pointer(os.Getenv("DECK_CLIENT_ID")),
+			Secret:   sdkgo.Pointer(os.Getenv("DECK_SECRET")),
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
+	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody{
 		JobCode: "FetchDocuments",
-		Input: map[string]string{
-			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
-			"key1":         "value1",
-			"someProperty": "someValue",
+		Input: map[string]operations.InputUnion{
+			"access_token": operations.CreateInputUnionStr(
+				"access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
+			),
+			"key1": operations.CreateInputUnionStr(
+				"value1",
+			),
+			"someNumber": operations.CreateInputUnionNumber(
+				123.45,
+			),
+			"someBoolean": operations.CreateInputUnionBoolean(
+				true,
+			),
+			"someArray": operations.CreateInputUnionArrayOfStr(
+				[]string{
+					"a",
+					"b",
+				},
+			),
+			"nestedObject": operations.CreateInputUnionBoolean(
+				true,
+			),
 		},
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.IJobResponse != nil {
 		// handle response
 	}
 }
@@ -158,6 +194,10 @@ func main() {
 
 <details open>
 <summary>Available methods</summary>
+
+### [Agents](docs/sdks/agents/README.md)
+
+* [PostAgentsPrepare](docs/sdks/agents/README.md#postagentsprepare) - Prepares an agent in the background so that it is ready for a subsequent ensure connection job request.
 
 ### [Connection](docs/sdks/connection/README.md)
 
@@ -174,12 +214,12 @@ func main() {
 * [InvalidateAccessToken](docs/sdks/connections/README.md#invalidateaccesstoken) - Invalidate access_token
 * [UpdateWebhook](docs/sdks/connections/README.md#updatewebhook) - Update the webhook url for a connection
 
-
 ### [Jobs](docs/sdks/jobs/README.md)
 
 * [Submit](docs/sdks/jobs/README.md#submit) - Send your job requests
 * [AnswerMFA](docs/sdks/jobs/README.md#answermfa) - Provide MFA code
 * [GetDocumentFile](docs/sdks/jobs/README.md#getdocumentfile) - Get raw file
+* [GetJobsJobIDStatus](docs/sdks/jobs/README.md#getjobsjobidstatus) - Get Job Status
 
 ### [JobsDocuments](docs/sdks/jobsdocuments/README.md)
 
@@ -203,6 +243,17 @@ func main() {
 
 * [GetMfaQuestion](docs/sdks/authentication/README.md#getmfaquestion) - Get the security question
 * [AnswerMfa](docs/sdks/authentication/README.md#answermfa) - Provide MFA code
+
+### [Test](docs/sdks/test/README.md)
+
+* [GetTestAPIKeys](docs/sdks/test/README.md#gettestapikeys) - Test your API keys
+
+### [WebhookSubscription](docs/sdks/webhooksubscription/README.md)
+
+* [PostWebhookSubscriptionsEventTypes](docs/sdks/webhooksubscription/README.md#postwebhooksubscriptionseventtypes) - Get all available webhook event types
+* [PostWebhookSubscriptionsSubscriptions](docs/sdks/webhooksubscription/README.md#postwebhooksubscriptionssubscriptions) - Get webhook subscriptions for a specific team
+* [PostWebhookSubscriptionsSubscribe](docs/sdks/webhooksubscription/README.md#postwebhooksubscriptionssubscribe) - Subscribe to webhook events
+* [PostWebhookSubscriptionsUnsubscribe](docs/sdks/webhooksubscription/README.md#postwebhooksubscriptionsunsubscribe) - Unsubscribe from webhook events
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -232,17 +283,35 @@ func main() {
 
 	s := sdkgo.New(
 		sdkgo.WithSecurity(components.Security{
-			ClientID: sdkgo.String(os.Getenv("DECK_CLIENT_ID")),
-			Secret:   sdkgo.String(os.Getenv("DECK_SECRET")),
+			ClientID: sdkgo.Pointer(os.Getenv("DECK_CLIENT_ID")),
+			Secret:   sdkgo.Pointer(os.Getenv("DECK_SECRET")),
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
+	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody{
 		JobCode: "FetchDocuments",
-		Input: map[string]string{
-			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
-			"key1":         "value1",
-			"someProperty": "someValue",
+		Input: map[string]operations.InputUnion{
+			"access_token": operations.CreateInputUnionStr(
+				"access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
+			),
+			"key1": operations.CreateInputUnionStr(
+				"value1",
+			),
+			"someNumber": operations.CreateInputUnionNumber(
+				123.45,
+			),
+			"someBoolean": operations.CreateInputUnionBoolean(
+				true,
+			),
+			"someArray": operations.CreateInputUnionArrayOfStr(
+				[]string{
+					"a",
+					"b",
+				},
+			),
+			"nestedObject": operations.CreateInputUnionBoolean(
+				true,
+			),
 		},
 	}, operations.WithRetries(
 		retry.Config{
@@ -258,7 +327,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.IJobResponse != nil {
 		// handle response
 	}
 }
@@ -295,23 +364,41 @@ func main() {
 				RetryConnectionErrors: false,
 			}),
 		sdkgo.WithSecurity(components.Security{
-			ClientID: sdkgo.String(os.Getenv("DECK_CLIENT_ID")),
-			Secret:   sdkgo.String(os.Getenv("DECK_SECRET")),
+			ClientID: sdkgo.Pointer(os.Getenv("DECK_CLIENT_ID")),
+			Secret:   sdkgo.Pointer(os.Getenv("DECK_SECRET")),
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
+	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody{
 		JobCode: "FetchDocuments",
-		Input: map[string]string{
-			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
-			"key1":         "value1",
-			"someProperty": "someValue",
+		Input: map[string]operations.InputUnion{
+			"access_token": operations.CreateInputUnionStr(
+				"access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
+			),
+			"key1": operations.CreateInputUnionStr(
+				"value1",
+			),
+			"someNumber": operations.CreateInputUnionNumber(
+				123.45,
+			),
+			"someBoolean": operations.CreateInputUnionBoolean(
+				true,
+			),
+			"someArray": operations.CreateInputUnionArrayOfStr(
+				[]string{
+					"a",
+					"b",
+				},
+			),
+			"nestedObject": operations.CreateInputUnionBoolean(
+				true,
+			),
 		},
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.IJobResponse != nil {
 		// handle response
 	}
 }
@@ -328,15 +415,11 @@ By Default, an API error will return `apierrors.APIError`. When custom error res
 
 For example, the `Submit` function may return the following errors:
 
-| Error Type                               | Status Code | Content Type               |
-| ---------------------------------------- | ----------- | -------------------------- |
-| apierrors.BadRequestJobResponseError     | 400         | application/json           |
-| apierrors.BadRequestJobResponseError     | 400         | application/json+encrypted |
-| apierrors.BadRequestJobResponseError     | 400         | text/json                  |
-| apierrors.AlreadyRunningJobResponseError | 409         | application/json           |
-| apierrors.AlreadyRunningJobResponseError | 409         | application/json+encrypted |
-| apierrors.AlreadyRunningJobResponseError | 409         | text/json                  |
-| apierrors.APIError                       | 4XX, 5XX    | \*/\*                      |
+| Error Type                               | Status Code | Content Type     |
+| ---------------------------------------- | ----------- | ---------------- |
+| apierrors.BadRequestJobResponseError     | 400         | application/json |
+| apierrors.AlreadyRunningJobResponseError | 409         | application/json |
+| apierrors.APIError                       | 4XX, 5XX    | \*/\*            |
 
 ### Example
 
@@ -359,46 +442,40 @@ func main() {
 
 	s := sdkgo.New(
 		sdkgo.WithSecurity(components.Security{
-			ClientID: sdkgo.String(os.Getenv("DECK_CLIENT_ID")),
-			Secret:   sdkgo.String(os.Getenv("DECK_SECRET")),
+			ClientID: sdkgo.Pointer(os.Getenv("DECK_CLIENT_ID")),
+			Secret:   sdkgo.Pointer(os.Getenv("DECK_SECRET")),
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
+	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody{
 		JobCode: "FetchDocuments",
-		Input: map[string]string{
-			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
-			"key1":         "value1",
-			"someProperty": "someValue",
+		Input: map[string]operations.InputUnion{
+			"access_token": operations.CreateInputUnionStr(
+				"access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
+			),
+			"key1": operations.CreateInputUnionStr(
+				"value1",
+			),
+			"someNumber": operations.CreateInputUnionNumber(
+				123.45,
+			),
+			"someBoolean": operations.CreateInputUnionBoolean(
+				true,
+			),
+			"someArray": operations.CreateInputUnionArrayOfStr(
+				[]string{
+					"a",
+					"b",
+				},
+			),
+			"nestedObject": operations.CreateInputUnionBoolean(
+				true,
+			),
 		},
 	})
 	if err != nil {
 
 		var e *apierrors.BadRequestJobResponseError
-		if errors.As(err, &e) {
-			// handle error
-			log.Fatal(e.Error())
-		}
-
-		var e *apierrors.BadRequestJobResponseError
-		if errors.As(err, &e) {
-			// handle error
-			log.Fatal(e.Error())
-		}
-
-		var e *apierrors.BadRequestJobResponseError
-		if errors.As(err, &e) {
-			// handle error
-			log.Fatal(e.Error())
-		}
-
-		var e *apierrors.AlreadyRunningJobResponseError
-		if errors.As(err, &e) {
-			// handle error
-			log.Fatal(e.Error())
-		}
-
-		var e *apierrors.AlreadyRunningJobResponseError
 		if errors.As(err, &e) {
 			// handle error
 			log.Fatal(e.Error())
@@ -453,23 +530,41 @@ func main() {
 	s := sdkgo.New(
 		sdkgo.WithServerIndex(1),
 		sdkgo.WithSecurity(components.Security{
-			ClientID: sdkgo.String(os.Getenv("DECK_CLIENT_ID")),
-			Secret:   sdkgo.String(os.Getenv("DECK_SECRET")),
+			ClientID: sdkgo.Pointer(os.Getenv("DECK_CLIENT_ID")),
+			Secret:   sdkgo.Pointer(os.Getenv("DECK_SECRET")),
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
+	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody{
 		JobCode: "FetchDocuments",
-		Input: map[string]string{
-			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
-			"key1":         "value1",
-			"someProperty": "someValue",
+		Input: map[string]operations.InputUnion{
+			"access_token": operations.CreateInputUnionStr(
+				"access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
+			),
+			"key1": operations.CreateInputUnionStr(
+				"value1",
+			),
+			"someNumber": operations.CreateInputUnionNumber(
+				123.45,
+			),
+			"someBoolean": operations.CreateInputUnionBoolean(
+				true,
+			),
+			"someArray": operations.CreateInputUnionArrayOfStr(
+				[]string{
+					"a",
+					"b",
+				},
+			),
+			"nestedObject": operations.CreateInputUnionBoolean(
+				true,
+			),
 		},
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.IJobResponse != nil {
 		// handle response
 	}
 }
@@ -497,23 +592,41 @@ func main() {
 	s := sdkgo.New(
 		sdkgo.WithServerURL("https://live.deck.co/api/v1"),
 		sdkgo.WithSecurity(components.Security{
-			ClientID: sdkgo.String(os.Getenv("DECK_CLIENT_ID")),
-			Secret:   sdkgo.String(os.Getenv("DECK_SECRET")),
+			ClientID: sdkgo.Pointer(os.Getenv("DECK_CLIENT_ID")),
+			Secret:   sdkgo.Pointer(os.Getenv("DECK_SECRET")),
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
+	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody{
 		JobCode: "FetchDocuments",
-		Input: map[string]string{
-			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
-			"key1":         "value1",
-			"someProperty": "someValue",
+		Input: map[string]operations.InputUnion{
+			"access_token": operations.CreateInputUnionStr(
+				"access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
+			),
+			"key1": operations.CreateInputUnionStr(
+				"value1",
+			),
+			"someNumber": operations.CreateInputUnionNumber(
+				123.45,
+			),
+			"someBoolean": operations.CreateInputUnionBoolean(
+				true,
+			),
+			"someArray": operations.CreateInputUnionArrayOfStr(
+				[]string{
+					"a",
+					"b",
+				},
+			),
+			"nestedObject": operations.CreateInputUnionBoolean(
+				true,
+			),
 		},
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.IJobResponse != nil {
 		// handle response
 	}
 }

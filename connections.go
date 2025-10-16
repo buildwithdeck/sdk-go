@@ -64,7 +64,7 @@ func (s *Connections) InvalidateAccessToken(ctx context.Context, request *compon
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "post_/connection/access_token/invalidate",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -366,7 +366,7 @@ func (s *Connections) UpdateWebhook(ctx context.Context, request *components.Web
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "post_/connection/webhook/update",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)

@@ -65,7 +65,7 @@ func (s *Connection) ExchangePublicToken(ctx context.Context, request *component
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "post_/connection/public_token/exchange",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -366,7 +366,7 @@ func (s *Connection) GetContext(ctx context.Context, request *components.AccessT
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "post_/connection/context",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -667,7 +667,7 @@ func (s *Connection) GetAccounts(ctx context.Context, request *components.Access
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "post_/connection/accounts",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -968,7 +968,7 @@ func (s *Connection) SelectAccounts(ctx context.Context, request *components.Sel
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "post_/connection/accounts/select",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -1226,7 +1226,7 @@ func (s *Connection) UpdateAutoRefresh(ctx context.Context, request *components.
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "post_/connection/auto_refresh/update",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -1484,7 +1484,7 @@ func (s *Connection) Refresh(ctx context.Context, request *components.RefreshCon
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "post_/connection/refresh",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -1741,7 +1741,7 @@ func (s *Connection) Destroy(ctx context.Context, request *components.AccessToke
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "post_/connection/destroy",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)

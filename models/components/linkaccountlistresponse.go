@@ -7,9 +7,9 @@ type LinkAccountListResponse struct {
 	Accounts []LinkAccountListResponseAccountItem `json:"accounts,omitempty"`
 }
 
-func (o *LinkAccountListResponse) GetAccounts() []LinkAccountListResponseAccountItem {
-	if o == nil {
+func (l *LinkAccountListResponse) GetAccounts() []LinkAccountListResponseAccountItem {
+	if l == nil {
 		return nil
 	}
-	return o.Accounts
+	return l.Accounts
 }

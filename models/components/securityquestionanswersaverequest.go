@@ -8,16 +8,16 @@ type SecurityQuestionAnswerSaveRequest struct {
 	Answer    string `json:"answer"`
 }
 
-func (o *SecurityQuestionAnswerSaveRequest) GetLinkToken() string {
-	if o == nil {
+func (s *SecurityQuestionAnswerSaveRequest) GetLinkToken() string {
+	if s == nil {
 		return ""
 	}
-	return o.LinkToken
+	return s.LinkToken
 }
 
-func (o *SecurityQuestionAnswerSaveRequest) GetAnswer() string {
-	if o == nil {
+func (s *SecurityQuestionAnswerSaveRequest) GetAnswer() string {
+	if s == nil {
 		return ""
 	}
-	return o.Answer
+	return s.Answer
 }

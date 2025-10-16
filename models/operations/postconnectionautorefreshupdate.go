@@ -10,9 +10,9 @@ type PostConnectionAutoRefreshUpdateResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 }
 
-func (o *PostConnectionAutoRefreshUpdateResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (p *PostConnectionAutoRefreshUpdateResponse) GetHTTPMeta() components.HTTPMetadata {
+	if p == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return p.HTTPMeta
 }

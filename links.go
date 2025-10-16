@@ -67,7 +67,7 @@ func (s *Links) Connect(ctx context.Context, request *components.LinkConnectRequ
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "post_/link/connect",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -367,7 +367,7 @@ func (s *Links) GetConnectionStatus(ctx context.Context, request *components.Lin
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "post_/link/connection/status",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -666,7 +666,7 @@ func (s *Links) ListAccounts(ctx context.Context, request *components.LinkTokenR
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "post_/link/account/list",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)

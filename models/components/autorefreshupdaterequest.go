@@ -9,16 +9,16 @@ type AutoRefreshUpdateRequest struct {
 	AutoRefresh bool `json:"auto_refresh"`
 }
 
-func (o *AutoRefreshUpdateRequest) GetAccessToken() string {
-	if o == nil {
+func (a *AutoRefreshUpdateRequest) GetAccessToken() string {
+	if a == nil {
 		return ""
 	}
-	return o.AccessToken
+	return a.AccessToken
 }
 
-func (o *AutoRefreshUpdateRequest) GetAutoRefresh() bool {
-	if o == nil {
+func (a *AutoRefreshUpdateRequest) GetAutoRefresh() bool {
+	if a == nil {
 		return false
 	}
-	return o.AutoRefresh
+	return a.AutoRefresh
 }

@@ -6,9 +6,9 @@ type DocumentListResponse struct {
 	Documents []DocumentInfo `json:"documents"`
 }
 
-func (o *DocumentListResponse) GetDocuments() []DocumentInfo {
-	if o == nil {
+func (d *DocumentListResponse) GetDocuments() []DocumentInfo {
+	if d == nil {
 		return []DocumentInfo{}
 	}
-	return o.Documents
+	return d.Documents
 }

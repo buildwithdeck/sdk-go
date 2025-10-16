@@ -15,37 +15,37 @@ type LinkConnectRequest struct {
 	PrivacyPolicyURL *string `json:"privacy_policy_url,omitempty"`
 }
 
-func (o *LinkConnectRequest) GetLinkToken() string {
-	if o == nil {
+func (l *LinkConnectRequest) GetLinkToken() string {
+	if l == nil {
 		return ""
 	}
-	return o.LinkToken
+	return l.LinkToken
 }
 
-func (o *LinkConnectRequest) GetSourceID() string {
-	if o == nil {
+func (l *LinkConnectRequest) GetSourceID() string {
+	if l == nil {
 		return ""
 	}
-	return o.SourceID
+	return l.SourceID
 }
 
-func (o *LinkConnectRequest) GetFields() []LinkConnectRequestField {
-	if o == nil {
+func (l *LinkConnectRequest) GetFields() []LinkConnectRequestField {
+	if l == nil {
 		return []LinkConnectRequestField{}
 	}
-	return o.Fields
+	return l.Fields
 }
 
-func (o *LinkConnectRequest) GetTermsOfUseURL() *string {
-	if o == nil {
+func (l *LinkConnectRequest) GetTermsOfUseURL() *string {
+	if l == nil {
 		return nil
 	}
-	return o.TermsOfUseURL
+	return l.TermsOfUseURL
 }
 
-func (o *LinkConnectRequest) GetPrivacyPolicyURL() *string {
-	if o == nil {
+func (l *LinkConnectRequest) GetPrivacyPolicyURL() *string {
+	if l == nil {
 		return nil
 	}
-	return o.PrivacyPolicyURL
+	return l.PrivacyPolicyURL
 }

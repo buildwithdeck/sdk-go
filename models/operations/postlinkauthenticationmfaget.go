@@ -12,16 +12,16 @@ type PostLinkAuthenticationMfaGetResponse struct {
 	SecurityQuestionResponse *components.SecurityQuestionResponse
 }
 
-func (o *PostLinkAuthenticationMfaGetResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (p *PostLinkAuthenticationMfaGetResponse) GetHTTPMeta() components.HTTPMetadata {
+	if p == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return p.HTTPMeta
 }
 
-func (o *PostLinkAuthenticationMfaGetResponse) GetSecurityQuestionResponse() *components.SecurityQuestionResponse {
-	if o == nil {
+func (p *PostLinkAuthenticationMfaGetResponse) GetSecurityQuestionResponse() *components.SecurityQuestionResponse {
+	if p == nil {
 		return nil
 	}
-	return o.SecurityQuestionResponse
+	return p.SecurityQuestionResponse
 }

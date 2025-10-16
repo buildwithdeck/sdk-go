@@ -64,7 +64,7 @@ func (s *Authentication) GetMfaQuestion(ctx context.Context, request *components
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "post_/link/authentication/mfa/get",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -364,7 +364,7 @@ func (s *Authentication) AnswerMfa(ctx context.Context, request *components.Secu
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "post_/link/authentication/mfa/answer",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)

@@ -7,9 +7,9 @@ type LinkTokenRequestResponse struct {
 	LinkToken string `json:"link_token"`
 }
 
-func (o *LinkTokenRequestResponse) GetLinkToken() string {
-	if o == nil {
+func (l *LinkTokenRequestResponse) GetLinkToken() string {
+	if l == nil {
 		return ""
 	}
-	return o.LinkToken
+	return l.LinkToken
 }

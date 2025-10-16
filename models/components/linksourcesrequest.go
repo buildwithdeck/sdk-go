@@ -11,23 +11,23 @@ type LinkSourcesRequest struct {
 	Search *string `json:"search,omitempty"`
 }
 
-func (o *LinkSourcesRequest) GetLinkToken() string {
-	if o == nil {
+func (l *LinkSourcesRequest) GetLinkToken() string {
+	if l == nil {
 		return ""
 	}
-	return o.LinkToken
+	return l.LinkToken
 }
 
-func (o *LinkSourcesRequest) GetSourceID() *string {
-	if o == nil {
+func (l *LinkSourcesRequest) GetSourceID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.SourceID
+	return l.SourceID
 }
 
-func (o *LinkSourcesRequest) GetSearch() *string {
-	if o == nil {
+func (l *LinkSourcesRequest) GetSearch() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Search
+	return l.Search
 }

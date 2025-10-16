@@ -113,18 +113,18 @@ type Update struct {
 	Mode LinkTokenCreateRequestUpdateModeEnum `json:"mode"`
 }
 
-func (o *Update) GetAccessToken() string {
-	if o == nil {
+func (u *Update) GetAccessToken() string {
+	if u == nil {
 		return ""
 	}
-	return o.AccessToken
+	return u.AccessToken
 }
 
-func (o *Update) GetMode() LinkTokenCreateRequestUpdateModeEnum {
-	if o == nil {
+func (u *Update) GetMode() LinkTokenCreateRequestUpdateModeEnum {
+	if u == nil {
 		return LinkTokenCreateRequestUpdateModeEnum("")
 	}
-	return o.Mode
+	return u.Mode
 }
 
 // ParsingMethod - Choose the type of parsing needed for the connection
@@ -165,6 +165,8 @@ type LinkTokenCreateRequest struct {
 	Language *LinkTokenCreateRequestLanguage `json:"language,omitempty"`
 	// Specify an array of Datadeck-supported country codes using the ISO-3166-1 alpha-2 country code standard. Sources from all listed countries will be shown.
 	Countries []string `json:"countries,omitempty"`
+	// The name of the customization from Deck dashboard to be applied to this Widget session. If not specified, the default customization will be used. Values provided in this payload override the dashboard customization settings.
+	CustomizationName *string `json:"customization_name,omitempty"`
 	// You can specify exactly the sources to be shown in Link by providing a list of source ids.
 	SourceIds []string `json:"source_ids,omitempty"`
 	// You can limit the sources to be shown in Link by specifying which source types to be shown in Link.
@@ -183,72 +185,79 @@ type LinkTokenCreateRequest struct {
 	LatestInvoiceOnly *bool `json:"latest_invoice_only,omitempty"`
 }
 
-func (o *LinkTokenCreateRequest) GetLanguage() *LinkTokenCreateRequestLanguage {
-	if o == nil {
+func (l *LinkTokenCreateRequest) GetLanguage() *LinkTokenCreateRequestLanguage {
+	if l == nil {
 		return nil
 	}
-	return o.Language
+	return l.Language
 }
 
-func (o *LinkTokenCreateRequest) GetCountries() []string {
-	if o == nil {
+func (l *LinkTokenCreateRequest) GetCountries() []string {
+	if l == nil {
 		return nil
 	}
-	return o.Countries
+	return l.Countries
 }
 
-func (o *LinkTokenCreateRequest) GetSourceIds() []string {
-	if o == nil {
+func (l *LinkTokenCreateRequest) GetCustomizationName() *string {
+	if l == nil {
 		return nil
 	}
-	return o.SourceIds
+	return l.CustomizationName
 }
 
-func (o *LinkTokenCreateRequest) GetSourceTypes() []string {
-	if o == nil {
+func (l *LinkTokenCreateRequest) GetSourceIds() []string {
+	if l == nil {
 		return nil
 	}
-	return o.SourceTypes
+	return l.SourceIds
 }
 
-func (o *LinkTokenCreateRequest) GetBetaSourceStatus() *LinkTokenCreateRequestBetaSourceStatus {
-	if o == nil {
+func (l *LinkTokenCreateRequest) GetSourceTypes() []string {
+	if l == nil {
 		return nil
 	}
-	return o.BetaSourceStatus
+	return l.SourceTypes
 }
 
-func (o *LinkTokenCreateRequest) GetUpdate() *Update {
-	if o == nil {
+func (l *LinkTokenCreateRequest) GetBetaSourceStatus() *LinkTokenCreateRequestBetaSourceStatus {
+	if l == nil {
 		return nil
 	}
-	return o.Update
+	return l.BetaSourceStatus
 }
 
-func (o *LinkTokenCreateRequest) GetWebhookURL() *string {
-	if o == nil {
+func (l *LinkTokenCreateRequest) GetUpdate() *Update {
+	if l == nil {
 		return nil
 	}
-	return o.WebhookURL
+	return l.Update
 }
 
-func (o *LinkTokenCreateRequest) GetAutoRefresh() *bool {
-	if o == nil {
+func (l *LinkTokenCreateRequest) GetWebhookURL() *string {
+	if l == nil {
 		return nil
 	}
-	return o.AutoRefresh
+	return l.WebhookURL
 }
 
-func (o *LinkTokenCreateRequest) GetParsingMethod() *ParsingMethod {
-	if o == nil {
+func (l *LinkTokenCreateRequest) GetAutoRefresh() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.ParsingMethod
+	return l.AutoRefresh
 }
 
-func (o *LinkTokenCreateRequest) GetLatestInvoiceOnly() *bool {
-	if o == nil {
+func (l *LinkTokenCreateRequest) GetParsingMethod() *ParsingMethod {
+	if l == nil {
 		return nil
 	}
-	return o.LatestInvoiceOnly
+	return l.ParsingMethod
+}
+
+func (l *LinkTokenCreateRequest) GetLatestInvoiceOnly() *bool {
+	if l == nil {
+		return nil
+	}
+	return l.LatestInvoiceOnly
 }

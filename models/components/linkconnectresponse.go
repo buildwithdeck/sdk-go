@@ -9,16 +9,16 @@ type LinkConnectResponse struct {
 	JobGUID *string `json:"job_guid,omitempty"`
 }
 
-func (o *LinkConnectResponse) GetPublicToken() *string {
-	if o == nil {
+func (l *LinkConnectResponse) GetPublicToken() *string {
+	if l == nil {
 		return nil
 	}
-	return o.PublicToken
+	return l.PublicToken
 }
 
-func (o *LinkConnectResponse) GetJobGUID() *string {
-	if o == nil {
+func (l *LinkConnectResponse) GetJobGUID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.JobGUID
+	return l.JobGUID
 }

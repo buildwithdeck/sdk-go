@@ -32,8 +32,8 @@ func main() {
 
     s := sdkgo.New(
         sdkgo.WithSecurity(components.Security{
-            ClientID: sdkgo.String(os.Getenv("DECK_CLIENT_ID")),
-            Secret: sdkgo.String(os.Getenv("DECK_SECRET")),
+            ClientID: sdkgo.Pointer(os.Getenv("DECK_CLIENT_ID")),
+            Secret: sdkgo.Pointer(os.Getenv("DECK_SECRET")),
         }),
     )
 
@@ -91,8 +91,8 @@ func main() {
 
     s := sdkgo.New(
         sdkgo.WithSecurity(components.Security{
-            ClientID: sdkgo.String(os.Getenv("DECK_CLIENT_ID")),
-            Secret: sdkgo.String(os.Getenv("DECK_SECRET")),
+            ClientID: sdkgo.Pointer(os.Getenv("DECK_CLIENT_ID")),
+            Secret: sdkgo.Pointer(os.Getenv("DECK_SECRET")),
         }),
     )
 
@@ -150,8 +150,8 @@ func main() {
 
     s := sdkgo.New(
         sdkgo.WithSecurity(components.Security{
-            ClientID: sdkgo.String(os.Getenv("DECK_CLIENT_ID")),
-            Secret: sdkgo.String(os.Getenv("DECK_SECRET")),
+            ClientID: sdkgo.Pointer(os.Getenv("DECK_CLIENT_ID")),
+            Secret: sdkgo.Pointer(os.Getenv("DECK_SECRET")),
         }),
     )
 

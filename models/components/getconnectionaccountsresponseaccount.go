@@ -7,16 +7,16 @@ type GetConnectionAccountsResponseAccount struct {
 	IsSelected    bool   `json:"is_selected"`
 }
 
-func (o *GetConnectionAccountsResponseAccount) GetAccountNumber() string {
-	if o == nil {
+func (g *GetConnectionAccountsResponseAccount) GetAccountNumber() string {
+	if g == nil {
 		return ""
 	}
-	return o.AccountNumber
+	return g.AccountNumber
 }
 
-func (o *GetConnectionAccountsResponseAccount) GetIsSelected() bool {
-	if o == nil {
+func (g *GetConnectionAccountsResponseAccount) GetIsSelected() bool {
+	if g == nil {
 		return false
 	}
-	return o.IsSelected
+	return g.IsSelected
 }

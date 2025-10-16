@@ -6,9 +6,9 @@ type GetConnectionAccountsResponse struct {
 	Accounts []GetConnectionAccountsResponseAccount `json:"accounts,omitempty"`
 }
 
-func (o *GetConnectionAccountsResponse) GetAccounts() []GetConnectionAccountsResponseAccount {
-	if o == nil {
+func (g *GetConnectionAccountsResponse) GetAccounts() []GetConnectionAccountsResponseAccount {
+	if g == nil {
 		return nil
 	}
-	return o.Accounts
+	return g.Accounts
 }
