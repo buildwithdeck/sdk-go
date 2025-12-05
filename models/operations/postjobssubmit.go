@@ -3,66 +3,220 @@
 package operations
 
 import (
+	"errors"
+	"fmt"
+	"github.com/buildwithdeck/sdk-go/internal/utils"
 	"github.com/buildwithdeck/sdk-go/models/components"
 )
 
-type PostJobsSubmitRequestBody2 struct {
+type Input struct {
+}
+
+func (i Input) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *Input) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+type InputUnionType string
+
+const (
+	InputUnionTypeStr        InputUnionType = "str"
+	InputUnionTypeNumber     InputUnionType = "number"
+	InputUnionTypeBoolean    InputUnionType = "boolean"
+	InputUnionTypeArrayOfStr InputUnionType = "arrayOfStr"
+	InputUnionTypeInput      InputUnionType = "input"
+)
+
+type InputUnion struct {
+	Str        *string  `queryParam:"inline,name=input"`
+	Number     *float64 `queryParam:"inline,name=input"`
+	Boolean    *bool    `queryParam:"inline,name=input"`
+	ArrayOfStr []string `queryParam:"inline,name=input"`
+	Input      *Input   `queryParam:"inline,name=input"`
+
+	Type InputUnionType
+}
+
+func CreateInputUnionStr(str string) InputUnion {
+	typ := InputUnionTypeStr
+
+	return InputUnion{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateInputUnionNumber(number float64) InputUnion {
+	typ := InputUnionTypeNumber
+
+	return InputUnion{
+		Number: &number,
+		Type:   typ,
+	}
+}
+
+func CreateInputUnionBoolean(boolean bool) InputUnion {
+	typ := InputUnionTypeBoolean
+
+	return InputUnion{
+		Boolean: &boolean,
+		Type:    typ,
+	}
+}
+
+func CreateInputUnionArrayOfStr(arrayOfStr []string) InputUnion {
+	typ := InputUnionTypeArrayOfStr
+
+	return InputUnion{
+		ArrayOfStr: arrayOfStr,
+		Type:       typ,
+	}
+}
+
+func CreateInputUnionInput(input Input) InputUnion {
+	typ := InputUnionTypeInput
+
+	return InputUnion{
+		Input: &input,
+		Type:  typ,
+	}
+}
+
+func (u *InputUnion) UnmarshalJSON(data []byte) error {
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+		u.Str = &str
+		u.Type = InputUnionTypeStr
+		return nil
+	}
+
+	var number float64 = float64(0)
+	if err := utils.UnmarshalJSON(data, &number, "", true, nil); err == nil {
+		u.Number = &number
+		u.Type = InputUnionTypeNumber
+		return nil
+	}
+
+	var boolean bool = false
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
+		u.Boolean = &boolean
+		u.Type = InputUnionTypeBoolean
+		return nil
+	}
+
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
+		u.ArrayOfStr = arrayOfStr
+		u.Type = InputUnionTypeArrayOfStr
+		return nil
+	}
+
+	var input Input = Input{}
+	if err := utils.UnmarshalJSON(data, &input, "", true, nil); err == nil {
+		u.Input = &input
+		u.Type = InputUnionTypeInput
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for InputUnion", string(data))
+}
+
+func (u InputUnion) MarshalJSON() ([]byte, error) {
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	if u.Number != nil {
+		return utils.MarshalJSON(u.Number, "", true)
+	}
+
+	if u.Boolean != nil {
+		return utils.MarshalJSON(u.Boolean, "", true)
+	}
+
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
+	}
+
+	if u.Input != nil {
+		return utils.MarshalJSON(u.Input, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type InputUnion: all fields are null")
+}
+
+type PostJobsSubmitRequestBody struct {
 	// The job type identifier
 	JobCode string `json:"job_code"`
 	// Dynamic input object - structure varies by job type
-	Input map[string]string `json:"input"`
+	Input map[string]InputUnion `json:"input"`
 }
 
-func (o *PostJobsSubmitRequestBody2) GetJobCode() string {
-	if o == nil {
+func (p *PostJobsSubmitRequestBody) GetJobCode() string {
+	if p == nil {
 		return ""
 	}
-	return o.JobCode
+	return p.JobCode
 }
 
-func (o *PostJobsSubmitRequestBody2) GetInput() map[string]string {
-	if o == nil {
-		return map[string]string{}
+func (p *PostJobsSubmitRequestBody) GetInput() map[string]InputUnion {
+	if p == nil {
+		return map[string]InputUnion{}
 	}
-	return o.Input
+	return p.Input
 }
 
 type PostJobsSubmitRequest struct {
+	XDeckCorrelationID *string `header:"style=simple,explode=false,name=x-deck-correlation-id"`
 	// Can be used against the sandbox API with special values to test error use cases
-	XDeckSandbox *string                     `header:"style=simple,explode=false,name=x-deck-sandbox"`
-	RequestBody  *PostJobsSubmitRequestBody2 `request:"mediaType=application/json"`
+	XDeckSandbox *string                    `header:"style=simple,explode=false,name=x-deck-sandbox"`
+	RequestBody  *PostJobsSubmitRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *PostJobsSubmitRequest) GetXDeckSandbox() *string {
-	if o == nil {
+func (p *PostJobsSubmitRequest) GetXDeckCorrelationID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.XDeckSandbox
+	return p.XDeckCorrelationID
 }
 
-func (o *PostJobsSubmitRequest) GetRequestBody() *PostJobsSubmitRequestBody2 {
-	if o == nil {
+func (p *PostJobsSubmitRequest) GetXDeckSandbox() *string {
+	if p == nil {
 		return nil
 	}
-	return o.RequestBody
+	return p.XDeckSandbox
+}
+
+func (p *PostJobsSubmitRequest) GetRequestBody() *PostJobsSubmitRequestBody {
+	if p == nil {
+		return nil
+	}
+	return p.RequestBody
 }
 
 type PostJobsSubmitResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// OK
-	JobResponse *components.JobResponse
+	// Accepted
+	IJobResponse *components.IJobResponse
 }
 
-func (o *PostJobsSubmitResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
+func (p *PostJobsSubmitResponse) GetHTTPMeta() components.HTTPMetadata {
+	if p == nil {
 		return components.HTTPMetadata{}
 	}
-	return o.HTTPMeta
+	return p.HTTPMeta
 }
 
-func (o *PostJobsSubmitResponse) GetJobResponse() *components.JobResponse {
-	if o == nil {
+func (p *PostJobsSubmitResponse) GetIJobResponse() *components.IJobResponse {
+	if p == nil {
 		return nil
 	}
-	return o.JobResponse
+	return p.IJobResponse
 }

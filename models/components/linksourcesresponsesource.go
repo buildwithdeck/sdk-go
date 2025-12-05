@@ -17,44 +17,44 @@ type LinkSourcesResponseSource struct {
 	Fields []LinkSourcesResponseSourceField `json:"fields,omitempty"`
 }
 
-func (o *LinkSourcesResponseSource) GetSourceID() *string {
-	if o == nil {
+func (l *LinkSourcesResponseSource) GetSourceID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.SourceID
+	return l.SourceID
 }
 
-func (o *LinkSourcesResponseSource) GetName() *string {
-	if o == nil {
+func (l *LinkSourcesResponseSource) GetName() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Name
+	return l.Name
 }
 
-func (o *LinkSourcesResponseSource) GetLogoURL() *string {
-	if o == nil {
+func (l *LinkSourcesResponseSource) GetLogoURL() *string {
+	if l == nil {
 		return nil
 	}
-	return o.LogoURL
+	return l.LogoURL
 }
 
-func (o *LinkSourcesResponseSource) GetCountry() *string {
-	if o == nil {
+func (l *LinkSourcesResponseSource) GetCountry() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Country
+	return l.Country
 }
 
-func (o *LinkSourcesResponseSource) GetWebsite() *string {
-	if o == nil {
+func (l *LinkSourcesResponseSource) GetWebsite() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Website
+	return l.Website
 }
 
-func (o *LinkSourcesResponseSource) GetFields() []LinkSourcesResponseSourceField {
-	if o == nil {
+func (l *LinkSourcesResponseSource) GetFields() []LinkSourcesResponseSourceField {
+	if l == nil {
 		return nil
 	}
-	return o.Fields
+	return l.Fields
 }

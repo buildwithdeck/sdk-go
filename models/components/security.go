@@ -7,16 +7,16 @@ type Security struct {
 	Secret   *string `security:"scheme,type=apiKey,subtype=header,name=x-deck-secret,env=deck_secret"`
 }
 
-func (o *Security) GetClientID() *string {
-	if o == nil {
+func (s *Security) GetClientID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ClientID
+	return s.ClientID
 }
 
-func (o *Security) GetSecret() *string {
-	if o == nil {
+func (s *Security) GetSecret() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Secret
+	return s.Secret
 }

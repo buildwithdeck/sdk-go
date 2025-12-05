@@ -7,9 +7,9 @@ type LinkSourcesResponse struct {
 	Sources []LinkSourcesResponseSource `json:"sources,omitempty"`
 }
 
-func (o *LinkSourcesResponse) GetSources() []LinkSourcesResponseSource {
-	if o == nil {
+func (l *LinkSourcesResponse) GetSources() []LinkSourcesResponseSource {
+	if l == nil {
 		return nil
 	}
-	return o.Sources
+	return l.Sources
 }

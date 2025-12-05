@@ -1,35 +1,37 @@
 lockVersion: 2.0.0
 id: d348888e-280a-43de-910e-0b32ba656cb4
 management:
-  docChecksum: 988297f4ce2826d8f28303e4903c70c4
+  docChecksum: f5f749384338c6922683a92250ee29fb
   docVersion: v1
-  speakeasyVersion: 1.592.2
-  generationVersion: 2.668.4
-  releaseVersion: 0.2.0
-  configChecksum: a2b02c07c34dcd16b3061db7600037b9
+  speakeasyVersion: 1.668.0
+  generationVersion: 2.770.0
+  releaseVersion: 0.3.0
+  configChecksum: 25c808b1f94cc2d19c03cdee8b32a241
   repoURL: https://github.com/buildwithdeck/sdk-go.git
   installationURL: https://github.com/buildwithdeck/sdk-go
 features:
   go:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
-    core: 3.9.1
+    additionalProperties: 0.1.2
+    core: 3.13.5
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     devContainers: 2.90.0
     downloadStreams: 0.1.2
     envVarSecurityUsage: 0.3.2
     flattening: 2.81.1
-    globalSecurity: 2.82.11
+    globalSecurity: 2.82.12
     globalSecurityCallbacks: 0.1.0
-    globalServerURLs: 2.82.3
-    groups: 2.81.2
+    globalServerURLs: 2.83.0
+    groups: 2.81.3
     intellisenseMarkdownSupport: 0.1.0
     nameOverrides: 2.81.2
-    nullables: 0.1.1
+    nullables: 0.2.1
     responseFormat: 0.1.2
-    retries: 2.83.3
-    sdkHooks: 0.2.0
+    retries: 2.84.2
+    sdkHooks: 0.3.0
+    unions: 2.87.2
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -38,174 +40,127 @@ generatedFiles:
   - /models/apierrors/alreadyrunningjobresponseerror.go
   - /models/apierrors/badrequestjobresponseerror.go
   - /models/apierrors/errormessageresponse.go
+  - /models/apierrors/problemdetailserror.go
   - /models/components/accesstokenrequest.go
-  - /models/components/accountselectmodeenum.go
-  - /models/components/autorefreshupdaterequest.go
-  - /models/components/connectioncontextresponse.go
-  - /models/components/connectionpublictokenexchangerequest.go
-  - /models/components/connectionpublictokenexchangeresponse.go
-  - /models/components/connectivitystatusenum.go
   - /models/components/documentinfo.go
   - /models/components/documentlistresponse.go
-  - /models/components/entity.go
   - /models/components/errorcategoryenum.go
   - /models/components/errorcodeenum.go
   - /models/components/fieldtypeenum.go
-  - /models/components/getconnectionaccountsrequestaccount.go
-  - /models/components/getconnectionaccountsresponse.go
-  - /models/components/getconnectionaccountsresponseaccount.go
   - /models/components/httpmetadata.go
-  - /models/components/invalidateaccesstokenresponse.go
-  - /models/components/jobresponse.go
-  - /models/components/languageenum.go
-  - /models/components/linkaccountlistresponse.go
-  - /models/components/linkaccountlistresponseaccountitem.go
-  - /models/components/linkaccountselectrequest.go
-  - /models/components/linkclientinforesponse.go
+  - /models/components/ijobresponse.go
+  - /models/components/jobartifactdata.go
+  - /models/components/jobartifactsresponse.go
+  - /models/components/jobcancelresponse.go
+  - /models/components/jobdetailsresponse.go
+  - /models/components/jobstatus.go
+  - /models/components/jobstatusresponse.go
   - /models/components/linkconnectionstatusresponse.go
   - /models/components/linkconnectionstatusresponseenum.go
-  - /models/components/linkconnectrequest.go
-  - /models/components/linkconnectrequestfield.go
-  - /models/components/linkconnectresponse.go
   - /models/components/linksourcesrequest.go
   - /models/components/linksourcesresponse.go
   - /models/components/linksourcesresponsesource.go
   - /models/components/linksourcesresponsesourcefield.go
   - /models/components/linktokencreaterequest.go
   - /models/components/linktokencreaterequestupdatemodeenum.go
-  - /models/components/linktokengetresponse.go
   - /models/components/linktokenrequestresponse.go
   - /models/components/mfaanswerrequest.go
-  - /models/components/provider.go
-  - /models/components/rawdocumentrequest.go
-  - /models/components/refreshconnectionrequest.go
-  - /models/components/scrapingstatusenum.go
+  - /models/components/prepareagentrequest.go
+  - /models/components/screenshotdata.go
   - /models/components/security.go
-  - /models/components/securityquestionanswersaverequest.go
-  - /models/components/securityquestionresponse.go
-  - /models/components/selectconnectionaccountsrequest.go
+  - /models/components/sourcedata.go
   - /models/components/webhookupdaterequest.go
-  - /models/operations/postconnectionaccesstokeninvalidate.go
-  - /models/operations/postconnectionaccounts.go
-  - /models/operations/postconnectionaccountsselect.go
-  - /models/operations/postconnectionautorefreshupdate.go
-  - /models/operations/postconnectioncontext.go
+  - /models/operations/getjobsdocumentsdocumentid.go
+  - /models/operations/getjobsjobguiddocuments.go
+  - /models/operations/getjobsjobid.go
+  - /models/operations/getjobsjobidall.go
+  - /models/operations/getjobsjobidstatus.go
+  - /models/operations/gettestapikeys.go
+  - /models/operations/postagentsprepare.go
   - /models/operations/postconnectiondestroy.go
-  - /models/operations/postconnectionpublictokenexchange.go
-  - /models/operations/postconnectionrefresh.go
   - /models/operations/postconnectionwebhookupdate.go
-  - /models/operations/postjobsdocumentsfile.go
-  - /models/operations/postjobsdocumentslist.go
+  - /models/operations/postjobsjobguidcancel.go
   - /models/operations/postjobsmfaanswer.go
   - /models/operations/postjobssubmit.go
-  - /models/operations/postlinkaccountlist.go
-  - /models/operations/postlinkaccountselect.go
-  - /models/operations/postlinkauthenticationmfaanswer.go
-  - /models/operations/postlinkauthenticationmfaget.go
-  - /models/operations/postlinkconnect.go
   - /models/operations/postlinkconnectionstatus.go
-  - /models/operations/postlinkinfo.go
   - /models/operations/postlinksources.go
   - /models/operations/postlinktokencreate.go
-  - /models/operations/postlinktokenget.go
   - USAGE.md
   - authentication.go
-  - connection.go
+  - authsdk.go
   - connections.go
   - deck.go
   - docs/models/apierrors/alreadyrunningjobresponseerror.md
   - docs/models/apierrors/badrequestjobresponseerror.md
   - docs/models/apierrors/errormessageresponse.md
+  - docs/models/apierrors/problemdetailserror.md
   - docs/models/components/accesstokenrequest.md
-  - docs/models/components/accountselectmodeenum.md
-  - docs/models/components/autorefreshupdaterequest.md
-  - docs/models/components/connectioncontextresponse.md
-  - docs/models/components/connectionpublictokenexchangerequest.md
-  - docs/models/components/connectionpublictokenexchangeresponse.md
-  - docs/models/components/connectivitystatusenum.md
+  - docs/models/components/betasourcestatus.md
   - docs/models/components/documentinfo.md
   - docs/models/components/documentlistresponse.md
-  - docs/models/components/entity.md
   - docs/models/components/errorcategoryenum.md
   - docs/models/components/errorcodeenum.md
   - docs/models/components/fieldtypeenum.md
-  - docs/models/components/getconnectionaccountsrequestaccount.md
-  - docs/models/components/getconnectionaccountsresponse.md
-  - docs/models/components/getconnectionaccountsresponseaccount.md
   - docs/models/components/httpmetadata.md
-  - docs/models/components/invalidateaccesstokenresponse.md
-  - docs/models/components/jobresponse.md
-  - docs/models/components/languageenum.md
-  - docs/models/components/linkaccountlistresponse.md
-  - docs/models/components/linkaccountlistresponseaccountitem.md
-  - docs/models/components/linkaccountselectrequest.md
-  - docs/models/components/linkclientinforesponse.md
+  - docs/models/components/ijobresponse.md
+  - docs/models/components/jobartifactdata.md
+  - docs/models/components/jobartifactsresponse.md
+  - docs/models/components/jobcancelresponse.md
+  - docs/models/components/jobdetailsresponse.md
+  - docs/models/components/jobstatus.md
+  - docs/models/components/jobstatusresponse.md
+  - docs/models/components/language.md
   - docs/models/components/linkconnectionstatusresponse.md
   - docs/models/components/linkconnectionstatusresponseenum.md
-  - docs/models/components/linkconnectrequest.md
-  - docs/models/components/linkconnectrequestfield.md
-  - docs/models/components/linkconnectresponse.md
   - docs/models/components/linksourcesrequest.md
   - docs/models/components/linksourcesresponse.md
   - docs/models/components/linksourcesresponsesource.md
   - docs/models/components/linksourcesresponsesourcefield.md
   - docs/models/components/linktokencreaterequest.md
-  - docs/models/components/linktokencreaterequestbetasourcestatus.md
-  - docs/models/components/linktokencreaterequestlanguage.md
   - docs/models/components/linktokencreaterequestupdatemodeenum.md
-  - docs/models/components/linktokengetresponse.md
-  - docs/models/components/linktokengetresponsebetasourcestatus.md
-  - docs/models/components/linktokengetresponselanguage.md
   - docs/models/components/linktokenrequestresponse.md
   - docs/models/components/mfaanswerrequest.md
-  - docs/models/components/mode.md
   - docs/models/components/parsingmethod.md
-  - docs/models/components/provider.md
-  - docs/models/components/rawdocumentrequest.md
-  - docs/models/components/refreshconnectionrequest.md
-  - docs/models/components/scrapingstatusenum.md
+  - docs/models/components/prepareagentrequest.md
+  - docs/models/components/screenshotdata.md
   - docs/models/components/security.md
-  - docs/models/components/securityquestionanswersaverequest.md
-  - docs/models/components/securityquestionresponse.md
-  - docs/models/components/selectconnectionaccountsrequest.md
+  - docs/models/components/sourcedata.md
   - docs/models/components/update.md
-  - docs/models/components/updatemode.md
   - docs/models/components/webhookupdaterequest.md
+  - docs/models/operations/getjobsdocumentsdocumentidrequest.md
+  - docs/models/operations/getjobsdocumentsdocumentidresponse.md
+  - docs/models/operations/getjobsjobguiddocumentsrequest.md
+  - docs/models/operations/getjobsjobguiddocumentsresponse.md
+  - docs/models/operations/getjobsjobidallrequest.md
+  - docs/models/operations/getjobsjobidallresponse.md
+  - docs/models/operations/getjobsjobidrequest.md
+  - docs/models/operations/getjobsjobidresponse.md
+  - docs/models/operations/getjobsjobidstatusrequest.md
+  - docs/models/operations/getjobsjobidstatusresponse.md
+  - docs/models/operations/gettestapikeysresponse.md
+  - docs/models/operations/input.md
+  - docs/models/operations/inputunion.md
   - docs/models/operations/option.md
-  - docs/models/operations/postconnectionaccesstokeninvalidateresponse.md
-  - docs/models/operations/postconnectionaccountsresponse.md
-  - docs/models/operations/postconnectionaccountsselectresponse.md
-  - docs/models/operations/postconnectionautorefreshupdateresponse.md
-  - docs/models/operations/postconnectioncontextresponse.md
+  - docs/models/operations/postagentsprepareresponse.md
   - docs/models/operations/postconnectiondestroyresponse.md
-  - docs/models/operations/postconnectionpublictokenexchangeresponse.md
-  - docs/models/operations/postconnectionrefreshresponse.md
   - docs/models/operations/postconnectionwebhookupdateresponse.md
-  - docs/models/operations/postjobsdocumentsfileresponse.md
-  - docs/models/operations/postjobsdocumentslistrequest.md
-  - docs/models/operations/postjobsdocumentslistresponse.md
+  - docs/models/operations/postjobsjobguidcancelrequest.md
+  - docs/models/operations/postjobsjobguidcancelresponse.md
   - docs/models/operations/postjobsmfaanswerresponse.md
   - docs/models/operations/postjobssubmitrequest.md
-  - docs/models/operations/postjobssubmitrequestbody2.md
+  - docs/models/operations/postjobssubmitrequestbody.md
   - docs/models/operations/postjobssubmitresponse.md
-  - docs/models/operations/postlinkaccountlistresponse.md
-  - docs/models/operations/postlinkaccountselectresponse.md
-  - docs/models/operations/postlinkauthenticationmfaanswerresponse.md
-  - docs/models/operations/postlinkauthenticationmfagetresponse.md
   - docs/models/operations/postlinkconnectionstatusresponse.md
-  - docs/models/operations/postlinkconnectresponse.md
-  - docs/models/operations/postlinkinforesponse.md
   - docs/models/operations/postlinksourcesresponse.md
   - docs/models/operations/postlinktokencreateresponse.md
-  - docs/models/operations/postlinktokengetresponse.md
   - docs/sdks/authentication/README.md
-  - docs/sdks/connection/README.md
+  - docs/sdks/authsdk/README.md
   - docs/sdks/connections/README.md
-  - docs/sdks/deck/README.md
   - docs/sdks/jobs/README.md
-  - docs/sdks/jobsdocuments/README.md
-  - docs/sdks/link/README.md
   - docs/sdks/links/README.md
+  - docs/sdks/sources/README.md
+  - docs/sdks/storage/README.md
+  - docs/sdks/testing/README.md
   - go.mod
   - internal/config/sdkconfiguration.go
   - internal/hooks/hooks.go
@@ -221,22 +176,24 @@ generatedFiles:
   - internal/utils/security.go
   - internal/utils/utils.go
   - jobs.go
-  - jobsdocuments.go
-  - link.go
   - links.go
   - models/apierrors/apierror.go
   - models/operations/options.go
+  - optionalnullable/optionalnullable.go
+  - optionalnullable/optionalnullable_test.go
   - retry/config.go
+  - sources.go
+  - storage.go
+  - testing.go
   - types/bigint.go
   - types/date.go
   - types/datetime.go
-  - types/decimal.go
   - types/pointers.go
 examples:
   post_/jobs/submit:
     speakeasy-default-post-/jobs/submit:
       requestBody:
-        application/json: {"job_code": "FetchDocuments", "input": {"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7", "key1": "value1", "someProperty": "someValue"}}
+        application/json: {"job_code": "FetchDocuments", "input": {"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7", "key1": "value1", "someNumber": 123.45, "someBoolean": true, "someArray": ["a", "b"], "nestedObject": true}}
         text/json: {"job_code": "FetchDocuments", "input": {"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7", "key1": "value1", "someProperty": "someValue"}}
         application/*+json: {"job_code": "FetchDocuments", "input": {"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7", "key1": "value1", "someProperty": "someValue"}}
       responses:
@@ -252,6 +209,8 @@ examples:
           application/json: {"job_id": "13822d2a-93aa-44b1-9d5b-595e331634c0", "job_guid": "f850baba-d96c-49cf-af28-cee156178113", "message": "<value>", "error_message": "<value>"}
           text/json: {"job_id": "13822d2a-93aa-44b1-9d5b-595e331634c0", "job_guid": "f850baba-d96c-49cf-af28-cee156178113", "message": "<value>", "error_message": "<value>"}
           application/json+encrypted: {"job_id": "13822d2a-93aa-44b1-9d5b-595e331634c0", "job_guid": "f850baba-d96c-49cf-af28-cee156178113", "message": "<value>", "error_message": "<value>"}
+        "202":
+          application/json: {}
   post_/jobs/mfa/answer:
     speakeasy-default-post-/jobs/mfa/answer:
       responses:
@@ -462,4 +421,103 @@ examples:
           application/json: {}
           text/json: {}
           application/json+encrypted: {}
+  post_/jobs/{jobGuid}/cancel:
+    speakeasy-default-post-/jobs/{job-guid}/cancel:
+      parameters:
+        path:
+          jobGuid: "839ff252-653e-4088-92e2-4bcc8c4ebe83"
+      responses:
+        "200":
+          application/json: {"created_at": 688917, "updated_at": 673192}
+          application/json+encrypted: {"created_at": 688917, "updated_at": 673192}
+          text/json: {"created_at": 688917, "updated_at": 673192}
+        "400":
+          application/json: {}
+          application/json+encrypted: {}
+          text/json: {}
+  post_/agents/prepare:
+    speakeasy-default-post-/agents/prepare:
+      responses:
+        "400":
+          application/json: {}
+          application/json+encrypted: {}
+          text/json: {}
+  get_/jobs/{jobId}/status:
+    speakeasy-default-get-/jobs/{job-id}/status:
+      parameters:
+        path:
+          jobId: "859ab723-d15b-4fa5-bde1-7c39c294108c"
+      responses:
+        "200":
+          application/json: {"created_at": 739492, "updated_at": 892587}
+          application/json+encrypted: {"created_at": 739492, "updated_at": 892587}
+          text/json: {"created_at": 739492, "updated_at": 892587}
+        "400":
+          application/json: {"error_code": "CONNECTION_LOCKED", "error_message": "<value>"}
+          application/json+encrypted: {"error_code": "CONNECTION_LOCKED", "error_message": "<value>"}
+          text/json: {"error_code": "CONNECTION_LOCKED", "error_message": "<value>"}
+  get_/jobs/{jobId}:
+    speakeasy-default-get-/jobs/{job-id}:
+      parameters:
+        path:
+          jobId: "6462a33a-1b55-4e48-89c9-c5d8fa5b7d36"
+      responses:
+        "200":
+          application/json: {"job_id": "77c9cc69-1ff8-4da1-8855-f2b6b003f81e", "job_code": "<value>", "status": "Failed", "source_id": "73a19297-b349-42fd-a7d6-d195030bc12d", "source_name": "<value>", "created_at": 257878, "updated_at": 812681}
+          application/json+encrypted: {"job_id": "77c9cc69-1ff8-4da1-8855-f2b6b003f81e", "job_code": "<value>", "status": "Failed", "source_id": "73a19297-b349-42fd-a7d6-d195030bc12d", "source_name": "<value>", "created_at": 257878, "updated_at": 812681}
+          text/json: {"job_id": "77c9cc69-1ff8-4da1-8855-f2b6b003f81e", "job_code": "<value>", "status": "Failed", "source_id": "73a19297-b349-42fd-a7d6-d195030bc12d", "source_name": "<value>", "created_at": 257878, "updated_at": 812681}
+        "400":
+          application/json: {"error_code": "BLOCKED_BY_PIN", "error_message": "<value>"}
+          application/json+encrypted: {"error_code": "BLOCKED_BY_PIN", "error_message": "<value>"}
+          text/json: {"error_code": "BLOCKED_BY_PIN", "error_message": "<value>"}
+  get_/jobs/{jobId}/all:
+    speakeasy-default-get-/jobs/{job-id}/all:
+      parameters:
+        path:
+          jobId: "c1e3f7a0-60a4-4a56-87bf-6a310de9f405"
+      responses:
+        "200":
+          application/json: {"job_id": "78c72004-82b5-4e83-8a8f-b1bf59cef84a", "status": "Failed", "source": {"source_id": "550ec736-5df7-4c85-a13c-6eb3e9f705cd", "name": "<value>", "url": "https://inferior-swim.name/"}, "created_at": 339437, "updated_at": 921054}
+          application/json+encrypted: {"job_id": "78c72004-82b5-4e83-8a8f-b1bf59cef84a", "status": "Failed", "source": {"source_id": "550ec736-5df7-4c85-a13c-6eb3e9f705cd", "name": "<value>", "url": "https://inferior-swim.name/"}, "created_at": 339437, "updated_at": 921054}
+          text/json: {"job_id": "78c72004-82b5-4e83-8a8f-b1bf59cef84a", "status": "Failed", "source": {"source_id": "550ec736-5df7-4c85-a13c-6eb3e9f705cd", "name": "<value>", "url": "https://inferior-swim.name/"}, "created_at": 339437, "updated_at": 921054}
+        "400":
+          application/json: {"error_code": "PRODUCT_NOT_ENABLED", "error_message": "<value>"}
+          application/json+encrypted: {"error_code": "PRODUCT_NOT_ENABLED", "error_message": "<value>"}
+          text/json: {"error_code": "PRODUCT_NOT_ENABLED", "error_message": "<value>"}
+  get_/jobs/{jobGuid}/documents:
+    speakeasy-default-get-/jobs/{job-guid}/documents:
+      parameters:
+        path:
+          jobGuid: "d4f9bbce-7680-4c7b-88ea-b7880cbd9619"
+      responses:
+        "200":
+          application/json: {"documents": []}
+          application/json+encrypted: {"documents": []}
+          text/json: {"documents": []}
+        "400":
+          application/json: {}
+          application/json+encrypted: {}
+          text/json: {}
+  get_/jobs/documents/{documentId}:
+    speakeasy-default-get-/jobs/documents/{document-id}:
+      parameters:
+        path:
+          documentId: "3156e77c-7494-4ee8-a5c3-a6793547f22b"
+      responses:
+        "200":
+          application/json: "x-file: example.file"
+          text/json: "x-file: example.file"
+          application/json+encrypted: "x-file: example.file"
+        "400":
+          application/json: {}
+          application/json+encrypted: {}
+          text/json: {}
+  get_/test/api_keys:
+    speakeasy-default-get-/test/api-keys:
+      responses:
+        "400":
+          application/json: {}
+          application/json+encrypted: {}
+          text/json: {}
 examplesVersion: 1.0.2
+releaseNotes: "## Go SDK Changes:\n* `Deck.Jobs.Submit()`: \n  *  `request` **Changed** **Breaking** :warning:\n  *  `response` **Changed** **Breaking** :warning:\n  *  `error` **Changed** **Breaking** :warning:\n* `Deck.Link.GetInfo()`: **Deleted** **Breaking** :warning:\n* `Deck.Link.SelectAccount()`: **Deleted** **Breaking** :warning:\n* `Deck.Authentication.Post/agents/prepare()`: **Added**\n* `Deck.Jobs.Get/jobs/{jobId}/status()`: **Added**\n* `Deck.Jobs.Get/jobs/{jobId}()`: **Added**\n* `Deck.Jobs.Get/jobs/{jobId}/all()`: **Added**\n* `Deck.Storage.Get/jobs/{jobGuid}/documents()`: **Added**\n* `Deck.Storage.Get/jobs/documents/{documentId}()`: **Added**\n* `Deck.Link.SearchSources()`: **Deleted** **Breaking** :warning:\n* `Deck.AuthSdk.CreateToken()`: **Added**\n* `Deck.Testing.Get/test/apiKeys()`: **Added**\n* `Deck.Jobs.AnswerMfa()`: **Deleted** **Breaking** :warning:\n* `Deck.Jobs.GetDocumentFile()`: **Deleted** **Breaking** :warning:\n* `Deck.JobsDocuments.List()`: **Deleted** **Breaking** :warning:\n* `Deck.Authentication.AnswerMfa()`: **Added**\n* `Deck.Link.CreateToken()`: **Deleted** **Breaking** :warning:\n* `Deck.Sources.SearchSources()`: **Added**\n* `Deck.Authentication.Post/jobs/{jobGuid}/cancel()`: **Added**\n* `Deck.Link.GetToken()`: **Deleted** **Breaking** :warning:\n* `Deck.Links.Connect()`: **Deleted** **Breaking** :warning:\n* `Deck.Links.ListAccounts()`: **Deleted** **Breaking** :warning:\n* `Deck.Links.Authentication.GetMfaQuestion()`: **Deleted** **Breaking** :warning:\n* `Deck.Links.Authentication.AnswerMfa()`: **Deleted** **Breaking** :warning:\n* `Deck.Connection.ExchangePublicToken()`: **Deleted** **Breaking** :warning:\n* `Deck.Connection.GetContext()`: **Deleted** **Breaking** :warning:\n* `Deck.Connection.GetAccounts()`: **Deleted** **Breaking** :warning:\n* `Deck.Connection.SelectAccounts()`: **Deleted** **Breaking** :warning:\n* `Deck.Connection.UpdateAutoRefresh()`: **Deleted** **Breaking** :warning:\n* `Deck.Connection.Refresh()`: **Deleted** **Breaking** :warning:\n* `Deck.Connection.Destroy()`: **Deleted** **Breaking** :warning:\n* `Deck.Connections.InvalidateAccessToken()`: **Deleted** **Breaking** :warning:\n* `Deck.Authentication.Destroy()`: **Added**\n"

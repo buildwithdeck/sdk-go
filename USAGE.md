@@ -6,7 +6,6 @@ import (
 	"context"
 	sdkgo "github.com/buildwithdeck/sdk-go"
 	"github.com/buildwithdeck/sdk-go/models/components"
-	"github.com/buildwithdeck/sdk-go/models/operations"
 	"log"
 	"os"
 )
@@ -16,23 +15,16 @@ func main() {
 
 	s := sdkgo.New(
 		sdkgo.WithSecurity(components.Security{
-			ClientID: sdkgo.String(os.Getenv("DECK_CLIENT_ID")),
-			Secret:   sdkgo.String(os.Getenv("DECK_SECRET")),
+			ClientID: sdkgo.Pointer(os.Getenv("DECK_CLIENT_ID")),
+			Secret:   sdkgo.Pointer(os.Getenv("DECK_SECRET")),
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
-		JobCode: "FetchDocuments",
-		Input: map[string]string{
-			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
-			"key1":         "value1",
-			"someProperty": "someValue",
-		},
-	})
+	res, err := s.Authentication.PostJobsJobGUIDCancel(ctx, "839ff252-653e-4088-92e2-4bcc8c4ebe83")
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.JobCancelResponse != nil {
 		// handle response
 	}
 }

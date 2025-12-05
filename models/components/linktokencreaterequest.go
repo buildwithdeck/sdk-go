@@ -7,31 +7,31 @@ import (
 	"fmt"
 )
 
-// LinkTokenCreateRequestLanguage - The language that Link should be displayed in.
-type LinkTokenCreateRequestLanguage string
+// Language - The language that Link should be displayed in.
+type Language string
 
 const (
-	LinkTokenCreateRequestLanguageEn LinkTokenCreateRequestLanguage = "EN"
-	LinkTokenCreateRequestLanguageEs LinkTokenCreateRequestLanguage = "ES"
-	LinkTokenCreateRequestLanguageFr LinkTokenCreateRequestLanguage = "FR"
-	LinkTokenCreateRequestLanguageDe LinkTokenCreateRequestLanguage = "DE"
-	LinkTokenCreateRequestLanguageIt LinkTokenCreateRequestLanguage = "IT"
-	LinkTokenCreateRequestLanguagePt LinkTokenCreateRequestLanguage = "PT"
-	LinkTokenCreateRequestLanguageNl LinkTokenCreateRequestLanguage = "NL"
-	LinkTokenCreateRequestLanguagePl LinkTokenCreateRequestLanguage = "PL"
-	LinkTokenCreateRequestLanguageSv LinkTokenCreateRequestLanguage = "SV"
-	LinkTokenCreateRequestLanguageDa LinkTokenCreateRequestLanguage = "DA"
-	LinkTokenCreateRequestLanguageNo LinkTokenCreateRequestLanguage = "NO"
-	LinkTokenCreateRequestLanguageEt LinkTokenCreateRequestLanguage = "ET"
-	LinkTokenCreateRequestLanguageLt LinkTokenCreateRequestLanguage = "LT"
-	LinkTokenCreateRequestLanguageLv LinkTokenCreateRequestLanguage = "LV"
-	LinkTokenCreateRequestLanguageRo LinkTokenCreateRequestLanguage = "RO"
+	LanguageEn Language = "EN"
+	LanguageEs Language = "ES"
+	LanguageFr Language = "FR"
+	LanguageDe Language = "DE"
+	LanguageIt Language = "IT"
+	LanguagePt Language = "PT"
+	LanguageNl Language = "NL"
+	LanguagePl Language = "PL"
+	LanguageSv Language = "SV"
+	LanguageDa Language = "DA"
+	LanguageNo Language = "NO"
+	LanguageEt Language = "ET"
+	LanguageLt Language = "LT"
+	LanguageLv Language = "LV"
+	LanguageRo Language = "RO"
 )
 
-func (e LinkTokenCreateRequestLanguage) ToPointer() *LinkTokenCreateRequestLanguage {
+func (e Language) ToPointer() *Language {
 	return &e
 }
-func (e *LinkTokenCreateRequestLanguage) UnmarshalJSON(data []byte) error {
+func (e *Language) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -66,26 +66,26 @@ func (e *LinkTokenCreateRequestLanguage) UnmarshalJSON(data []byte) error {
 	case "LV":
 		fallthrough
 	case "RO":
-		*e = LinkTokenCreateRequestLanguage(v)
+		*e = Language(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for LinkTokenCreateRequestLanguage: %v", v)
+		return fmt.Errorf("invalid value for Language: %v", v)
 	}
 }
 
-// LinkTokenCreateRequestBetaSourceStatus - To control which sources to be shown regarding their beta status
-type LinkTokenCreateRequestBetaSourceStatus string
+// BetaSourceStatus - To control which sources to be shown regarding their beta status
+type BetaSourceStatus string
 
 const (
-	LinkTokenCreateRequestBetaSourceStatusLiveAndBeta LinkTokenCreateRequestBetaSourceStatus = "LiveAndBeta"
-	LinkTokenCreateRequestBetaSourceStatusOnlyLive    LinkTokenCreateRequestBetaSourceStatus = "OnlyLive"
-	LinkTokenCreateRequestBetaSourceStatusOnlyBeta    LinkTokenCreateRequestBetaSourceStatus = "OnlyBeta"
+	BetaSourceStatusLiveAndBeta BetaSourceStatus = "LiveAndBeta"
+	BetaSourceStatusOnlyLive    BetaSourceStatus = "OnlyLive"
+	BetaSourceStatusOnlyBeta    BetaSourceStatus = "OnlyBeta"
 )
 
-func (e LinkTokenCreateRequestBetaSourceStatus) ToPointer() *LinkTokenCreateRequestBetaSourceStatus {
+func (e BetaSourceStatus) ToPointer() *BetaSourceStatus {
 	return &e
 }
-func (e *LinkTokenCreateRequestBetaSourceStatus) UnmarshalJSON(data []byte) error {
+func (e *BetaSourceStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -96,10 +96,10 @@ func (e *LinkTokenCreateRequestBetaSourceStatus) UnmarshalJSON(data []byte) erro
 	case "OnlyLive":
 		fallthrough
 	case "OnlyBeta":
-		*e = LinkTokenCreateRequestBetaSourceStatus(v)
+		*e = BetaSourceStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for LinkTokenCreateRequestBetaSourceStatus: %v", v)
+		return fmt.Errorf("invalid value for BetaSourceStatus: %v", v)
 	}
 }
 
@@ -113,18 +113,18 @@ type Update struct {
 	Mode LinkTokenCreateRequestUpdateModeEnum `json:"mode"`
 }
 
-func (o *Update) GetAccessToken() string {
-	if o == nil {
+func (u *Update) GetAccessToken() string {
+	if u == nil {
 		return ""
 	}
-	return o.AccessToken
+	return u.AccessToken
 }
 
-func (o *Update) GetMode() LinkTokenCreateRequestUpdateModeEnum {
-	if o == nil {
+func (u *Update) GetMode() LinkTokenCreateRequestUpdateModeEnum {
+	if u == nil {
 		return LinkTokenCreateRequestUpdateModeEnum("")
 	}
-	return o.Mode
+	return u.Mode
 }
 
 // ParsingMethod - Choose the type of parsing needed for the connection
@@ -162,93 +162,111 @@ func (e *ParsingMethod) UnmarshalJSON(data []byte) error {
 
 type LinkTokenCreateRequest struct {
 	// The language that Link should be displayed in.
-	Language *LinkTokenCreateRequestLanguage `json:"language,omitempty"`
+	Language *Language `json:"language,omitempty"`
 	// Specify an array of Datadeck-supported country codes using the ISO-3166-1 alpha-2 country code standard. Sources from all listed countries will be shown.
 	Countries []string `json:"countries,omitempty"`
+	// The name of the customization from Deck dashboard to be applied to this Widget session. If not specified, the default customization will be used. Values provided in this payload override the dashboard customization settings.
+	CustomizationName *string `json:"customization_name,omitempty"`
 	// You can specify exactly the sources to be shown in Link by providing a list of source ids.
 	SourceIds []string `json:"source_ids,omitempty"`
 	// You can limit the sources to be shown in Link by specifying which source types to be shown in Link.
 	SourceTypes []string `json:"source_types,omitempty"`
 	// To control which sources to be shown regarding their beta status
-	BetaSourceStatus *LinkTokenCreateRequestBetaSourceStatus `json:"beta_source_status,omitempty"`
+	BetaSourceStatus *BetaSourceStatus `json:"beta_source_status,omitempty"`
 	// Used for launching Link in update or refresh mode
 	Update *Update `json:"update,omitempty"`
 	// The webhook URL to receive update events.
 	WebhookURL *string `json:"webhook_url,omitempty"`
 	// If true, the Link session will automatically refresh the data.
 	AutoRefresh *bool `json:"auto_refresh,omitempty"`
+	// Users can request a new source be added to Deck if the source they are searching for is not available.
+	SourceRequest *bool `json:"source_request,omitempty"`
 	// Choose the type of parsing needed for the connection
 	ParsingMethod *ParsingMethod `json:"parsing_method,omitempty"`
 	// Specifies whether to collect only the latest invoice data or all available invoices
 	LatestInvoiceOnly *bool `json:"latest_invoice_only,omitempty"`
 }
 
-func (o *LinkTokenCreateRequest) GetLanguage() *LinkTokenCreateRequestLanguage {
-	if o == nil {
+func (l *LinkTokenCreateRequest) GetLanguage() *Language {
+	if l == nil {
 		return nil
 	}
-	return o.Language
+	return l.Language
 }
 
-func (o *LinkTokenCreateRequest) GetCountries() []string {
-	if o == nil {
+func (l *LinkTokenCreateRequest) GetCountries() []string {
+	if l == nil {
 		return nil
 	}
-	return o.Countries
+	return l.Countries
 }
 
-func (o *LinkTokenCreateRequest) GetSourceIds() []string {
-	if o == nil {
+func (l *LinkTokenCreateRequest) GetCustomizationName() *string {
+	if l == nil {
 		return nil
 	}
-	return o.SourceIds
+	return l.CustomizationName
 }
 
-func (o *LinkTokenCreateRequest) GetSourceTypes() []string {
-	if o == nil {
+func (l *LinkTokenCreateRequest) GetSourceIds() []string {
+	if l == nil {
 		return nil
 	}
-	return o.SourceTypes
+	return l.SourceIds
 }
 
-func (o *LinkTokenCreateRequest) GetBetaSourceStatus() *LinkTokenCreateRequestBetaSourceStatus {
-	if o == nil {
+func (l *LinkTokenCreateRequest) GetSourceTypes() []string {
+	if l == nil {
 		return nil
 	}
-	return o.BetaSourceStatus
+	return l.SourceTypes
 }
 
-func (o *LinkTokenCreateRequest) GetUpdate() *Update {
-	if o == nil {
+func (l *LinkTokenCreateRequest) GetBetaSourceStatus() *BetaSourceStatus {
+	if l == nil {
 		return nil
 	}
-	return o.Update
+	return l.BetaSourceStatus
 }
 
-func (o *LinkTokenCreateRequest) GetWebhookURL() *string {
-	if o == nil {
+func (l *LinkTokenCreateRequest) GetUpdate() *Update {
+	if l == nil {
 		return nil
 	}
-	return o.WebhookURL
+	return l.Update
 }
 
-func (o *LinkTokenCreateRequest) GetAutoRefresh() *bool {
-	if o == nil {
+func (l *LinkTokenCreateRequest) GetWebhookURL() *string {
+	if l == nil {
 		return nil
 	}
-	return o.AutoRefresh
+	return l.WebhookURL
 }
 
-func (o *LinkTokenCreateRequest) GetParsingMethod() *ParsingMethod {
-	if o == nil {
+func (l *LinkTokenCreateRequest) GetAutoRefresh() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.ParsingMethod
+	return l.AutoRefresh
 }
 
-func (o *LinkTokenCreateRequest) GetLatestInvoiceOnly() *bool {
-	if o == nil {
+func (l *LinkTokenCreateRequest) GetSourceRequest() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.LatestInvoiceOnly
+	return l.SourceRequest
+}
+
+func (l *LinkTokenCreateRequest) GetParsingMethod() *ParsingMethod {
+	if l == nil {
+		return nil
+	}
+	return l.ParsingMethod
+}
+
+func (l *LinkTokenCreateRequest) GetLatestInvoiceOnly() *bool {
+	if l == nil {
+		return nil
+	}
+	return l.LatestInvoiceOnly
 }

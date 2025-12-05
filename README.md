@@ -65,7 +65,6 @@ import (
 	"context"
 	sdkgo "github.com/buildwithdeck/sdk-go"
 	"github.com/buildwithdeck/sdk-go/models/components"
-	"github.com/buildwithdeck/sdk-go/models/operations"
 	"log"
 	"os"
 )
@@ -75,23 +74,16 @@ func main() {
 
 	s := sdkgo.New(
 		sdkgo.WithSecurity(components.Security{
-			ClientID: sdkgo.String(os.Getenv("DECK_CLIENT_ID")),
-			Secret:   sdkgo.String(os.Getenv("DECK_SECRET")),
+			ClientID: sdkgo.Pointer(os.Getenv("DECK_CLIENT_ID")),
+			Secret:   sdkgo.Pointer(os.Getenv("DECK_SECRET")),
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
-		JobCode: "FetchDocuments",
-		Input: map[string]string{
-			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
-			"key1":         "value1",
-			"someProperty": "someValue",
-		},
-	})
+	res, err := s.Authentication.PostJobsJobGUIDCancel(ctx, "839ff252-653e-4088-92e2-4bcc8c4ebe83")
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.JobCancelResponse != nil {
 		// handle response
 	}
 }
@@ -119,7 +111,6 @@ import (
 	"context"
 	sdkgo "github.com/buildwithdeck/sdk-go"
 	"github.com/buildwithdeck/sdk-go/models/components"
-	"github.com/buildwithdeck/sdk-go/models/operations"
 	"log"
 	"os"
 )
@@ -129,23 +120,16 @@ func main() {
 
 	s := sdkgo.New(
 		sdkgo.WithSecurity(components.Security{
-			ClientID: sdkgo.String(os.Getenv("DECK_CLIENT_ID")),
-			Secret:   sdkgo.String(os.Getenv("DECK_SECRET")),
+			ClientID: sdkgo.Pointer(os.Getenv("DECK_CLIENT_ID")),
+			Secret:   sdkgo.Pointer(os.Getenv("DECK_SECRET")),
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
-		JobCode: "FetchDocuments",
-		Input: map[string]string{
-			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
-			"key1":         "value1",
-			"someProperty": "someValue",
-		},
-	})
+	res, err := s.Authentication.PostJobsJobGUIDCancel(ctx, "839ff252-653e-4088-92e2-4bcc8c4ebe83")
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.JobCancelResponse != nil {
 		// handle response
 	}
 }
@@ -159,50 +143,44 @@ func main() {
 <details open>
 <summary>Available methods</summary>
 
-### [Connection](docs/sdks/connection/README.md)
+### [Authentication](docs/sdks/authentication/README.md)
 
-* [ExchangePublicToken](docs/sdks/connection/README.md#exchangepublictoken) - Exchange public token for an access token
-* [GetContext](docs/sdks/connection/README.md#getcontext) - Get connection status details
-* [GetAccounts](docs/sdks/connection/README.md#getaccounts) - Get the connection list of account numbers
-* [SelectAccounts](docs/sdks/connection/README.md#selectaccounts) - Update the list of accounts to be considered
-* [UpdateAutoRefresh](docs/sdks/connection/README.md#updateautorefresh) - Update connection stream config
-* [Refresh](docs/sdks/connection/README.md#refresh) - Request manual refresh
-* [Destroy](docs/sdks/connection/README.md#destroy) - Delete all data related to a connection, losing access to it.
+* [PostJobsJobGUIDCancel](docs/sdks/authentication/README.md#postjobsjobguidcancel) - Cancel a Connection
+* [Destroy](docs/sdks/authentication/README.md#destroy) - Delete a Connection
+* [AnswerMFA](docs/sdks/authentication/README.md#answermfa) - Respond to MFA Request
+* [PostAgentsPrepare](docs/sdks/authentication/README.md#postagentsprepare) - Prepare an Agent
+
+### [AuthSDK](docs/sdks/authsdk/README.md)
+
+* [CreateToken](docs/sdks/authsdk/README.md#createtoken) - Create an SDK Token
 
 ### [Connections](docs/sdks/connections/README.md)
 
-* [InvalidateAccessToken](docs/sdks/connections/README.md#invalidateaccesstoken) - Invalidate access_token
-* [UpdateWebhook](docs/sdks/connections/README.md#updatewebhook) - Update the webhook url for a connection
-
+* [UpdateWebhook](docs/sdks/connections/README.md#updatewebhook) - Update Webhook Delivery Endpoint
 
 ### [Jobs](docs/sdks/jobs/README.md)
 
-* [Submit](docs/sdks/jobs/README.md#submit) - Send your job requests
-* [AnswerMFA](docs/sdks/jobs/README.md#answermfa) - Provide MFA code
-* [GetDocumentFile](docs/sdks/jobs/README.md#getdocumentfile) - Get raw file
-
-### [JobsDocuments](docs/sdks/jobsdocuments/README.md)
-
-* [List](docs/sdks/jobsdocuments/README.md#list) - List documents
-
-### [Link](docs/sdks/link/README.md)
-
-* [CreateToken](docs/sdks/link/README.md#createtoken) - Create a Link Token for running a Link session
-* [GetInfo](docs/sdks/link/README.md#getinfo) - Get client information
-* [SearchSources](docs/sdks/link/README.md#searchsources) - Search sources
-* [SelectAccount](docs/sdks/link/README.md#selectaccount) - Select accounts
-* [GetToken](docs/sdks/link/README.md#gettoken) - Get information about a previously created link_token
+* [Submit](docs/sdks/jobs/README.md#submit) - Run a Job
+* [GetJobsJobIDStatus](docs/sdks/jobs/README.md#getjobsjobidstatus) - Retrieve Job Run Status
+* [GetJobsJobID](docs/sdks/jobs/README.md#getjobsjobid) - Retrieve Job Run Output and Status
+* [GetJobsJobIDAll](docs/sdks/jobs/README.md#getjobsjobidall) - Retrieve all Job Information
 
 ### [Links](docs/sdks/links/README.md)
 
-* [Connect](docs/sdks/links/README.md#connect) - Connect with credentials
-* [GetConnectionStatus](docs/sdks/links/README.md#getconnectionstatus) - Get the status of an attempted connection
-* [ListAccounts](docs/sdks/links/README.md#listaccounts) - Return the list of accounts found while creating connection
+* [GetConnectionStatus](docs/sdks/links/README.md#getconnectionstatus) - Get Token Status
 
-#### [Links.Authentication](docs/sdks/authentication/README.md)
+### [Sources](docs/sdks/sources/README.md)
 
-* [GetMfaQuestion](docs/sdks/authentication/README.md#getmfaquestion) - Get the security question
-* [AnswerMfa](docs/sdks/authentication/README.md#answermfa) - Provide MFA code
+* [SearchSources](docs/sdks/sources/README.md#searchsources) - Search sources
+
+### [Storage](docs/sdks/storage/README.md)
+
+* [GetJobsJobGUIDDocuments](docs/sdks/storage/README.md#getjobsjobguiddocuments) - List documents
+* [GetJobsDocumentsDocumentID](docs/sdks/storage/README.md#getjobsdocumentsdocumentid) - Download a Document
+
+### [Testing](docs/sdks/testing/README.md)
+
+* [GetTestAPIKeys](docs/sdks/testing/README.md#gettestapikeys) - Test your API keys
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -220,7 +198,6 @@ import (
 	"context"
 	sdkgo "github.com/buildwithdeck/sdk-go"
 	"github.com/buildwithdeck/sdk-go/models/components"
-	"github.com/buildwithdeck/sdk-go/models/operations"
 	"github.com/buildwithdeck/sdk-go/retry"
 	"log"
 	"models/operations"
@@ -232,19 +209,12 @@ func main() {
 
 	s := sdkgo.New(
 		sdkgo.WithSecurity(components.Security{
-			ClientID: sdkgo.String(os.Getenv("DECK_CLIENT_ID")),
-			Secret:   sdkgo.String(os.Getenv("DECK_SECRET")),
+			ClientID: sdkgo.Pointer(os.Getenv("DECK_CLIENT_ID")),
+			Secret:   sdkgo.Pointer(os.Getenv("DECK_SECRET")),
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
-		JobCode: "FetchDocuments",
-		Input: map[string]string{
-			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
-			"key1":         "value1",
-			"someProperty": "someValue",
-		},
-	}, operations.WithRetries(
+	res, err := s.Authentication.PostJobsJobGUIDCancel(ctx, "839ff252-653e-4088-92e2-4bcc8c4ebe83", operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
 			Backoff: &retry.BackoffStrategy{
@@ -258,7 +228,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.JobCancelResponse != nil {
 		// handle response
 	}
 }
@@ -273,7 +243,6 @@ import (
 	"context"
 	sdkgo "github.com/buildwithdeck/sdk-go"
 	"github.com/buildwithdeck/sdk-go/models/components"
-	"github.com/buildwithdeck/sdk-go/models/operations"
 	"github.com/buildwithdeck/sdk-go/retry"
 	"log"
 	"os"
@@ -295,23 +264,16 @@ func main() {
 				RetryConnectionErrors: false,
 			}),
 		sdkgo.WithSecurity(components.Security{
-			ClientID: sdkgo.String(os.Getenv("DECK_CLIENT_ID")),
-			Secret:   sdkgo.String(os.Getenv("DECK_SECRET")),
+			ClientID: sdkgo.Pointer(os.Getenv("DECK_CLIENT_ID")),
+			Secret:   sdkgo.Pointer(os.Getenv("DECK_SECRET")),
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
-		JobCode: "FetchDocuments",
-		Input: map[string]string{
-			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
-			"key1":         "value1",
-			"someProperty": "someValue",
-		},
-	})
+	res, err := s.Authentication.PostJobsJobGUIDCancel(ctx, "839ff252-653e-4088-92e2-4bcc8c4ebe83")
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.JobCancelResponse != nil {
 		// handle response
 	}
 }
@@ -326,17 +288,14 @@ Handling errors in this SDK should largely match your expectations. All operatio
 
 By Default, an API error will return `apierrors.APIError`. When custom error responses are specified for an operation, the SDK may also return their associated error. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation.
 
-For example, the `Submit` function may return the following errors:
+For example, the `PostJobsJobGUIDCancel` function may return the following errors:
 
-| Error Type                               | Status Code | Content Type               |
-| ---------------------------------------- | ----------- | -------------------------- |
-| apierrors.BadRequestJobResponseError     | 400         | application/json           |
-| apierrors.BadRequestJobResponseError     | 400         | application/json+encrypted |
-| apierrors.BadRequestJobResponseError     | 400         | text/json                  |
-| apierrors.AlreadyRunningJobResponseError | 409         | application/json           |
-| apierrors.AlreadyRunningJobResponseError | 409         | application/json+encrypted |
-| apierrors.AlreadyRunningJobResponseError | 409         | text/json                  |
-| apierrors.APIError                       | 4XX, 5XX    | \*/\*                      |
+| Error Type                     | Status Code | Content Type               |
+| ------------------------------ | ----------- | -------------------------- |
+| apierrors.ErrorMessageResponse | 400         | application/json           |
+| apierrors.ErrorMessageResponse | 400         | application/json+encrypted |
+| apierrors.ErrorMessageResponse | 400         | text/json                  |
+| apierrors.APIError             | 4XX, 5XX    | \*/\*                      |
 
 ### Example
 
@@ -349,7 +308,6 @@ import (
 	sdkgo "github.com/buildwithdeck/sdk-go"
 	"github.com/buildwithdeck/sdk-go/models/apierrors"
 	"github.com/buildwithdeck/sdk-go/models/components"
-	"github.com/buildwithdeck/sdk-go/models/operations"
 	"log"
 	"os"
 )
@@ -359,52 +317,27 @@ func main() {
 
 	s := sdkgo.New(
 		sdkgo.WithSecurity(components.Security{
-			ClientID: sdkgo.String(os.Getenv("DECK_CLIENT_ID")),
-			Secret:   sdkgo.String(os.Getenv("DECK_SECRET")),
+			ClientID: sdkgo.Pointer(os.Getenv("DECK_CLIENT_ID")),
+			Secret:   sdkgo.Pointer(os.Getenv("DECK_SECRET")),
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
-		JobCode: "FetchDocuments",
-		Input: map[string]string{
-			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
-			"key1":         "value1",
-			"someProperty": "someValue",
-		},
-	})
+	res, err := s.Authentication.PostJobsJobGUIDCancel(ctx, "839ff252-653e-4088-92e2-4bcc8c4ebe83")
 	if err != nil {
 
-		var e *apierrors.BadRequestJobResponseError
+		var e *apierrors.ErrorMessageResponse
 		if errors.As(err, &e) {
 			// handle error
 			log.Fatal(e.Error())
 		}
 
-		var e *apierrors.BadRequestJobResponseError
+		var e *apierrors.ErrorMessageResponse
 		if errors.As(err, &e) {
 			// handle error
 			log.Fatal(e.Error())
 		}
 
-		var e *apierrors.BadRequestJobResponseError
-		if errors.As(err, &e) {
-			// handle error
-			log.Fatal(e.Error())
-		}
-
-		var e *apierrors.AlreadyRunningJobResponseError
-		if errors.As(err, &e) {
-			// handle error
-			log.Fatal(e.Error())
-		}
-
-		var e *apierrors.AlreadyRunningJobResponseError
-		if errors.As(err, &e) {
-			// handle error
-			log.Fatal(e.Error())
-		}
-
-		var e *apierrors.AlreadyRunningJobResponseError
+		var e *apierrors.ErrorMessageResponse
 		if errors.As(err, &e) {
 			// handle error
 			log.Fatal(e.Error())
@@ -442,7 +375,6 @@ import (
 	"context"
 	sdkgo "github.com/buildwithdeck/sdk-go"
 	"github.com/buildwithdeck/sdk-go/models/components"
-	"github.com/buildwithdeck/sdk-go/models/operations"
 	"log"
 	"os"
 )
@@ -451,25 +383,18 @@ func main() {
 	ctx := context.Background()
 
 	s := sdkgo.New(
-		sdkgo.WithServerIndex(1),
+		sdkgo.WithServerIndex(0),
 		sdkgo.WithSecurity(components.Security{
-			ClientID: sdkgo.String(os.Getenv("DECK_CLIENT_ID")),
-			Secret:   sdkgo.String(os.Getenv("DECK_SECRET")),
+			ClientID: sdkgo.Pointer(os.Getenv("DECK_CLIENT_ID")),
+			Secret:   sdkgo.Pointer(os.Getenv("DECK_SECRET")),
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
-		JobCode: "FetchDocuments",
-		Input: map[string]string{
-			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
-			"key1":         "value1",
-			"someProperty": "someValue",
-		},
-	})
+	res, err := s.Authentication.PostJobsJobGUIDCancel(ctx, "839ff252-653e-4088-92e2-4bcc8c4ebe83")
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.JobCancelResponse != nil {
 		// handle response
 	}
 }
@@ -486,7 +411,6 @@ import (
 	"context"
 	sdkgo "github.com/buildwithdeck/sdk-go"
 	"github.com/buildwithdeck/sdk-go/models/components"
-	"github.com/buildwithdeck/sdk-go/models/operations"
 	"log"
 	"os"
 )
@@ -497,23 +421,16 @@ func main() {
 	s := sdkgo.New(
 		sdkgo.WithServerURL("https://live.deck.co/api/v1"),
 		sdkgo.WithSecurity(components.Security{
-			ClientID: sdkgo.String(os.Getenv("DECK_CLIENT_ID")),
-			Secret:   sdkgo.String(os.Getenv("DECK_SECRET")),
+			ClientID: sdkgo.Pointer(os.Getenv("DECK_CLIENT_ID")),
+			Secret:   sdkgo.Pointer(os.Getenv("DECK_SECRET")),
 		}),
 	)
 
-	res, err := s.Jobs.Submit(ctx, nil, &operations.PostJobsSubmitRequestBody2{
-		JobCode: "FetchDocuments",
-		Input: map[string]string{
-			"access_token": "access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7",
-			"key1":         "value1",
-			"someProperty": "someValue",
-		},
-	})
+	res, err := s.Authentication.PostJobsJobGUIDCancel(ctx, "839ff252-653e-4088-92e2-4bcc8c4ebe83")
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.JobResponse != nil {
+	if res.JobCancelResponse != nil {
 		// handle response
 	}
 }

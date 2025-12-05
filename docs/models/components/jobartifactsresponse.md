@@ -1,0 +1,14 @@
+# JobArtifactsResponse
+
+
+## Fields
+
+| Field                                                                     | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `JobID`                                                                   | *string*                                                                  | :heavy_check_mark:                                                        | The unique identifier of the job.                                         |
+| `Status`                                                                  | [components.JobStatus](../../models/components/jobstatus.md)              | :heavy_check_mark:                                                        | The status of the job executed.                                           |
+| `Output`                                                                  | **string*                                                                 | :heavy_minus_sign:                                                        | The status of the job executed.                                           |
+| `Source`                                                                  | [components.SourceData](../../models/components/sourcedata.md)            | :heavy_check_mark:                                                        | The source against which the job executed.                                |
+| `Artifacts`                                                               | [*components.JobArtifactData](../../models/components/jobartifactdata.md) | :heavy_minus_sign:                                                        | The artifacts that have been compiled during a job execution.             |
+| `CreatedAt`                                                               | *int64*                                                                   | :heavy_check_mark:                                                        | The time the job execution was created.                                   |
+| `UpdatedAt`                                                               | *int64*                                                                   | :heavy_check_mark:                                                        | The time the job execution was updated.                                   |

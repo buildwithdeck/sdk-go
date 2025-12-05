@@ -9,16 +9,16 @@ type LinkConnectionStatusResponse struct {
 	AdditionalInformation *string `json:"additional_information,omitempty"`
 }
 
-func (o *LinkConnectionStatusResponse) GetStatus() *LinkConnectionStatusResponseEnum {
-	if o == nil {
+func (l *LinkConnectionStatusResponse) GetStatus() *LinkConnectionStatusResponseEnum {
+	if l == nil {
 		return nil
 	}
-	return o.Status
+	return l.Status
 }
 
-func (o *LinkConnectionStatusResponse) GetAdditionalInformation() *string {
-	if o == nil {
+func (l *LinkConnectionStatusResponse) GetAdditionalInformation() *string {
+	if l == nil {
 		return nil
 	}
-	return o.AdditionalInformation
+	return l.AdditionalInformation
 }

@@ -1,9 +1,0 @@
-# SelectConnectionAccountsRequest
-
-
-## Fields
-
-| Field                                                                                                              | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| `AccessToken`                                                                                                      | *string*                                                                                                           | :heavy_check_mark:                                                                                                 | The access token associated with the Item data is being requested for                                              |
-| `Accounts`                                                                                                         | [][components.GetConnectionAccountsRequestAccount](../../models/components/getconnectionaccountsrequestaccount.md) | :heavy_minus_sign:                                                                                                 | N/A                                                                                                                |

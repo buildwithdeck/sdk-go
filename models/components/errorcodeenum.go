@@ -42,6 +42,13 @@ const (
 	ErrorCodeEnumNoActiveConnection         ErrorCodeEnum = "NO_ACTIVE_CONNECTION"
 	ErrorCodeEnumInvalidSource              ErrorCodeEnum = "INVALID_SOURCE"
 	ErrorCodeEnumActiveConnectionExists     ErrorCodeEnum = "ACTIVE_CONNECTION_EXISTS"
+	ErrorCodeEnumDomainBlacklisted          ErrorCodeEnum = "DOMAIN_BLACKLISTED"
+	ErrorCodeEnumNoJobFound                 ErrorCodeEnum = "NO_JOB_FOUND"
+	ErrorCodeEnumIdempotencyKeyInvalid      ErrorCodeEnum = "IDEMPOTENCY_KEY_INVALID"
+	ErrorCodeEnumIdempotencyKeyDuplicate    ErrorCodeEnum = "IDEMPOTENCY_KEY_DUPLICATE"
+	ErrorCodeEnumCorrelationIDInvalid       ErrorCodeEnum = "CORRELATION_ID_INVALID"
+	ErrorCodeEnumJobCannotBeCanceled        ErrorCodeEnum = "JOB_CANNOT_BE_CANCELED"
+	ErrorCodeEnumJobNotRunning              ErrorCodeEnum = "JOB_NOT_RUNNING"
 )
 
 func (e ErrorCodeEnum) ToPointer() *ErrorCodeEnum {
@@ -116,6 +123,20 @@ func (e *ErrorCodeEnum) UnmarshalJSON(data []byte) error {
 	case "INVALID_SOURCE":
 		fallthrough
 	case "ACTIVE_CONNECTION_EXISTS":
+		fallthrough
+	case "DOMAIN_BLACKLISTED":
+		fallthrough
+	case "NO_JOB_FOUND":
+		fallthrough
+	case "IDEMPOTENCY_KEY_INVALID":
+		fallthrough
+	case "IDEMPOTENCY_KEY_DUPLICATE":
+		fallthrough
+	case "CORRELATION_ID_INVALID":
+		fallthrough
+	case "JOB_CANNOT_BE_CANCELED":
+		fallthrough
+	case "JOB_NOT_RUNNING":
 		*e = ErrorCodeEnum(v)
 		return nil
 	default:

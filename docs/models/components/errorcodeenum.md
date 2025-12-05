@@ -37,3 +37,10 @@
 | `ErrorCodeEnumNoActiveConnection`         | NO_ACTIVE_CONNECTION                      |
 | `ErrorCodeEnumInvalidSource`              | INVALID_SOURCE                            |
 | `ErrorCodeEnumActiveConnectionExists`     | ACTIVE_CONNECTION_EXISTS                  |
+| `ErrorCodeEnumDomainBlacklisted`          | DOMAIN_BLACKLISTED                        |
+| `ErrorCodeEnumNoJobFound`                 | NO_JOB_FOUND                              |
+| `ErrorCodeEnumIdempotencyKeyInvalid`      | IDEMPOTENCY_KEY_INVALID                   |
+| `ErrorCodeEnumIdempotencyKeyDuplicate`    | IDEMPOTENCY_KEY_DUPLICATE                 |
+| `ErrorCodeEnumCorrelationIDInvalid`       | CORRELATION_ID_INVALID                    |
+| `ErrorCodeEnumJobCannotBeCanceled`        | JOB_CANNOT_BE_CANCELED                    |
+| `ErrorCodeEnumJobNotRunning`              | JOB_NOT_RUNNING                           |
